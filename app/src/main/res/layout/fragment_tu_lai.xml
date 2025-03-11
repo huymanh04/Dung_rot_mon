@@ -6,7 +6,7 @@
     android:layout_height="280dp"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Fragment.tim_chuyen.tu_lai">
+    tools:context=".Fragment.tab_tim_chuyen.tu_lai">
 
     <!-- Chọn Địa Chỉ -->
     <TextView

@@ -1,4 +1,4 @@
-package com.example.dung_rot_mon.Fragment.tim_chuyen;
+package com.example.dung_rot_mon.Fragment.tab_tim_chuyen;
 
 import android.os.Bundle;
 

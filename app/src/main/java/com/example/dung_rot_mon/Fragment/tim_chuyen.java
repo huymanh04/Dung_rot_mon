@@ -12,7 +12,7 @@ import com.example.dung_rot_mon.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link tim_chuyen#newInstance} factory method to
+ * Use the {@link tab_tim_chuyen#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class tim_chuyen extends Fragment {
