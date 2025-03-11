@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F5F7FA">
+
+ <TextView
+     android:id="@+id/header_title"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:gravity="center"
+     android:text="Chi tiết địa chỉ"
+     android:textColor="#2C3E50"
+     android:textSize="24sp"
+     android:textStyle="bold"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:layout_marginBottom="32dp"/>
+
+ <TextView
+     android:id="@+id/addressTypeLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Loại địa chỉ"
+     android:textColor="#34495E"
+     android:textSize="16sp"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toBottomOf="@id/header_title"
+     app:layout_constraintStart_toStartOf="parent"
+     android:layout_marginTop="24dp"
+     android:layout_marginBottom="12dp"/>
+
+ <RadioGroup
+     android:id="@+id/addressTypeRadioGroup"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     app:layout_constraintTop_toBottomOf="@id/addressTypeLabel"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:background="@drawable/cat_goc"
+     android:padding="8dp"
+     android:layout_marginTop="8dp"
+     android:layout_marginBottom="24dp">
+
+     <RadioButton
+         android:id="@+id/homeRadioButton"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:text="Nhà riêng"
+         android:layout_weight="1"
+         android:textColor="#34495E"
+         android:buttonTint="#3498DB"/>
+
+     <RadioButton
+         android:id="@+id/companyRadioButton"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:text="Công ty"
+         android:layout_weight="1"
+         android:textColor="#34495E"
+         android:buttonTint="#3498DB"/>
+
+ </RadioGroup>
+
+ <TextView
+     android:id="@+id/cityLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Tỉnh/Thành phố"
+     android:textSize="16sp"
+     android:textColor="#34495E"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toBottomOf="@id/addressTypeRadioGroup"
+     app:layout_constraintStart_toStartOf="parent"
+     android:layout_marginTop="16dp"
+     android:layout_marginBottom="8dp"/>
+
+ <EditText
+     android:id="@+id/cityEditText"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="24dp"
+     android:background="@drawable/edit_text"
+     android:elevation="2dp"
+     android:fontFamily="sans-serif"
+     android:hint="Nhập tỉnh/thành phố"
+     android:minHeight="56dp"
+     android:padding="16dp"
+     android:textColor="#2C3E50"
+     android:textColorHint="#95A5A6"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.0"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@id/cityLabel" />
+
+ <TextView
+     android:id="@+id/districtLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Quận/Huyện"
+     android:textSize="16sp"
+     android:textColor="#34495E"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toBottomOf="@id/cityEditText"
+     app:layout_constraintStart_toStartOf="parent"
+     android:layout_marginTop="16dp"
+     android:layout_marginBottom="8dp"/>
+
+ <EditText
+     android:id="@+id/districtEditText"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:hint="Nhập quận/huyện"
+     android:minHeight="56dp"
+     android:background="@drawable/edit_text"
+     android:padding="16dp"
+     android:textColor="#2C3E50"
+     android:textColorHint="#95A5A6"
+     android:fontFamily="sans-serif"
+     android:elevation="2dp"
+     app:layout_constraintTop_toBottomOf="@id/districtLabel"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:layout_marginTop="8dp"
+     android:layout_marginBottom="16dp"/>
+
+ <TextView
+     android:id="@+id/wardLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Phường/Xã"
+     android:textSize="16sp"
+     android:textColor="#34495E"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toBottomOf="@id/districtEditText"
+     app:layout_constraintStart_toStartOf="parent"
+     android:layout_marginTop="16dp"
+     android:layout_marginBottom="8dp"/>
+
+ <EditText
+     android:id="@+id/wardEditText"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:hint="Nhập phường/xã"
+     android:minHeight="56dp"
+     android:background="@drawable/edit_text"
+     android:padding="16dp"
+     android:textColor="#2C3E50"
+     android:textColorHint="#95A5A6"
+     android:fontFamily="sans-serif"
+     android:elevation="2dp"
+     app:layout_constraintTop_toBottomOf="@id/wardLabel"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:layout_marginTop="8dp"
+     android:layout_marginBottom="16dp"/>
+
+ <TextView
+     android:id="@+id/streetLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Đường"
+     android:textSize="16sp"
+     android:textColor="#34495E"
+     android:fontFamily="sans-serif-medium"
+     app:layout_constraintTop_toBottomOf="@id/wardEditText"
+     app:layout_constraintStart_toStartOf="parent"
+     android:layout_marginTop="16dp"
+     android:layout_marginBottom="8dp"/>
+
+ <EditText
+     android:id="@+id/streetEditText"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:hint="Nhập đường"
+     android:minHeight="56dp"
+     android:background="@drawable/edit_text"
+     android:padding="16dp"
+     android:textColor="#2C3E50"
+     android:textColorHint="#95A5A6"
+     android:fontFamily="sans-serif"
+     android:elevation="2dp"
+     app:layout_constraintTop_toBottomOf="@id/streetLabel"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:layout_marginTop="8dp"
+     android:layout_marginBottom="24dp"/>
+
+ <Button
+     android:id="@+id/backButton"
+     android:layout_width="0dp"
+     android:layout_height="56dp"
+     android:text="Quay lại"
+     android:backgroundTint="#ECF0F1"
+     android:textColor="#34495E"
+     android:textStyle="bold"
+     android:fontFamily="sans-serif-medium"
+     android:layout_marginEnd="8dp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toStartOf="@id/saveButton"
+     android:layout_marginTop="24dp"
+     app:cornerRadius="8dp"/>
+
+ <Button
+     android:id="@+id/saveButton"
+     android:layout_width="0dp"
+     android:layout_height="56dp"
+     android:backgroundTint="@color/teal_200"
+     android:text="Lưu"
+     android:textColor="#FFFFFF"
+     android:textStyle="bold"
+     android:fontFamily="sans-serif-medium"
+     android:layout_marginStart="8dp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toEndOf="@id/backButton"
+     android:layout_marginTop="24dp"
+     app:cornerRadius="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

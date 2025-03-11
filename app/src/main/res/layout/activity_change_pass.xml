@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Fragment.tab_account.ChangePass">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/oldPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu cũ"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text"/>
+
+        <EditText
+            android:id="@+id/newPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu mới"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text"/>
+
+        <EditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Xác nhận mật khẩu mới"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edit_text"/>
+
+        <Button
+            android:id="@+id/changePasswordButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cập nhật"
+            android:backgroundTint="@color/teal_200"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
