@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Nền chính -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Hình tam giác cắt góc -->
+    <item android:gravity="top|start">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+            <size android:width="60dp" android:height="60dp"/>
+        </shape>
+    </item>
+</layer-list>

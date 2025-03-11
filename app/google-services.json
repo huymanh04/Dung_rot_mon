@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "338902654598",
+    "firebase_url": "https://thue-xe-c0c31-default-rtdb.firebaseio.com",
+    "project_id": "thue-xe-c0c31",
+    "storage_bucket": "thue-xe-c0c31.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338902654598:android:4385362666e79ccb5bfb07",
+        "android_client_info": {
+          "package_name": "com.example.dung_rot_mon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAroFePni4I9YRDttBGtI2rv0Dxh95WfTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

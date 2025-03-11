@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Fragment.tim_chuyen.tu_lai">
+
+    <!-- Chọn Địa Chỉ -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn địa chỉ trên Google Maps:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:drawableEnd="@android:drawable/ic_menu_mapmode"
+        android:focusable="false"
+        android:hint="Nhấn để chọn địa chỉ"
+        android:padding="10dp" />
+
+    <!-- Chọn Thời Gian Thuê -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thời gian thuê xe:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_rent_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:drawableEnd="@android:drawable/ic_menu_recent_history"
+        android:focusable="false"
+        android:hint="Nhấn để chọn thời gian"
+        android:padding="10dp" />
+
+    <!-- Button Xác Nhận -->
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:padding="10dp"
+        android:text="Xác nhận"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+</LinearLayout>

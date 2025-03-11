@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F5FC"
+    tools:context=".Login.register">
+
+    <!-- Tiêu đề Đăng Ký -->
+<TextView
+android:id="@+id/textView"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="160dp"
+android:layout_marginTop="16dp"
+android:text="Đăng Ký"
+android:textColor="#2C3E50"
+    android:textSize="25sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Logo -->
+<ImageView
+android:id="@+id/logo2"
+android:layout_width="182dp"
+android:layout_height="148dp"
+android:layout_marginStart="112dp"
+android:layout_marginTop="4dp"
+android:scaleType="centerCrop"
+android:src="@drawable/logo"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+<TextView
+android:id="@+id/textView9"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="10dp"
+android:layout_marginTop="7dp"
+android:text="Email của bạn"
+android:textColor="#34495E"
+    android:textSize="15sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/logo2" />
+
+<EditText
+android:id="@+id/username2"
+android:layout_width="386dp"
+android:layout_height="wrap_content"
+android:layout_marginLeft="10dp"
+android:layout_marginTop="7dp"
+android:background="@drawable/edit_text"
+android:hint="Email"
+android:inputType="text"
+android:padding="16dp"
+android:textColor="#2C3E50"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <!-- Họ và Tên -->
+<TextView
+android:id="@+id/textView10"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="10dp"
+android:layout_marginTop="7dp"
+android:text="Họ và Tên"
+android:textColor="#34495E"
+android:textSize="15sp"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/username2" />
+
+<EditText
+android:id="@+id/username3"
+android:layout_width="386dp"
+android:layout_height="wrap_content"
+android:layout_marginLeft="10dp"
+android:layout_marginTop="7dp"
+android:background="@drawable/edit_text"
+android:hint="Họ và Tên"
+android:inputType="text"
+android:padding="16dp"
+android:textColor="#2C3E50"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <!-- Mật khẩu -->
+<TextView
+android:id="@+id/textView11"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="10dp"
+android:layout_marginTop="7dp"
+android:text="Mật khẩu"
+android:textColor="#34495E"
+android:textSize="15sp"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/username3" />
+
+<EditText
+android:id="@+id/password2"
+android:layout_width="386dp"
+android:layout_height="wrap_content"
+android:layout_marginLeft="10dp"
+android:layout_marginTop="7dp"
+android:background="@drawable/edit_text"
+android:hint="Mật khẩu"
+android:inputType="textPassword"
+android:padding="16dp"
+android:textColor="#2C3E50"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <!-- Xác nhận mật khẩu -->
+<TextView
+android:id="@+id/textView12"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="10dp"
+android:layout_marginTop="7dp"
+android:text="Xác nhận mật khẩu"
+android:textColor="#34495E"
+android:textSize="15sp"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/password2" />
+
+<EditText
+android:id="@+id/password3"
+android:layout_width="386dp"
+android:layout_height="wrap_content"
+android:layout_marginLeft="10dp"
+android:layout_marginTop="7dp"
+android:background="@drawable/edit_text"
+android:hint="Xác nhận mật khẩu"
+android:inputType="textPassword"
+android:padding="16dp"
+android:textColor="#2C3E50"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <!-- Radio Button cho chính sách -->
+<RadioButton
+android:id="@+id/radioButton"
+android:layout_width="3910dp"
+android:layout_height="42dp"
+android:layout_marginStart="4dp"
+android:layout_marginTop="16dp"
+android:text="Tôi đã đọc và đồng ý với Chính sách  quy định và Chính sách bảo vệ dữ liệu cá nhn của Eto"
+android:textSize="15sp"
+android:textColor="#2C3E50"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/password3" />
+
+    <!-- Button Đăng ký -->
+
+        <!-- Các TextView cho Đăng nhập -->
+
+    <TextView
+android:id="@+id/textView4"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="67dp"
+android:layout_marginTop="12dp"
+android:text="Bạn đã có tài khoản ?"
+android:textColor="#34495E"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
+<TextView
+android:id="@+id/txtlogin"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="17dp"
+android:layout_marginTop="12dp"
+android:text="Đăng nhập"
+android:textColor="#2980B9"
+    android:textStyle="bold"
+    app:layout_constraintStart_toEndOf="@+id/textView4"
+    app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
+    <Button
+        android:id="@+id/loginButton2"
+        android:layout_width="396dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#80CBC4"
+        android:text="Đăng Ký"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

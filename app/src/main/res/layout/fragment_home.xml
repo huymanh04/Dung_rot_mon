@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Home">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="398dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="9dp"
+                app:cardCornerRadius="27dp"
+                android:backgroundTint="#B9E2DE"
+                android:background="#B2C8C6"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="234dp"
+                    android:scaleType="centerCrop"
+                    android:backgroundTint="#80CBC4"
+                    android:background="#80CBC4"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="48dp"
+                        android:text="Đàm Huy Mạnh"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="70dp"
+                        android:text="Điểm thưởng"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="54dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/circle_background"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="22dp"
+                        android:layout_height="17dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/img_5"
+                        app:layout_constraintStart_toEndOf="@+id/imageView8"
+                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/include_containera"
+                android:layout_width="379dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="-80dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
+
+                <include
+                    android:id="@+id/si"
+                    layout="@layout/fragment_tim_chuyen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chương trình khuyến mãi"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewppppp"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:overScrollMode="never" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Bảo Hiểm"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="381dp"
+                android:layout_height="215dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="5dp"
+                app:cardCornerRadius="27dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="390dp"
+                    android:layout_height="221dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/bao_hiem" />
+
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Giao xe ở các sân bay"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+
+                    android:scrollbars="horizontal"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Địa điểm nổi bật"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+
+                    android:scrollbars="horizontal"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ưu điểm của ETO"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="381dp"
+                android:layout_height="155dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="5dp"
+                app:cardCornerRadius="27dp"
+                app:cardElevation="10dp"
+                android:background="#D3F6A4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#B9E2DE">
+
+                    <ImageView
+                        android:id="@+id/imageView17"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/img_2"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lái xe an toàn cùng ETO"
+                        android:textSize="18sp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="150dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView1s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chuyến đi trên ETO được bảo vệ\nvới Gói bảo hiểm thuê xe tự lái\ntừ MIC và VNI khách thuê chỉ bồi\nthường tối đa 2,000,000đ khi có sự\ncố ngoài ý muốn "
+                        android:textSize="14sp"
+                        android:layout_marginTop="47dp"
+                        android:layout_marginLeft="150dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+            <!--       giơ thi eto //-->
+           <!-- <androidx.cardview.widget.CardView
+                android:layout_width="381dp"
+                android:layout_height="155dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="5dp"
+                app:cardCornerRadius="27dp"
+                app:cardElevation="10dp"
+                android:background="#D3F6A4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#D3F6A4">
+
+                    <ImageView
+                        android:id="@+id/imageVsiew17"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/img_2"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textVsiew18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giới thiệu ETO đến với bạn bè"
+                        android:textSize="18sp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="130dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViews1s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Người giới thiệu và được\ngiới thiệu sẽ nhạn đợc nhiều\nưu đãi nhấp dẫn từ ETO."
+                        android:textSize="18sp"
+                        android:layout_marginTop="47dp"
+                        android:layout_marginLeft="150dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>-->
+            <!--            dk cho thue xe-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="381dp"
+                android:layout_height="155dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="120dp"
+                android:paddingBottom="5dp"
+                app:cardCornerRadius="27dp"
+                app:cardElevation="10dp"
+                android:background="#87B8D0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_10">
+
+
+                    <TextView
+                        android:id="@+id/textVssiew18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="#FFFFFF"
+                        android:text="Bạn muốn cho thuê xe"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textVsiews1s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="47dp"
+                        android:text="Người giới thiệu và được\ngiới thiệu sẽ nhạn đợc nhiều\nưu đãi nhấp dẫn từ ETO."
+                        android:textSize="18sp"
+                        android:textColor="#FCFEFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

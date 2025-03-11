@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ico_home"
+        android:title="Trang chủ"
+         />
+    <item
+        android:icon="@drawable/ico_chat"
+        android:title="Tin nhắn" />
+    <item
+        android:icon="@drawable/ico_car"
+        android:title="Chuyến" />
+    <item
+        android:icon="@drawable/ico_support"
+        android:title="Hỗ trợ" />
+    <item
+        android:icon="@drawable/ico_account"
+        android:title="Tài khoản" />
+</menu>

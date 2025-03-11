@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ico_home"
+        android:id="@+id/home"
+        android:title="Trang chủ"
+        />
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ico_chat"
+        android:title="Tin nhắn" />
+    <item
+ android:enabled="false"
+        android:id="@+id/car"
+        android:title="" />
+    <item
+        android:id="@+id/support"
+        android:icon="@drawable/ico_support"
+        android:title="Hỗ trợ" />
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/ico_account"
+        android:title="Tài khoản" />
+</menu>
