@@ -1,5 +1,6 @@
 package com.example.dung_rot_mon;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dung_rot_mon.R;
 
+import java.util.BitSet;
 import java.util.List;
 
 public class ViewPagerAdapterhome extends RecyclerView.Adapter<ViewPagerAdapterhome.ViewHolder> {
 
-    private List<Integer> imageList;
+    private List<Bitmap> imageList;
 
-    public ViewPagerAdapterhome(List<Integer> imageList) {
+    public ViewPagerAdapterhome(List<Bitmap> imageList) {
         this.imageList = imageList;
     }
 
@@ -37,8 +39,10 @@ public class ViewPagerAdapterhome extends RecyclerView.Adapter<ViewPagerAdapterh
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(imageList.get(position));
+        // Lấy Bitmap từ danh sách imageList và đặt nó vào ImageView
+        holder.imageView.setImageBitmap(imageList.get(position));
     }
+
 
     @Override
     public int getItemCount() {

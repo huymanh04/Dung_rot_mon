@@ -70,7 +70,7 @@ dangky=findViewById(R.id.loginButton2);
     private void registerUser() {
         RadioButton radioButton= findViewById(R.id.radioButton);
         String fullName = username3.getText().toString().trim();
-        String phoneNumber = username2.getText().toString().trim()+"@gmail.com";
+        String phoneNumber = username2.getText().toString().trim();
         String password = password2.getText().toString().trim();
         String confirmPassword = password3.getText().toString().trim();
         // Hiển thị thông báo đăng ký thành công
@@ -79,7 +79,7 @@ dangky=findViewById(R.id.loginButton2);
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        firestore = FirebaseFirestore.getInstance();
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Mật khẩu xác nhận không đúng", Toast.LENGTH_SHORT).show();
             return;
@@ -93,10 +93,10 @@ dangky=findViewById(R.id.loginButton2);
                         FirebaseUser user = mAuth.getCurrentUser();
 
                         // Lưu thông tin người dùng vào Firestore
-                        User newUser = new User(fullName, phoneNumber);
+                        User newUser = new User(fullName, "",phoneNumber);
                         firestore.collection("users").document(user.getUid())
                                 .set(newUser)
-                                .addOnSuccessListener(aVoid -> {
+                                .addOnSuccessListener(documentReference  -> {
                                     Toast.makeText(register.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
 
 
@@ -111,4 +111,5 @@ dangky=findViewById(R.id.loginButton2);
                     }
                 });
     }
+
 }

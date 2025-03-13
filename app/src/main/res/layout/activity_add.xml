@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    android:padding="16dp">
+
+    <!-- Nút để chọn ảnh từ thiết bị -->
+    <Button
+        android:id="@+id/btnChooseImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn ảnh"
+        android:layout_gravity="left" />
+    <Button
+        android:id="@+id/openshow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="open"
+        android:layout_gravity="center" />
+    <!-- Hiển thị ảnh đã chọn -->
+    <Button
+        android:id="@+id/btnChooseImagde2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Chọn ảnh"
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:contentDescription="Image from Base64"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <!-- Hiển thị Base64 String -->
+    <TextView
+        android:id="@+id/tvBase64String"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Base64 string will appear here"
+        android:textSize="14sp"
+        android:lineSpacingExtra="5dp"
+        android:scrollHorizontally="true"
+        android:maxLines="5"
+        android:padding="5dp" />
+
+</LinearLayout>

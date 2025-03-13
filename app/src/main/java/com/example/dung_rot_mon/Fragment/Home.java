@@ -1,5 +1,7 @@
 package com.example.dung_rot_mon.Fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Base64;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,9 @@ import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.ViewPagerAdapterhome;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,13 +95,11 @@ public class Home extends Fragment {
         {
 
             viewPager1 = view.findViewById(R.id.viewppppp);
+            firestore = FirebaseFirestore.getInstance();
+            List<Bitmap> imageList = new ArrayList<>();
+            getItemsFromFirestore(imageList);
 
-            List<Integer> imageList = new ArrayList<>();
-            imageList.add(R.drawable.img_4);
-            imageList.add(R.drawable.img_1);
-            imageList.add(R.drawable.img_2);
-            imageList.add(R.drawable.img_2);
-            imageList.add(R.drawable.img_2);
+
             adapter1 = new ViewPagerAdapterhome(imageList);
             viewPager1.setAdapter(adapter1);
 
@@ -160,5 +164,40 @@ public class Home extends Fragment {
     }
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+    } private FirebaseFirestore firestore;
+    private void getItemsFromFirestore( List<Bitmap> imageList) {
+        firestore.collection("baner_khuyen_mai")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                String name = document.getString("name");
+                                String base64String = document.getString("path");
+
+                                // Chuyển Base64 thành Bitmap
+                                Bitmap bitmap = base64ToBitmap(base64String);
+                                imageList.add(bitmap);
+                                // Thêm dữ liệu vào itemList
+
+                            }
+
+                        }
+                    } else {
+
+                    }
+                });
+    }
+
+    // Hàm chuyển Base64 thành Bitmap
+    public static Bitmap base64ToBitmap(String base64String) {
+        try {
+            byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

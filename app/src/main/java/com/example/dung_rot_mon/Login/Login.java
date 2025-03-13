@@ -43,33 +43,7 @@ public class Login extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lấy giá trị nhập vào từ EditText
-//                String user = username.getText().toString().trim();
-//                String password = pass.getText().toString().trim();
-//                if (user.equals("") || password.equals(""))
-//                {
-//                    if(user.equals(""))
-//                    {
-//                        Toast.makeText(Login.this, "Tài khoản không được bỏ trống !", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(Login.this, "Mật khẩu không được bỏ trống !", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                else
-//                {
-//                    // So sánh giá trị bằng .equals()
-//                    if (user.equals("admin") && password.equals("1")) {
-//                        Intent manh = new Intent(Login.this, MainActivity.class);
-//                        startActivity(manh);
-//                        overridePendingTransition(R.drawable.zoom_in, R.drawable.zoom_out);
-//
-//                        finish();
-//                    } else {
-//                        Toast.makeText(Login.this, "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
+
                 loginUser();
             }
         });
@@ -99,7 +73,7 @@ public class Login extends AppCompatActivity {
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(phoneNumber+"@gmail.com"    , password)
+        mAuth.signInWithEmailAndPassword(phoneNumber  , password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
