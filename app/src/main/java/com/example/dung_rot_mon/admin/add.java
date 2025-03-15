@@ -67,22 +67,8 @@ public class add extends AppCompatActivity {
 
         btnChooseImage1.setOnClickListener(view -> {
             String name = "mfgfdgfdgfdgfdgfdgfdganh";
-            if (!name.isEmpty() && imageUri != null) {
-                // Lấy đường dẫn ảnh và chuyển thành mảng byte
-                String imagePath = getRealPathFromURI(imageUri);
-                if (imagePath != null) {
-                    dbManager.insertData(name, imagePath);  // Thêm dữ liệu vào cơ sở dữ liệu
-                    Toast.makeText(add.this, "Data added successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(add.this, "Failed to get image path", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(add.this, "Please enter a name and select an image", Toast.LENGTH_SHORT).show();
-            }
-
-            // Thông báo đã lưu thành công
-            Toast.makeText(this, "Banner saved successfully!", Toast.LENGTH_SHORT).show();
-        });
+            dbManager.insertData(name,imageView);
+                  });
 
         open.setOnClickListener(view -> {
             Intent manh = new Intent(add.this, show.class);

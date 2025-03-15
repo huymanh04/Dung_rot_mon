@@ -4,7 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -34,7 +37,7 @@ public class DatabaseManager {
         return dbHelper.getWritableDatabase();
     }
 
-    public void insertData(String name, String imagePath) {
+    public void insertData(String name, ImageView imagePath) {
         SQLiteDatabase db = null;
         try {
             db = dbHelper.getWritableDatabase();
@@ -53,7 +56,7 @@ public class DatabaseManager {
             if (result == -1) {
                 Log.e("Database", "Error inserting data");
             } else {
-                Log.i("Database", "Data inserted successfully");
+                Log.i("Database", "Thêm  liệu thành cong");
             }
         } finally {
             if (db != null && db.isOpen()) {
@@ -63,49 +66,12 @@ public class DatabaseManager {
     }
 
     // Phương thức chuyển đổi hình ảnh thành mảng byte
-    private byte[] imageToByteArray(String imagePath) {
-        if (context == null) {
-            Log.e("Database", "Context is null");
-            return null;
-        }
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        InputStream inputStream = null;
-
-        try {
-            inputStream = context.getContentResolver().openInputStream(android.net.Uri.parse(imagePath));
-            if (inputStream == null) {
-                Log.e("Database", "InputStream is null. Could not open image.");
-                return null;
-            }
-
-            Log.i("Database", "Reading image from: " + imagePath);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) != -1) {
-                byteArrayOutputStream.write(buffer, 0, length);
-            }
-
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            Log.i("Database", "Image byte array length: " + byteArray.length); // Log chiều dài mảng byte
-
-            return byteArray;
-
-        } catch (FileNotFoundException e) {
-            Log.e("Database", "File not found: " + e.getMessage());
-        } catch (IOException e) {
-            Log.e("Database", "IOException: " + e.getMessage());
-        } finally {
-            try {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (IOException e) {
-                Log.e("Database", "Error closing InputStream: " + e.getMessage());
-            }
-        }
-
-        return byteArrayOutputStream.toByteArray();
+    private byte[] imageToByteArray(ImageView imagePath) {
+        BitmapDrawable dra=(BitmapDrawable) imagePath.getDrawable();
+        Bitmap bmp =dra.getBitmap();
+        ByteArrayOutputStream strem=new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG,80,strem);
+        byte[] anh=strem.toByteArray();
+        return anh;
     }
 }
