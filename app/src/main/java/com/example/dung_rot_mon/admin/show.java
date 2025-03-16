@@ -6,7 +6,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,15 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class show extends AppCompatActivity {
-    private RecyclerView recyclerView;
-
-    private FirebaseFirestore firestore;
-    private Button button;
-
-    private DataAdapter adapter;
-    private List<Item> itemList;
-    private DatabaseManager dbManager;
-
+    private RecyclerView bannerRecyclerView;
+    private BannerAdaptera bannerAdapter;
+    private List<Banner> bannerList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,42 +44,117 @@ public class show extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        firestore = FirebaseFirestore.getInstance();
-        recyclerView = findViewById(R.id.recyclerView);
-        itemList = new ArrayList<>();
-        dbManager = new DatabaseManager(this);
+        bannerRecyclerView = findViewById(R.id.bannerRecyclerView);
+        bannerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        bannerList = getSampleBanners();
+        // Initialize your adapter and set it to RecyclerView
+        bannerAdapter = new BannerAdaptera(bannerList);
+        bannerRecyclerView.setAdapter(bannerAdapter);
 
-        // Cấu hình RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DataAdapter(this, itemList);
-        recyclerView.setAdapter(adapter);
-
-        // Truy vấn dữ liệu từ cơ sở dữ liệu và hiển thị
-        fetchData();
+        // Add Banner Button
+        findViewById(R.id.addBannerButton).setOnClickListener(v -> addNewBanner());
     }
 
-    private void fetchData() {
-        Cursor cursor = dbManager.getAllData(); // Lấy dữ liệu từ cơ sở dữ liệu
-        int nameColumnIndex = cursor.getColumnIndex("name");
-        int imgColumnIndex = cursor.getColumnIndex("img");
-
-        // Kiểm tra nếu các chỉ số cột hợp lệ (lớn hơn hoặc bằng 0)
-        if (nameColumnIndex == -1 || imgColumnIndex == -1) {
-            Log.e("Database", "Column not found!");
-            return;
-        }
-
-        // Duyệt qua tất cả các bản ghi
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(nameColumnIndex);
-            byte[] img = cursor.getBlob(imgColumnIndex);
-
-            // Thêm vào danh sách itemList
-            itemList.add(new Item(name, img));
-        }
-
-        cursor.close(); // Đóng con trỏ sau khi sử dụng
-        adapter.notifyDataSetChanged(); // Cập nhật RecyclerView
+    private List<Banner> getSampleBanners() {
+        List<Banner> banners = new ArrayList<>();
+        banners.add(new Banner("Promo 1", "https://example.com/banner1.jpg", "Discount on electronics"));
+        banners.add(new Banner("Promo 2", "https://example.com/banner2.jpg", "Summer Sale"));
+        return banners;
     }
 
+    // Add a new banner (this would normally launch a new activity or dialog)
+    private void addNewBanner() {
+        bannerList.add(new Banner("New Promo", "https://example.com/new_banner.jpg", "New Description"));
+        bannerAdapter.notifyDataSetChanged();
+        // Logic to add a new banner
+        Toast.makeText(this, "Add New Banner", Toast.LENGTH_SHORT).show();
+    }
+
+    // BannerAdapter class (simplified)
+    class BannerAdaptera extends RecyclerView.Adapter<BannerAdaptera.BannerViewHolder> {
+
+        private List<Banner> bannerList;
+
+        BannerAdaptera(List<Banner> bannerList) {
+            this.bannerList = bannerList;
+        }
+
+        @Override
+        public BannerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.banner_item, parent, false);
+            return new BannerViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(BannerViewHolder holder, int position) {
+            Banner banner = bannerList.get(position);
+            holder.bannerTitle.setText(banner.getTitle());
+            holder.bannerDescription.setText(banner.getDescription());
+
+            // Handle Edit and Delete clicks
+            holder.editBannerButton.setOnClickListener(v -> editBanner(position));
+            holder.deleteBannerButton.setOnClickListener(v -> deleteBanner(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return bannerList.size();
+        }
+
+        // Edit banner logic
+        private void editBanner(int position) {
+            // Edit banner logic
+            Toast.makeText(show.this, "Edit Banner: " + position, Toast.LENGTH_SHORT).show();
+        }
+
+        // Delete banner logic
+        private void deleteBanner(int position) {
+            bannerList.remove(position);
+            notifyItemRemoved(position);
+
+            // Thông báo cho adapter rằng các item trong khoảng từ vị trí này đã thay đổi
+            notifyItemRangeChanged(position, bannerList.size());
+            Toast.makeText(show.this, "Deleted Banner: " + position, Toast.LENGTH_SHORT).show();
+        }
+
+        class BannerViewHolder extends RecyclerView.ViewHolder {
+
+            TextView bannerTitle, bannerDescription;
+            Button editBannerButton, deleteBannerButton;
+
+            BannerViewHolder(View itemView) {
+                super(itemView);
+                bannerTitle = itemView.findViewById(R.id.bannerTitle);
+                bannerDescription = itemView.findViewById(R.id.id);
+                editBannerButton = itemView.findViewById(R.id.editBannerButton);
+                deleteBannerButton = itemView.findViewById(R.id.deleteBannerButton);
+            }
+        }
+    }
+
+    // Banner model class
+    class Banner {
+        private String title;
+        private String imageUrl;
+        private String description;
+
+        Banner(String title, String imageUrl, String description) {
+            this.title = title;
+            this.imageUrl = imageUrl;
+            this.description = description;
+        }
+
+        String getTitle() {
+            return title;
+        }
+
+        String getDescription() {
+            return description;
+        }
+
+        String getImageUrl() {
+            return imageUrl;
+        }
+    }
 }

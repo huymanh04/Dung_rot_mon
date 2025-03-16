@@ -10,9 +10,6 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class DatabaseManager {
 
@@ -37,32 +34,41 @@ public class DatabaseManager {
         return dbHelper.getWritableDatabase();
     }
 
-    public void insertData(String name, ImageView imagePath) {
-        SQLiteDatabase db = null;
-        try {
+    public int insertData(String name, ImageView imagePath) {
+        SQLiteDatabase db = null; int d=0;
+      try{ try {
             db = dbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             byte[] imageBytes = imageToByteArray(imagePath);
             if (imageBytes == null) {
                 Log.e("Database", "Image byte array is null");
-                return; // Không thêm dữ liệu nếu mảng byte là null
+                return -1; // Không thêm dữ liệu nếu mảng byte là null
             }
 
             values.put("name", name);
                 values.put("img", imageBytes); // Lưu ảnh dưới dạng mảng byte vào cơ sở dữ liệu
 
             long result = db.insert("baner", null, values);
+
             if (result == -1) {
                 Log.e("Database", "Error inserting data");
+                d=-1;
             } else {
                 Log.i("Database", "Thêm  liệu thành cong");
+                d=0;
             }
-        } finally {
+
+
+        }
+
+        finally {
             if (db != null && db.isOpen()) {
                 db.close();
             }
         }
+      }catch(Exception a) {d=-1;}
+        return d;
     }
 
     // Phương thức chuyển đổi hình ảnh thành mảng byte

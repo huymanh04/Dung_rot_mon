@@ -1,6 +1,7 @@
 package com.example.dung_rot_mon;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.admin.Frg_baner;
 
 import java.util.BitSet;
 import java.util.List;
 
 public class ViewPagerAdapterhome extends RecyclerView.Adapter<ViewPagerAdapterhome.ViewHolder> {
 
-    private List<Bitmap> imageList;
-
-    public ViewPagerAdapterhome(List<Bitmap> imageList) {
-        this.imageList = imageList;
+    private List<Frg_baner.Banner> bannerList;
+    public ViewPagerAdapterhome(List<Frg_baner.Banner> bannerList) {
+        this.bannerList = bannerList;
     }
 
     @NonNull
@@ -40,13 +41,15 @@ public class ViewPagerAdapterhome extends RecyclerView.Adapter<ViewPagerAdapterh
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Lấy Bitmap từ danh sách imageList và đặt nó vào ImageView
-        holder.imageView.setImageBitmap(imageList.get(position));
+        Frg_baner.Banner banner = bannerList.get(position);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(banner.getImageUrl(), 0, banner.getImageUrl().length);
+        holder.imageView.setImageBitmap(bitmap);
     }
 
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return bannerList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
