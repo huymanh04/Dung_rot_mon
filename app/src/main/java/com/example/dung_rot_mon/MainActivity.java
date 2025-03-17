@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dung_rot_mon.Fragment.Accountt;
+import com.example.dung_rot_mon.Login.Accountt;
 import com.example.dung_rot_mon.Fragment.Car;
 import com.example.dung_rot_mon.Fragment.Chat;
 import com.example.dung_rot_mon.Fragment.Home;
@@ -17,12 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new Home());
+        intent = getIntent();
 /// botto,nagivation
         {
             binding.bottomNavigation.setBackground(null);
@@ -41,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (title.equals("Hỗ trợ")) {
                     replaceFragment(new Support());
                 } else if (title.equals("Tài khoản")) {
-                    replaceFragment(new Accountt());
+                    String ss=intent.getStringExtra("email");
+                    replaceFragment(new Accountt(ss));
                 }
 
                 return true;

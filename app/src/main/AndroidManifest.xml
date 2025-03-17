@@ -19,7 +19,7 @@
             android:exported="false"
             android:theme="@style/Theme.Dung_rot_mon" />
         <activity
-            android:name=".Login.Login"
+            android:name=".admin.MainAdmin"
             android:exported="false" />
         <activity
             android:name=".admin.show"
@@ -43,10 +43,10 @@
             android:name=".Login.register"
             android:exported="false" />
         <activity
-            android:name=".admin.MainAdmin"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

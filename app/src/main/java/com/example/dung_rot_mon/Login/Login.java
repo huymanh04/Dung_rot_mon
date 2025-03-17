@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     TextView username;TextView pass;TextView dangkyngay;
     Button btnlogin;
+    public  String email;
      FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +79,11 @@ public class Login extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
+                            email=phoneNumber;
                             // Nếu đăng nhập thành công, chuyển hướng tới màn hình chính
                             Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Login.this, MainActivity.class);
+                            intent.putExtra("email", email);
                             startActivity(intent);
                             finish();  // Đóng LoginActivity sau khi đăng nhập thành công
                         }
