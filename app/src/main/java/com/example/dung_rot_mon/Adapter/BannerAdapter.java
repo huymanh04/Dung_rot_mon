@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.admin.Frg_baner;
 
@@ -30,10 +31,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
     // Declare Context
     private Context context;
     private DatabaseManager dbManager;
+    DatabaseHelper db;
     // Constructor with Context
     public BannerAdapter(List<Frg_baner.Banner> bannerList, Context context) {
         this.bannerList = bannerList;
         dbManager = new DatabaseManager(context);
+        db= new DatabaseHelper(context);
         // Assign context
         this.context = context;
     }
@@ -87,11 +90,12 @@ TextView id;
 
 
     public void deleteById(int id, String name) {
-        SQLiteDatabase db = dbManager.getWritableDatabase();
+        SQLiteDatabase dba = db.openDatabase();
+
         String whereClause = "id = ?";
         String[] whereArgs = new String[]{String.valueOf(id)};  // ID của bản ghi cần xóa
-        db.delete(name, whereClause, whereArgs);  // Xóa bản ghi có ID này
-        db.close();
+        dba.delete(name, whereClause, whereArgs);  // Xóa bản ghi có ID này
+        dba.close();
     }
 
     class BannerViewHolder extends RecyclerView.ViewHolder {

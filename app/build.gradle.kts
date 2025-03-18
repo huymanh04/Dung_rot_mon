@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
+
 }
 
 android {
@@ -46,6 +47,9 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
@@ -54,4 +58,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation("com.google.firebase:firebase-auth:21.0.5")  // Firebase Authentication")
     implementation("com.google.firebase:firebase-firestore:24.0.1")  // Firestore (Nếu cần lưu thông tin người dùng)
+
 }

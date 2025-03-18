@@ -103,10 +103,9 @@ dangky=findViewById(R.id.loginButton2);
                                 .set(newUser)
                                 .addOnSuccessListener(documentReference  -> {
                                     Toast.makeText(register.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-
                                     DatabaseAccount dbHelper = new DatabaseAccount(this);
-                                    dbHelper.getWritableDatabase();
-                                    dbHelper.addUser(phoneNumber, fullName, imageToByteArray(null));
+
+                                    dbHelper.addUser(phoneNumber,"",fullName, imageToByteArray(null),imageToByteArray(null));
                                         finish(); // Quay lại màn hình đăng nhập
 
                                     // 2000 ms = 2 giây

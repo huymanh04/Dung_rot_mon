@@ -1,6 +1,7 @@
 package com.example.dung_rot_mon.Fragment;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.dung_rot_mon.Adapter.ItemModel;
 import com.example.dung_rot_mon.Adapter.diadiemnoibat;
 import com.example.dung_rot_mon.Adapter.sanbayadapter;
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.ViewPagerAdapterhome;
 import com.example.dung_rot_mon.admin.Frg_baner;
@@ -101,7 +103,7 @@ public class Home extends Fragment {
         }
         // chương trình khuyến maix
         {
-
+          db= new DatabaseHelper(getActivity());
             viewPager1 = view.findViewById(R.id.viewppppp);
             dbManager = new DatabaseManager(getContext());
             bannerList = new ArrayList<>();
@@ -174,9 +176,11 @@ public class Home extends Fragment {
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
-
+    static DatabaseHelper db;
     public static void fetchData() {
-        Cursor cursor = dbManager.getAllData(); // Lấy dữ liệu từ cơ sở dữ liệu
+     // Lấy dữ liệu từ cơ sở dữ liệu
+        SQLiteDatabase dba = db.openDatabase();
+        Cursor cursor = dba.rawQuery("SELECT * FROM baner", null);
 
         int idcloumname = cursor.getColumnIndex("id");
         int nameColumnIndex = cursor.getColumnIndex("name");

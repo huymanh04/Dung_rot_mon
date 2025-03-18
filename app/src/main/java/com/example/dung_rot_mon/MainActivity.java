@@ -14,8 +14,11 @@ import com.example.dung_rot_mon.Fragment.Car;
 import com.example.dung_rot_mon.Fragment.Chat;
 import com.example.dung_rot_mon.Fragment.Home;
 import com.example.dung_rot_mon.Fragment.Support;
+import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -27,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new Home());
         intent = getIntent();
-/// botto,nagivation
+
+        /// botto,nagivation
         {
             binding.bottomNavigation.setBackground(null);
             binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {

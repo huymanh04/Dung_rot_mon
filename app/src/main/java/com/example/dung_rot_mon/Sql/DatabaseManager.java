@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
 
 public class DatabaseManager {
 
-    private DatabaseHelper dbHelper;
+    private static DatabaseHelper dbHelper;
     private Context context;
 
     public DatabaseManager(Context context) {
@@ -21,23 +21,25 @@ public class DatabaseManager {
         dbHelper = new DatabaseHelper(context);
     }
 
-    public Cursor getAllData() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM baner", null); // Truy vấn tất cả dữ liệu từ bảng
-    }
-
-    public SQLiteDatabase getReadableDatabase() {
-        return dbHelper.getReadableDatabase();
-    }
-
-    public SQLiteDatabase getWritableDatabase() {
-        return dbHelper.getWritableDatabase();
-    }
-
+//    public Cursor getAllData() {
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        return db.rawQuery("SELECT * FROM baner", null); // Truy vấn tất cả dữ liệu từ bảng
+//    }
+//
+//    public SQLiteDatabase getReadableDatabase() {
+//        return dbHelper.getReadableDatabase();
+//    }
+//
+//    public SQLiteDatabase getWritableDatabase() {
+//        return dbHelper.getWritableDatabase();
+//    }
+public static SQLiteDatabase getWritableDatabase(){
+    return dbHelper.openDatabase();
+}
     public int insertData(String name, ImageView imagePath) {
         SQLiteDatabase db = null; int d=0;
       try{ try {
-            db = dbHelper.getWritableDatabase();
+            db = dbHelper.openDatabase();
             ContentValues values = new ContentValues();
 
             byte[] imageBytes = imageToByteArray(imagePath);

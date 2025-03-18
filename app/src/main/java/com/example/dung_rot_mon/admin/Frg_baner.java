@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.dung_rot_mon.Adapter.BannerAdapter;
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 
 import java.util.ArrayList;
@@ -38,13 +39,14 @@ public class Frg_baner extends Fragment {
     private RecyclerView bannerRecyclerView;
     private static BannerAdapter bannerAdapter;
     public static List<Banner> bannerList;
+    static DatabaseHelper db;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frg_baner, container, false);
-
+DatabaseHelper  db= new DatabaseHelper(getActivity());
         // Set RecyclerView and LinearLayoutManager
         bannerRecyclerView = view.findViewById(R.id.bannerRecyclerView);
         bannerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -77,7 +79,9 @@ view.findViewById(R.id.addBannerButton).setOnClickListener(v->{
     private static DatabaseManager dbManager;
 
     public static void fetchData() {
-        Cursor cursor = dbManager.getAllData(); // Lấy dữ liệu từ cơ sở dữ liệu
+//        Cursor cursor = dbManager.getAllData(); // Lấy dữ liệu từ cơ sở dữ liệu
+        SQLiteDatabase dba = db.openDatabase();
+        Cursor cursor = dba.rawQuery("SELECT * FROM baner", null);
 
         int idcloumname = cursor.getColumnIndex("id");
         int nameColumnIndex = cursor.getColumnIndex("name");

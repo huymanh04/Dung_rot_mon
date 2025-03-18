@@ -4,6 +4,7 @@ package com.example.dung_rot_mon.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,10 +18,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
+
 public class Login extends AppCompatActivity {
+    public static DatabaseHelper dbHelper;
     TextView username;TextView pass;TextView dangkyngay;
     Button btnlogin;
     public  String email;
@@ -35,6 +40,19 @@ public class Login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        dbHelper = new DatabaseHelper(this);
+        try {
+            dbHelper.copyDatabase();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            // Sao chép cơ sở dữ liệu từ assets vào bộ nhớ trong (nếu chưa có)
+            dbHelper.copyDatabase();
+        } catch (IOException e) {
+            Log.e("Database Error", "Error copying database", e);
+        }
+
         mAuth=FirebaseAuth.getInstance();
         TextView textView2=findViewById(R.id.textView2);
         btnlogin = findViewById(R.id.loginButton);
