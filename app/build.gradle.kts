@@ -60,3 +60,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.0.1")  // Firestore (Nếu cần lưu thông tin người dùng)
 
 }
+buildscript {
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.8.2")
+    }
+}

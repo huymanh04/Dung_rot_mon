@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.Calendar;
 
-public class DatabaseAccount1 extends SQLiteOpenHelper {
+public class DatabaseAccount11 extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Thue_xe.db";
     private static final int DATABASE_VERSION = 1;
@@ -33,7 +33,7 @@ public class DatabaseAccount1 extends SQLiteOpenHelper {
             + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
             + "name TEXT NOT NULL, "
             + "img BLOB NOT NULL);";
-    public DatabaseAccount1(Context context) {
+    public DatabaseAccount11(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
