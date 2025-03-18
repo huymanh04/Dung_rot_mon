@@ -85,6 +85,7 @@ String Email;
         }
     }
 ImageView profile_image;
+ImageView gplx_image;
     static TextView textViewName;
     static EditText edit_form_phone;
     static EditText edit_form_email;
@@ -94,6 +95,7 @@ ImageView profile_image;
     private Button editButton;
     private ImageButton closeButton;
     private Button saveButton;
+    public boolean ktr=false;
     private Button selectImageButton;
     @SuppressLint({"MissingInflatedId"})
     @Override
@@ -105,6 +107,7 @@ ImageView profile_image;
             replaceFragment(new Accountt(Email));
         });
         profile_image=view.findViewById(R.id.profile_image);
+        gplx_image=view.findViewById(R.id.anh_gplx);
         textViewName=view.findViewById(R.id.textViewName);
         edit_form_phone=view.findViewById(R.id.edit_sdt);
         edit_form_email=view.findViewById(R.id.edit_Email);
@@ -146,6 +149,7 @@ ImageView profile_image;
         });
         view.findViewById(R.id.select_image_button).setOnClickListener(v->{
             bitmap=null;
+            ktr=false;
             openImagePicker();
         });
         view.findViewById(R.id.save_button).setOnClickListener(v->{
@@ -162,7 +166,10 @@ ImageView profile_image;
         });
         view.findViewById(R.id.select_image_gplx).setOnClickListener(v->{
             bitmap=null;
+            ktr=true;
             openImagePicker();
+
+
         });  view.findViewById(R.id.save_gplx).setOnClickListener(v->{
             Bitmap bmm = null;
             updateUserData(Email,"","",bmm,bitmap);
@@ -213,7 +220,7 @@ ImageView profile_image;
     }
     public byte[] getBitmapAsByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);  // Chuyển Bitmap thành mảng byte
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);  // Chuyển Bitmap thành mảng byte
         return stream.toByteArray();
     }
 
@@ -242,8 +249,11 @@ ImageView profile_image;
         if (cursor.moveToFirst()) {
             int id = cursor.getInt(idColumnIndex);
             Bitmap bitmap = BitmapFactory.decodeByteArray(cursor.getBlob(imgColumnIndex), 0, cursor.getBlob(imgColumnIndex).length);
+            Bitmap bitmap1 = BitmapFactory.decodeByteArray(cursor.getBlob(image_blxdhamgiaColumnIndex), 0, cursor.getBlob(image_blxdhamgiaColumnIndex).length);
               if(bitmap==null) {
             }else {        profile_image.setImageBitmap(bitmap);}
+              if(bitmap1==null) {
+            }else {        gplx_image.setImageBitmap(bitmap1);}
             textViewName.setText(cursor.getString(nameColumnIndex));
             edit_form_phone.setText(cursor.getString(phonelColumnIndex));
             textViewName1.setText(cursor.getString(nameColumnIndex));
@@ -282,7 +292,7 @@ ImageView profile_image;
                 try {
                     // Chuyển đổi URI thành Bitmap
                      bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
-
+                     if(ktr){gplx_image.setImageBitmap(bitmap);}
                     Toast.makeText(getActivity(), "lấy ảnh thành cong", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();

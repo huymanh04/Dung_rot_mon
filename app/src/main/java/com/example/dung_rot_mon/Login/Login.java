@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.io.IOException;
 
 public class Login extends AppCompatActivity {
-    public static DatabaseHelper dbHelper;
+
     TextView username;TextView pass;TextView dangkyngay;
     Button btnlogin;
     public  String email;
@@ -40,18 +40,8 @@ public class Login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        dbHelper = new DatabaseHelper(this);
-        try {
-            dbHelper.copyDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            // Sao chép cơ sở dữ liệu từ assets vào bộ nhớ trong (nếu chưa có)
-            dbHelper.copyDatabase();
-        } catch (IOException e) {
-            Log.e("Database Error", "Error copying database", e);
-        }
+
+
 
         mAuth=FirebaseAuth.getInstance();
         TextView textView2=findViewById(R.id.textView2);
@@ -69,6 +59,7 @@ public class Login extends AppCompatActivity {
         dangkyngay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent manh = new Intent(Login.this, register.class);
                 startActivity(manh); overridePendingTransition(R.drawable.zoom_in, R.drawable.zoom_out);
 
@@ -97,7 +88,7 @@ public class Login extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            email=phoneNumber;
+                            email=phoneNumber;    MainActivity.ktralogin=true;
                             // Nếu đăng nhập thành công, chuyển hướng tới màn hình chính
                             Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Login.this, MainActivity.class);

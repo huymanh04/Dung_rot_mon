@@ -17,6 +17,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dung_rot_mon.Adapter.BannerAdapter;
 import com.example.dung_rot_mon.Adapter.Viewtab;
@@ -40,11 +42,16 @@ import java.util.List;
 
 public class Home extends Fragment {
 
+   public Home(String emnail){
+        mail=emnail;
+    }
+    String mail;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private ViewGroup.LayoutParams layoutParams;
     private Viewtab adapter;
     private ViewPager2 viewPager1;
+    private ImageView imageView;
     private static ViewPagerAdapterhome adapter1;
     private static DatabaseManager dbManager;
     public static List<Frg_baner.Banner> bannerList;
@@ -53,6 +60,18 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+      imageView=  view.findViewById(R.id.imageView8);
+        db= new DatabaseHelper(getActivity());
+        if (mail!=""&&mail!=null){
+            readData(mail);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imga, 0, imga.length);
+            if(bitmap==null) {
+            }else {        imageView.setImageBitmap(bitmap);}
+            TextView na = view.findViewById(R.id.textView13);
+            na.setText(Name);
+        }else { TextView na = view.findViewById(R.id.textView13);
+            na.setText("Vui lòng đăng nập để sử dụng dịch vụ");}
+
 /// tìm chuyến
         {
             tabLayout = view.findViewById(R.id.tab_layout);
@@ -103,7 +122,7 @@ public class Home extends Fragment {
         }
         // chương trình khuyến maix
         {
-          db= new DatabaseHelper(getActivity());
+
             viewPager1 = view.findViewById(R.id.viewppppp);
             dbManager = new DatabaseManager(getContext());
             bannerList = new ArrayList<>();
@@ -177,6 +196,42 @@ view.findViewById(R.id.imageView).setOnClickListener(v->{
 
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+    }    static String Name;
+    static String Email;
+    static byte[] imga;
+    public static void readData(String email) {
+        // Modify the query to select based on the email
+        SQLiteDatabase dba = db.openDatabase();
+        Cursor cursor = dba.rawQuery("SELECT * FROM account WHERE email = ?", new String[]{email});
+
+        // Get column indices
+        int idColumnIndex = cursor.getColumnIndex("id");
+        int emailColumnIndex = cursor.getColumnIndex("email");
+        int nameColumnIndex = cursor.getColumnIndex("name");
+        int imgColumnIndex = cursor.getColumnIndex("image");
+        int ngaythamgiaColumnIndex = cursor.getColumnIndex("ngaythamgia");
+        int cmndhamgiaColumnIndex = cursor.getColumnIndex("cmnd");
+
+        // Kiểm tra nếu các chỉ số cột hợp lệ (lớn hơn hoặc bằng 0)
+        if (idColumnIndex == -1 || emailColumnIndex == -1 || nameColumnIndex == -1 || imgColumnIndex == -1) {
+            Log.e("Database", "Column not found!");
+            cursor.close();
+            return;
+        }
+
+        // Kiểm tra nếu có dữ liệu trong Cursor
+        if (cursor.moveToFirst()) {
+            try {
+                int id = cursor.getInt(idColumnIndex);
+
+                Email = cursor.getString(emailColumnIndex);
+                Name = cursor.getString(nameColumnIndex);
+                imga = cursor.getBlob(imgColumnIndex);
+                String ngaythamgia=cursor.getBlob(ngaythamgiaColumnIndex).toString(); }finally {
+            }
+        }
+
+        cursor.close(); // Đóng con trỏ sau khi sử dụng
     }
     static DatabaseHelper db;
     public static void fetchData() {

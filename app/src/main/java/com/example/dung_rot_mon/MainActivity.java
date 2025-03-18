@@ -14,6 +14,8 @@ import com.example.dung_rot_mon.Fragment.Car;
 import com.example.dung_rot_mon.Fragment.Chat;
 import com.example.dung_rot_mon.Fragment.Home;
 import com.example.dung_rot_mon.Fragment.Support;
+import com.example.dung_rot_mon.Login.Login;
+import com.example.dung_rot_mon.Login.register;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,13 +25,27 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Intent intent;
+    public static boolean ktralogin=false;
+    public static DatabaseHelper dbHelper; String email12="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        dbHelper = new DatabaseHelper(this);
+        try {
+            dbHelper.copyDatabase();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         setContentView(binding.getRoot());
-        replaceFragment(new Home());
         intent = getIntent();
+
+        if(ktralogin)
+        {
+            email12=intent.getStringExtra("email");
+        }else {email12="";}
+        replaceFragment(new Home(email12));
+
 
         /// botto,nagivation
         {
@@ -41,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 // So sánh bằng cách sử dụng equals()
                 if (title.equals("Trang chủ")) {
-                    replaceFragment(new Home());
+                    replaceFragment(new Home(email12));
                 } else if (title.equals("Tin nhắn")) {
                     replaceFragment(new Chat());
                 } else if (title.equals("Car")) {
@@ -49,8 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 } else if (title.equals("Hỗ trợ")) {
                     replaceFragment(new Support());
                 } else if (title.equals("Tài khoản")) {
-                    String ss=intent.getStringExtra("email");
-                    replaceFragment(new Accountt(ss));
+if(email12!=null&&email12!=""){
+                    replaceFragment(new Accountt(email12));}else{
+    Intent manh = new Intent(MainActivity.this, Login.class);
+    startActivity(manh); overridePendingTransition(R.drawable.zoom_in, R.drawable.zoom_out);
+    finish();
+}
                 }
 
                 return true;

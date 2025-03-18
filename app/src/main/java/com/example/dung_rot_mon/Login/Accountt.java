@@ -18,15 +18,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dung_rot_mon.Fragment.tab_account.MyAddress;
 import com.example.dung_rot_mon.Fragment.tab_account.SecondFragment;
 import com.example.dung_rot_mon.Fragment.tab_account.tai_khoan_cua_toi;
+import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Accountt extends Fragment {
@@ -38,6 +46,7 @@ public  Accountt(String email){
     private ImageView imageView;
     CardView cardMyAccount,ChangePass,cardMyAddress;
     CardView FavoriteCars;
+    FrameLayout manh;
     static DatabaseHelper dba;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,12 +57,14 @@ public  Accountt(String email){
         imageView = view.findViewById(R.id.imageViewa);
         dbManager = new DatabaseManager(getContext());
 dba =new DatabaseHelper(getActivity());
+if(email1!=""&&email1!=null){
         readData(email1);
         Bitmap bitmap = BitmapFactory.decodeByteArray(imga, 0, imga.length);
         if(bitmap==null) {
         }else {        imageView.setImageBitmap(bitmap);}
         TextView na = view.findViewById(R.id.textViewNamea);
         na.setText(Name);
+}
         cardMyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +88,13 @@ dba =new DatabaseHelper(getActivity());
                 startActivity(m);
             }
         });
+        view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
+
+            MainActivity.ktralogin=false;
+            Intent m = new Intent(getActivity(), MainActivity.class);
+            startActivity(m);
+            getActivity().finish();
+        });
         cardMyAddress = view.findViewById(R.id.cardMyAddress);
         cardMyAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +103,68 @@ dba =new DatabaseHelper(getActivity());
                 startActivity(m);
             }
         });
+        etOldPassword=view.findViewById(R.id.edt_mk1);
+        etNewPassword=view.findViewById(R.id.edt_mk2);
+        etConfirmNewPassword=view.findViewById(R.id.edt_mk3);
+view.findViewById(R.id.cardChangePassword).setOnClickListener(v->{
 
+    view.findViewById(R.id.edit_form_mk).setVisibility(View.VISIBLE);
+});
+        manh= view.findViewById(R.id.edit_form_mk);
+view.findViewById(R.id.close_button).setOnClickListener(v->{
 
+            view.findViewById(R.id.edit_form_mk).setVisibility(View.GONE);
+});
+view.findViewById(R.id.save_button).setOnClickListener(v->{
+
+    String oldPassworda = etOldPassword.getText().toString().trim();
+    String newPassworda = etNewPassword.getText().toString().trim();
+    String confirmNewPassword = etConfirmNewPassword.getText().toString().trim();
+
+    if (newPassworda.equals(confirmNewPassword)) {
+        changePassword(oldPassworda, newPassworda);
+    } else {
+        Toast.makeText(getActivity(), "Mật khẩu mới không khớp", Toast.LENGTH_SHORT).show();
+
+    }
+});
         return view;
+    }
+    EditText etOldPassword,etNewPassword,etConfirmNewPassword;
+    private FirebaseAuth mAuth;
+    private void changePassword(String oldPassword, String newPassword) {
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            // Lấy email và mật khẩu cũ của người dùng để thực hiện xác thực lại
+            AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), oldPassword);
+
+            // Xác thực lại với mật khẩu cũ
+            user.reauthenticate(credential)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Xác thực thành công, tiến hành thay đổi mật khẩu mới
+                            user.updatePassword(newPassword)
+                                    .addOnCompleteListener(updateTask -> {
+                                        if (updateTask.isSuccessful()) {
+                                            // Mật khẩu được thay đổi thành công
+                                            Toast.makeText(getActivity(), "Mật khẩu đã được thay đổi", Toast.LENGTH_SHORT).show();
+                                            manh.setVisibility(View.GONE);
+                                        } else {
+                                            // Nếu thay đổi mật khẩu thất bại
+                                            Toast.makeText(getActivity(), "Lỗi thay đổi mật khẩu: " + updateTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            // Xác thực mật khẩu cũ thất bại
+                            Toast.makeText(getActivity(), "Mật khẩu cũ không chính xác", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(getActivity(), "Bạn cần đăng nhập để thay đổi mật khẩu", Toast.LENGTH_SHORT).show();
+        }
     }
     static String Name;
     static String Email;
