@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.Accountt">
+    tools:context=".Login.Accountt">
 
     <!-- TODO: Update blank fragment layout -->
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,30 +15,63 @@
 
         <!-- Profile Header Section -->
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="162dp"
-            android:layout_marginTop="44dp"
+        <!-- ScrollView for menu items -->
+
+
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="40dp"
+            app:cardElevation="4dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="155dp"
+            android:contentDescription="Image from Base64"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.795"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="Image from Base64"
-        />
+            android:id="@+id/imageView1"
+            >
+
+            <ImageView
+                android:id="@+id/imageViewa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/faceid" />
+
+        </androidx.cardview.widget.CardView>
+<!--        <TextView-->
+<!--            android:id="@+id/textViewNamea"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="148dp"-->
+<!--            android:layout_marginTop="36dp"-->
+<!--            android:layout_marginEnd="133dp"-->
+<!--            android:text="Trần Hữu Nghĩa"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+
+
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/textViewNamea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Trần Hữu Nghĩa"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <!-- ScrollView for menu items -->
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="32dp"
+            android:text="Trần Hữu Nghĩa"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -45,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewName">
+            app:layout_constraintTop_toBottomOf="@+id/textViewNamea">
 
             <LinearLayout
                 android:id="@+id/ok"
@@ -162,8 +196,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-
-
                 <!-- Change Password -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardChangePassword"
@@ -219,14 +251,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="Đăng Xuất"
                             android:textColor="#FF0000"
-                            android:textSize="16sp"
-                            android:gravity="center" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="24dp"
-                            android:layout_height="24dp"/>
+                            android:layout_height="24dp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -51,12 +52,12 @@ public class add extends AppCompatActivity {
         });
 
         imageView = findViewById(R.id.imageView);
-        tvBase64String = findViewById(R.id.tvBase64String);
+
 
         // Xử lý chọn ảnh từ thiết bị
         Button btnChooseImage = findViewById(R.id.btnChooseImage);
         Button open = findViewById(R.id.openshow);
-        Button btnChooseImage1 = findViewById(R.id.btnChooseImagde2);
+        FloatingActionButton btnChooseImage1 = findViewById(R.id.btnChooseImagde2);
 
         btnChooseImage.setOnClickListener(view -> {
             openImageChooser();
@@ -66,28 +67,22 @@ public class add extends AppCompatActivity {
         dbManager = new DatabaseManager(this);
 
         btnChooseImage1.setOnClickListener(view -> {
-            String name = "mfgfdgfdgfdgfdgfdgfdganh";
-            if (!name.isEmpty() && imageUri != null) {
-                // Lấy đường dẫn ảnh và chuyển thành mảng byte
-                String imagePath = getRealPathFromURI(imageUri);
-                if (imagePath != null) {
-                    dbManager.insertData(name, imagePath);  // Thêm dữ liệu vào cơ sở dữ liệu
-                    Toast.makeText(add.this, "Data added successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(add.this, "Failed to get image path", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(add.this, "Please enter a name and select an image", Toast.LENGTH_SHORT).show();
-            }
-
-            // Thông báo đã lưu thành công
-            Toast.makeText(this, "Banner saved successfully!", Toast.LENGTH_SHORT).show();
-        });
+           finish();
+                  });
 
         open.setOnClickListener(view -> {
-            Intent manh = new Intent(add.this, show.class);
-            startActivity(manh);
-            overridePendingTransition(R.drawable.zoom_in, R.drawable.zoom_out);
+            EditText v= findViewById(R.id.etName);
+
+         var numbe=   dbManager.insertData(v.getText().toString(),imageView);
+         if(numbe==-1){
+             Toast.makeText(this, "Add erro" , Toast.LENGTH_SHORT).show();
+         }else {
+             Toast.makeText(this, "Add ok" , Toast.LENGTH_SHORT).show();
+
+         }
+       Frg_baner.fetchData();
+            v.setText("");
+           this.recreate();
         });
     }
 
@@ -97,19 +92,7 @@ public class add extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    // Lấy đường dẫn ảnh từ URI (chuyển URI thành đường dẫn thực)
-    private String getRealPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        if (cursor != null) {
-            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String path = cursor.getString(columnIndex);
-            cursor.close();
-            return path;
-        }
-        return contentUri.getPath();  // Trả về URI nếu không thể truy cập thông qua ContentResolver
-    }
+
 
 
 

@@ -25,10 +25,6 @@ import com.example.dung_rot_mon.Utils;
 
 public class Accountt extends Fragment {
 
-    String carname;
-    public Accountt(String name){
-carname=name;
-    }
     private ImageView imageView;
     CardView cardMyAccount,ChangePass,cardMyAddress;
     CardView FavoriteCars;

@@ -1,13 +1,15 @@
 package com.example.dung_rot_mon.Login;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +20,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
-import com.google.android.gms.tasks.OnCanceledListener;
+import com.example.dung_rot_mon.Sql.DatabaseAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.ByteArrayOutputStream;
 
 
 public class register extends AppCompatActivity {
@@ -34,6 +37,8 @@ public class register extends AppCompatActivity {
     EditText password3;
     FirebaseAuth mAuth;
     Button dangky;
+ImageView anh;
+
      FirebaseFirestore firestore;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,11 +51,12 @@ public class register extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         password3=findViewById(R.id.password3);
         password2=findViewById(R.id.password2);
         username3=findViewById(R.id.username3);
         username2=findViewById(R.id.username2);
-
+anh=findViewById(R.id.logo2);
         mAuth=FirebaseAuth.getInstance();
 dangky=findViewById(R.id.loginButton2);
         txtlogin=findViewById(R.id.txtlogin);
@@ -73,7 +79,6 @@ dangky=findViewById(R.id.loginButton2);
         String phoneNumber = username2.getText().toString().trim();
         String password = password2.getText().toString().trim();
         String confirmPassword = password3.getText().toString().trim();
-        // Hiển thị thông báo đăng ký thành công
 
         if (TextUtils.isEmpty(fullName) || TextUtils.isEmpty(phoneNumber) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -98,8 +103,9 @@ dangky=findViewById(R.id.loginButton2);
                                 .set(newUser)
                                 .addOnSuccessListener(documentReference  -> {
                                     Toast.makeText(register.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    DatabaseAccount dbHelper = new DatabaseAccount(this);
 
-
+                                    dbHelper.addUser(phoneNumber,"",fullName, imageToByteArray(null),imageToByteArray(null));
                                         finish(); // Quay lại màn hình đăng nhập
 
                                     // 2000 ms = 2 giây
@@ -110,6 +116,18 @@ dangky=findViewById(R.id.loginButton2);
                         Toast.makeText(register.this, "Đăng ký thất bại: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private byte[] imageToByteArray(ImageView imagePath) {
+        try {
+            BitmapDrawable dra = (BitmapDrawable) imagePath.getDrawable();
+            Bitmap bmp = dra.getBitmap();
+            ByteArrayOutputStream strem = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 80, strem);
+            return strem.toByteArray();
+        } catch (Exception e) {
+            Log.e("ImageToByteArray", "Error converting image to byte array", e);
+            return new byte[0];  // Trả về một mảng byte rỗng khi có lỗi
+        }
     }
 
 }
