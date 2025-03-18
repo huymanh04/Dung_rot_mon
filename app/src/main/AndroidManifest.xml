@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -30,9 +32,9 @@
         <activity
             android:name=".Fragment.tab_account.ChangePass"
             android:exported="false" />
-        <activity
-            android:name=".Fragment.tab_account.AccountActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Fragment.tab_account.AccountActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Fragment.tab_account.FavoriteCars"
             android:exported="false" />

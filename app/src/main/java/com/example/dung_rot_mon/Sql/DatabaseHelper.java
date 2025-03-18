@@ -69,10 +69,11 @@ public class DatabaseHelper {
         }
     }
     public void backupDatabase() {
-        // Thực hiện sao lưu cơ sở dữ liệu
         try {
-            copyDatabase();
+            // Đường dẫn đến cơ sở dữ liệu gốc trong bộ nhớ trong
             File currentDB = new File(DB_PATH + DB_NAME);
+
+            // Đường dẫn sao lưu đến bộ nhớ ngoài
             File backupDB = new File(Environment.getExternalStorageDirectory(), DB_NAME);
 
             // Kiểm tra quyền truy cập bộ nhớ ngoài
@@ -96,10 +97,8 @@ public class DatabaseHelper {
             fis.close();
 
             Log.i("Database Backup", "Backup successful to: " + backupDB.getAbsolutePath());
-
         } catch (IOException e) {
             Log.e("Database Backup", "Failed to backup database", e);
-
         }
     }
     // Mở cơ sở dữ liệu đã sao chép

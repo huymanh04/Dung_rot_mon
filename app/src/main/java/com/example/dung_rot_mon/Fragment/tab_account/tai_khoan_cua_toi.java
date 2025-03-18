@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
+import android.text.style.UpdateAppearance;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -138,17 +139,33 @@ ImageView profile_image;
         view.findViewById(R.id.close_email).setOnClickListener(v -> {
             view.findViewById(R.id.edit_form_email).setVisibility(View.GONE); // Ẩn form chỉnh sửa
         });
-        view.findViewById(R.id.save_button).setOnClickListener(v->{
 
-
+   view.findViewById(R.id.save_button_sdt).setOnClickListener(v->{
+            EditText manh=view.findViewById(R.id.edit_sdt);
+            updateUserData(Email,"",manh.getText().toString(),null,null);// Hiển thị form chỉnh sửa email
         });
         view.findViewById(R.id.select_image_button).setOnClickListener(v->{
+            bitmap=null;
             openImagePicker();
         });
         view.findViewById(R.id.save_button).setOnClickListener(v->{
             Bitmap bmm = null;
-            updateUserData(Email,textViewName1.getText().toString(),"",bitmap,bmm);
+            updateUserData(Email,textViewName1.getText().toString(),"",bitmap,bmm);// Hiển thị form chỉnh sửa name
             editFormContainer.setVisibility(View.GONE);
+        });
+        view.findViewById(R.id.driver_license_layout).setOnClickListener(v -> {
+
+            view.findViewById(R.id.edit_form_gplx).setVisibility(View.VISIBLE); // Hiển thị form chỉnh sửa blx
+        });
+        view.findViewById(R.id.close_gplx).setOnClickListener(v -> {
+            view.findViewById(R.id.edit_form_gplx).setVisibility(View.GONE); // Ẩn form chỉnh sửa
+        });
+        view.findViewById(R.id.select_image_gplx).setOnClickListener(v->{
+            bitmap=null;
+            openImagePicker();
+        });  view.findViewById(R.id.save_gplx).setOnClickListener(v->{
+            Bitmap bmm = null;
+            updateUserData(Email,"","",bmm,bitmap);
         });
         return view;
     }
@@ -252,7 +269,7 @@ ImageView profile_image;
 
     public void openImagePicker() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");  // Chỉ chọn ảnh
+        intent.setType("image/*"); // Chỉ chọn ảnh
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
     Bitmap bitmap=null;
