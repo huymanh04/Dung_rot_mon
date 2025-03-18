@@ -1,15 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_launcher"
-    tools:context=".Fragment.Car">
+    tools:context=".MainActivity"
+    android:background="@android:color/white">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Tiêu đề "Chuyến của tôi" -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="2" />
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chuyến của tôi"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
 
-</FrameLayout>
+    <!-- Nút lịch ở góc phải -->
+    <ImageView
+        android:id="@+id/btnCalendar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/calendar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Nội dung chính -->
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp">
+
+        <!-- Hình minh họa -->
+        <ImageView
+            android:id="@+id/ivIllustration"
+            android:layout_width="300dp"
+            android:layout_height="500dp"
+            android:src="@drawable/chuyen"/>
+
+        <!-- Thông báo không có chuyến -->
+        <TextView
+            android:id="@+id/tvNoTrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn không có chuyến hiện tại"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Xem lịch sử chuyến -->
+        <TextView
+            android:id="@+id/tvHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xem lịch sử chuyến"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

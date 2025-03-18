@@ -38,10 +38,10 @@
             android:name=".Login.register"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".admin.add"
             android:exported="false" />
         <activity
-            android:name=".admin.add"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

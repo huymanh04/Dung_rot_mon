@@ -2,4 +2,24 @@
     <string name="app_name">Dung_rot_mon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms_details">
+    &#8226; Phạm vi bảo hiểm: thiệt hại thân thể do tai nạn khi tham gia giao thông, loại trừ các lí do chủ quan khác nằm ngoài phạm vi bảo hiểm.&#10;
+    &#8226; Lựa chọn cơ sở khám chữa bệnh bất kì trên phạm vi toàn quốc.&#10;
+    &#8226; Xem thêm nội dung sản phẩm bảo hiểm Bình An Vạn Dặm tại liên kết.
+</string>
+
+    <string name="process_header1">III. Quy trình xử lí nếu xảy ra sự cố</string>
+    <string name="process_details1">
+        1. Sơ cứu người bị thương hoặc gọi cấp cứu 115.\n
+        2. Thông báo cho Bảo hiểm VNI - 1900 96 96 90 và làm theo hướng dẫn tổng đài.\n
+        3. Nộp hồ sơ yêu cầu bồi thường, gồm:\n
+        • Giấy tờ xe bản photo (giấy đăng ký xe, giấy đăng kiểm);\n
+        • Giấy phép lái xe, giấy CNBH;\n
+        • Giấy yêu cầu bảo hiểm;\n
+        • Toa thuốc hoặc giấy xuất viện hoặc giấy xác nhận thương tật (bản photo);\n
+        • Chứng từ y tế: hóa đơn, phiếu chỉ định, kết quả chỉ định (bản online hoặc photo);\n
+        • Các hồ sơ, tài liệu khác theo yêu cầu của nhà bảo hiểm.
+    </string>
+
+
 </resources>

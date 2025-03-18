@@ -13,6 +13,7 @@ import com.example.dung_rot_mon.Fragment.Chat;
 import com.example.dung_rot_mon.Fragment.Home;
 import com.example.dung_rot_mon.Fragment.Support;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
+import com.example.dung_rot_mon.tab_car.tim_thue_xe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (title.equals("Tin nhắn")) {
                     replaceFragment(new Chat());
                 } else if (title.equals("Car")) {
-                    replaceFragment(new Car());
+                    replaceFragment(new tim_thue_xe());
                 } else if (title.equals("Hỗ trợ")) {
                     replaceFragment(new Support());
                 } else if (title.equals("Tài khoản")) {
-                    replaceFragment(new Accountt());
+                    replaceFragment(new Accountt("ádasd"));
                 }
 
                 return true;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             FloatingActionButton btncarr;
             btncarr = findViewById(R.id.btncarr);
             btncarr.setOnClickListener(v -> {
-                replaceFragment(new Car());
+                replaceFragment(new tim_thue_xe());
             });
         }
 

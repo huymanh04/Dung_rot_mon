@@ -118,7 +118,9 @@ public class Home extends Fragment {
             recyclerView = view.findViewById(R.id.recyclerView);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(layoutManager);
+view.findViewById(R.id.imageView).setOnClickListener(v->{
 
+});
             // Khởi tạo danh sách dữ liệu
             itemList = new ArrayList<>();
             itemList.add(new ItemModel(R.drawable.img_1, "Tân Sơn Nhất", "1000+ xe"));
@@ -146,7 +148,7 @@ public class Home extends Fragment {
 
             // Khởi tạo danh sách dữ liệu
             itemList = new ArrayList<>();
-            itemList.add(new ItemModel(R.drawable.img_1, "Phú Quốc", "150+ xe"));
+            itemList.add(new ItemModel(R.drawable.images, "Sài Gòn", "150+ xe"));
             itemList.add(new ItemModel(R.drawable.img_2, "Long An", "100+ xe"));
             itemList.add(new ItemModel(R.drawable.img_3, "Long An", "100+ xe"));
             itemList.add(new ItemModel(R.drawable.img_2, "Long An", "100+ xe"));

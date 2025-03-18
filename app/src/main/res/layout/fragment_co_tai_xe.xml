@@ -6,7 +6,7 @@
     android:layout_height="365dp"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".fragment.thue_xe.co_tai_xe">
+    tools:context=".Fragment.tab_tim_chuyen.co_tai_xe">
 
     <!-- Chọn Loại Hành Trình -->
 
