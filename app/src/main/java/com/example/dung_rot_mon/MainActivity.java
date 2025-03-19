@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(binding.getRoot());
         intent = getIntent();
-        intent = getIntent();
-
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
