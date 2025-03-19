@@ -59,8 +59,8 @@ TextView id;
         holder.bannerImage.setImageBitmap(bitmap);
 
         // Handle Edit and Delete clicks
-        holder.editBannerButton.setOnClickListener(v -> editBanner(position));
-        holder.deleteBannerButton.setOnClickListener(v -> deleteBanner(position));
+
+        holder.deleteBannerButtona.setOnClickListener(v -> deleteBanner(position));
     }
 
     @Override
@@ -101,7 +101,7 @@ TextView id;
     class BannerViewHolder extends RecyclerView.ViewHolder {
 
         TextView bannerTitle, bannerDescription;
-        Button editBannerButton, deleteBannerButton;
+        Button editBannerButton, deleteBannerButtona;
         ImageView bannerImage;
 
         BannerViewHolder(View itemView) {
@@ -109,8 +109,7 @@ TextView id;
             bannerTitle = itemView.findViewById(R.id.bannerTitle);
             bannerImage = itemView.findViewById(R.id.bannerImage);
             bannerDescription = itemView.findViewById(R.id.id);
-            editBannerButton = itemView.findViewById(R.id.editBannerButton);
-            deleteBannerButton = itemView.findViewById(R.id.deleteBannerButton);
+            deleteBannerButtona = itemView.findViewById(R.id.deleteBannerButton);
         }
     }
 }

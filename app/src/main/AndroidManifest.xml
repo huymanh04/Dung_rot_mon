@@ -32,9 +32,7 @@
         <activity
             android:name=".Fragment.tab_account.ChangePass"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Fragment.tab_account.AccountActivity"-->
-<!--            android:exported="false" />-->
+
         <activity
             android:name=".Fragment.tab_account.FavoriteCars"
             android:exported="false" />

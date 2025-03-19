@@ -87,7 +87,7 @@
                 android:id="@+id/termsDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/terms_details"
+                android:text="d"
                 android:textSize="16sp"
                 android:paddingTop="8dp"/>
 
@@ -96,8 +96,7 @@
                 android:id="@+id/processHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/process_header1"
-                android:textSize="18sp"
+                android:text="d"
                 android:textStyle="bold"
                 android:paddingTop="16dp"/>
 
@@ -105,7 +104,7 @@
                 android:id="@+id/processDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/process_details1"
+                android:text="df"
                 android:textSize="16sp"
                 android:paddingTop="8dp"/>
 

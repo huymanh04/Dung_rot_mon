@@ -40,13 +40,14 @@ public class Frg_baner extends Fragment {
     private static BannerAdapter bannerAdapter;
     public static List<Banner> bannerList;
     static DatabaseHelper db;
-    @SuppressLint("MissingInflatedId")
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frg_baner, container, false);
-DatabaseHelper  db= new DatabaseHelper(getActivity());
+
+    db=new DatabaseHelper(getActivity());
         // Set RecyclerView and LinearLayoutManager
         bannerRecyclerView = view.findViewById(R.id.bannerRecyclerView);
         bannerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

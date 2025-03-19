@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.dung_rot_mon.Fragment.Chat_.tab_chat;
+import com.example.dung_rot_mon.Fragment.Home;
+import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
@@ -39,6 +41,7 @@ public class MainAdmin extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Home.bannerList.clear();
         if (savedInstanceState == null) {
             Frg_baner fragment = new Frg_baner();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

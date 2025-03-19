@@ -17,12 +17,14 @@ import com.example.dung_rot_mon.Fragment.Support;
 import com.example.dung_rot_mon.Login.Login;
 import com.example.dung_rot_mon.Login.register;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
+import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+
     ActivityMainBinding binding;
     Intent intent;
     public static boolean ktralogin=false;
@@ -78,7 +80,10 @@ if(email12!=null&&email12!=""){
             FloatingActionButton btncarr;
             btncarr = findViewById(R.id.btncarr);
             btncarr.setOnClickListener(v -> {
-                replaceFragment(new Car());
+
+//                replaceFragment(new Car());
+                Intent m = new Intent(MainActivity.this, MainAdmin.class);
+                startActivity(m);
             });
         }
 

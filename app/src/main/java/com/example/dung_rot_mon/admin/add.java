@@ -67,7 +67,9 @@ public class add extends AppCompatActivity {
         dbManager = new DatabaseManager(this);
 
         btnChooseImage1.setOnClickListener(view -> {
-           finish();
+            Frg_baner.bannerList.clear();
+           Frg_baner.fetchData();
+            finish();
                   });
 
         open.setOnClickListener(view -> {
@@ -80,7 +82,7 @@ public class add extends AppCompatActivity {
              Toast.makeText(this, "Add ok" , Toast.LENGTH_SHORT).show();
 
          }
-       Frg_baner.fetchData();
+
             v.setText("");
            this.recreate();
         });

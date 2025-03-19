@@ -43,19 +43,14 @@
             android:orientation="horizontal"
             android:layout_marginTop="8dp">
 
-            <!-- Edit Button -->
-            <Button
-                android:id="@+id/editBannerButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit" />
+
 
             <!-- Delete Button -->
             <Button
                 android:id="@+id/deleteBannerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:text="Xóa"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
     </LinearLayout>

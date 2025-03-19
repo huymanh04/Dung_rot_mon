@@ -31,6 +31,9 @@ import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
+import com.example.dung_rot_mon.admin.Frg_baner;
+import com.example.dung_rot_mon.admin.MainAdmin;
+import com.example.dung_rot_mon.admin.add;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -100,6 +103,12 @@ if(email1!=""&&email1!=null){
             @Override
             public void onClick(View v) {
                 Intent m = new Intent(getActivity(), MyAddress.class);
+                startActivity(m);
+            }
+        });  view.findViewById(R.id.addxe).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent m = new Intent(getActivity(), MainAdmin.class);
                 startActivity(m);
             }
         });

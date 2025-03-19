@@ -1,6 +1,7 @@
 package com.example.dung_rot_mon.admin;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dung_rot_mon.Login.Login;
+import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -85,7 +88,19 @@ public class show extends AppCompatActivity {
                     .inflate(R.layout.banner_item, parent, false);
             return new BannerViewHolder(itemView);
         }
+        public boolean deleteRecordById(int id) {
+            SQLiteDatabase db = MainActivity.dbHelper.openDatabase();
+            // Xác định điều kiện xóa (trong trường hợp này là xóa theo ID)
+            String whereClause = "id = ?";
+            String[] whereArgs = new String[] { String.valueOf(id) };
 
+            // Thực hiện xóa bản ghi trong bảng
+            int rowsAffected = db.delete("baner", whereClause, whereArgs);
+            db.close();
+
+            // Trả về true nếu xóa thành công, false nếu không có bản ghi nào bị xóa
+            return rowsAffected > 0;
+        }
         @Override
         public void onBindViewHolder(BannerViewHolder holder, int position) {
             Banner banner = bannerList.get(position);
@@ -112,7 +127,7 @@ public class show extends AppCompatActivity {
         private void deleteBanner(int position) {
             bannerList.remove(position);
             notifyItemRemoved(position);
-
+            deleteRecordById(Integer.parseInt(bannerList.get(position).getDescription()));
             // Thông báo cho adapter rằng các item trong khoảng từ vị trí này đã thay đổi
             notifyItemRangeChanged(position, bannerList.size());
             Toast.makeText(show.this, "Deleted Banner: " + position, Toast.LENGTH_SHORT).show();
@@ -127,7 +142,7 @@ public class show extends AppCompatActivity {
                 super(itemView);
                 bannerTitle = itemView.findViewById(R.id.bannerTitle);
                 bannerDescription = itemView.findViewById(R.id.id);
-                editBannerButton = itemView.findViewById(R.id.editBannerButton);
+
                 deleteBannerButton = itemView.findViewById(R.id.deleteBannerButton);
             }
         }
