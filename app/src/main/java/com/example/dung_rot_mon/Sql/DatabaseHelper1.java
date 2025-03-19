@@ -9,6 +9,7 @@ public class DatabaseHelper1 extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Thue_xe.db";
     private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSIONa = 1;
 
     // Tạo bảng với cột 'name' và 'img'
     private static final String CREATE_TABLE = "CREATE TABLE baner ("

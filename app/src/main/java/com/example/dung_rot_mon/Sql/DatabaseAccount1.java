@@ -10,6 +10,7 @@ import java.util.Calendar;
 public class DatabaseAccount1 extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Thue_xe.db";
+    private static final String DATABASsE_NAME = "Thue_xe.db";
     private static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_USER = "account";
