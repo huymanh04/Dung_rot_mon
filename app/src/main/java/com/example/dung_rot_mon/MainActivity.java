@@ -80,8 +80,10 @@ if(email12!=null&&email12!=""){
             FloatingActionButton btncarr;
             btncarr = findViewById(R.id.btncarr);
             btncarr.setOnClickListener(v -> {
-             replaceFragment(new Car());
 
+//                replaceFragment(new Car());
+                Intent m = new Intent(MainActivity.this, MainAdmin.class);
+                startActivity(m);
             });
         }
 
