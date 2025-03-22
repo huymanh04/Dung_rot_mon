@@ -19,6 +19,7 @@ import com.example.dung_rot_mon.Login.register;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
+import com.example.dung_rot_mon.tab_car.tim_thue_xe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -82,8 +83,9 @@ if(email12!=null&&email12!=""){
             btncarr.setOnClickListener(v -> {
 
 //                replaceFragment(new Car());
-                Intent m = new Intent(MainActivity.this, MainAdmin.class);
-                startActivity(m);
+              replaceFragment(new tim_thue_xe());
+//                Intent m = new Intent(MainActivity.this, MainAdmin.class);
+//                startActivity(m);
             });
         }
 
