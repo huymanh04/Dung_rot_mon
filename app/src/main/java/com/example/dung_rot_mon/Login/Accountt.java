@@ -92,8 +92,8 @@ if(email1!=""&&email1!=null){
         ChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.ChangePass.class);
-                startActivity(m);
+                Intent ma = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.ChangePass.class);
+                startActivity(ma);
             }
         });
         if(1!=1){
