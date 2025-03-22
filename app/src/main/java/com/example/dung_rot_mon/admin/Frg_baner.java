@@ -36,7 +36,7 @@ public class Frg_baner extends Fragment {
     public Frg_baner() {
         // Required empty public constructor
     }
-    private RecyclerView bannerRecyclerView;
+    private RecyclerView    bannerRecyclerView;
     private static BannerAdapter bannerAdapter;
     public static List<Banner> bannerList;
     static DatabaseHelper db;

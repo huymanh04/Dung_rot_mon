@@ -385,12 +385,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:text="Đổi thông tin cá nhân"
+                android:textColor="@color/mau_chu"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <!-- Nút đóng (X) -->
             <ImageButton
                 android:id="@+id/close_button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="-35dp"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:background="?android:attr/selectableItemBackground"
                 android:layout_gravity="end"
@@ -469,12 +478,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Đổi số điện thoại"
+                    android:textColor="@color/mau_chu"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <!-- Nút đóng (X) -->
 
                 <!-- Nút đóng (X) -->
                 <ImageButton
                     android:id="@+id/close_button_sdt"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginTop="-35dp"
                     android:src="@android:drawable/ic_menu_close_clear_cancel"
                     android:background="?android:attr/selectableItemBackground"
                     android:layout_gravity="end"
@@ -541,12 +561,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Xem gmail"
+                    android:textColor="@color/mau_chu"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
                 <!-- Nút đóng (X) -->
                 <ImageButton
                     android:id="@+id/close_email"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginTop="-35dp"
                     android:src="@android:drawable/ic_menu_close_clear_cancel"
                     android:background="?android:attr/selectableItemBackground"
                     android:layout_gravity="end"
@@ -600,12 +629,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Đổi Giấy phép lái xe"
+                    android:textColor="@color/mau_chu"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
                 <!-- Nút đóng (X) -->
                 <ImageButton
                     android:id="@+id/close_gplx"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginTop="-35dp"
                     android:src="@android:drawable/ic_menu_close_clear_cancel"
                     android:background="?android:attr/selectableItemBackground"
                     android:layout_gravity="end"

@@ -50,6 +50,7 @@ public  Accountt(String email){
     CardView cardMyAccount,ChangePass,cardMyAddress;
     CardView FavoriteCars;
     FrameLayout manh;
+
     static DatabaseHelper dba;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -67,6 +68,10 @@ if(email1!=""&&email1!=null){
         }else {        imageView.setImageBitmap(bitmap);}
         TextView na = view.findViewById(R.id.textViewNamea);
         na.setText(Name);
+        if(taixe==1)
+        {
+            view.findViewById(R.id.textssViewNamea).setVisibility(View.VISIBLE);
+        }
 }
         cardMyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +96,12 @@ if(email1!=""&&email1!=null){
                 startActivity(m);
             }
         });
+        if(1!=1){
+            view.findViewById(R.id.textssViewNamea).setVisibility(View.VISIBLE);
+        }else {view.findViewById(R.id.textssViewNamea).setVisibility(View.GONE);}
+        if(1!=1){
+            view.findViewById(R.id.addxe).setVisibility(View.VISIBLE);
+        }else {view.findViewById(R.id.addxe).setVisibility(View.GONE);}
         view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
 
             MainActivity.ktralogin=false;
@@ -178,7 +189,7 @@ view.findViewById(R.id.save_button).setOnClickListener(v->{
     static String Name;
     static String Email;
     static byte[] imga;
-
+    public static int taixe;
     public static void readData(String email) {
         // Modify the query to select based on the email
         SQLiteDatabase db = dba.openDatabase();
@@ -190,7 +201,7 @@ view.findViewById(R.id.save_button).setOnClickListener(v->{
         int nameColumnIndex = cursor.getColumnIndex("name");
         int imgColumnIndex = cursor.getColumnIndex("image");
         int ngaythamgiaColumnIndex = cursor.getColumnIndex("ngaythamgia");
-        int cmndhamgiaColumnIndex = cursor.getColumnIndex("cmnd");
+        int inttaixe = cursor.getColumnIndex("taixe");
 
         // Kiểm tra nếu các chỉ số cột hợp lệ (lớn hơn hoặc bằng 0)
         if (idColumnIndex == -1 || emailColumnIndex == -1 || nameColumnIndex == -1 || imgColumnIndex == -1) {
@@ -207,6 +218,7 @@ view.findViewById(R.id.save_button).setOnClickListener(v->{
             Email = cursor.getString(emailColumnIndex);
             Name = cursor.getString(nameColumnIndex);
             imga = cursor.getBlob(imgColumnIndex);
+            taixe=cursor.getInt(inttaixe);
 String ngaythamgia=cursor.getBlob(ngaythamgiaColumnIndex).toString(); }finally {
             }
         }

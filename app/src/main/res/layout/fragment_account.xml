@@ -299,7 +299,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif"
-                                android:text="Thêm xe"
+                                android:text="Thêm baner"
                                 android:textColor="#333333"
                                 android:textSize="16sp" />
 

@@ -98,7 +98,7 @@ dangky=findViewById(R.id.loginButton2);
                         FirebaseUser user = mAuth.getCurrentUser();
 
                         // Lưu thông tin người dùng vào Firestore
-                        User newUser = new User(fullName, "",phoneNumber);
+                        User newUser = new User(fullName, "",phoneNumber,0);
                         firestore.collection("users").document(user.getUid())
                                 .set(newUser)
                                 .addOnSuccessListener(documentReference  -> {
