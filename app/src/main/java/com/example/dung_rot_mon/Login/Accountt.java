@@ -84,8 +84,8 @@ if(email1!=""&&email1!=null){
         FavoriteCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.FavoriteCars.class);
-                startActivity(m);
+                Intent ma = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.FavoriteCars.class);
+                startActivity(ma);
             }
         });
         ChangePass = view.findViewById(R.id.cardChangePassword);
