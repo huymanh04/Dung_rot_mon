@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dung_rot_mon.Adapter.BannerAdapter;
 import com.example.dung_rot_mon.Adapter.Viewtab;
@@ -30,6 +32,7 @@ import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.ViewPagerAdapterhome;
 import com.example.dung_rot_mon.admin.Frg_baner;
+import com.example.dung_rot_mon.dialog.bao_hiem_dialog;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -120,6 +123,28 @@ public class Home extends Fragment {
                 }
             });
         }
+        ImageView btn=view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bao_hiem_dialog dialog = new bao_hiem_dialog();
+                dialog.show(getParentFragmentManager(), "bao_hiem_dialog");
+                Toast.makeText(getContext(), "Image clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        CardView cardView = view.findViewById(R.id.imageView1);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "CardView Clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn.setOnClickListener(v-> {
+
+                }
+        );
         // chương trình khuyến maix
         {
 
@@ -192,6 +217,9 @@ view.findViewById(R.id.imageView).setOnClickListener(v->{
             layoutParams.height = dpToPx(360);
         }
         viewPager.setLayoutParams(layoutParams);
+    }
+    public void onCardClick(View view) {
+        Toast.makeText(getContext(), "CardView Clicked!", Toast.LENGTH_SHORT).show();
     }
 
     private int dpToPx(int dp) {

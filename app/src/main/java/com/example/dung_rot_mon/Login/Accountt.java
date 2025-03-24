@@ -52,7 +52,7 @@ public  Accountt(String email){
     FrameLayout manh;
 
     static DatabaseHelper dba;
-    @SuppressLint("MissingInflatedId")
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,10 +96,10 @@ if(email1!=""&&email1!=null){
                 startActivity(ma);
             }
         });
-        if(1!=1){
+        if(taixe!=0){
             view.findViewById(R.id.textssViewNamea).setVisibility(View.VISIBLE);
         }else {view.findViewById(R.id.textssViewNamea).setVisibility(View.GONE);}
-        if(1!=1){
+        if(taixe!=0){
             view.findViewById(R.id.addxe).setVisibility(View.VISIBLE);
         }else {view.findViewById(R.id.addxe).setVisibility(View.GONE);}
         view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
