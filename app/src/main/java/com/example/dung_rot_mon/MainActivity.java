@@ -19,6 +19,7 @@ import com.example.dung_rot_mon.Login.register;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
+import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Intent intent;
     public static boolean ktralogin=false;
-    public static DatabaseHelper dbHelper; String email12="";
+    public static DatabaseHelper dbHelper; String email12="huymanh@gmail.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +42,12 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(binding.getRoot());
         intent = getIntent();
-        intent = getIntent();
+
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
         }else {email12="";}
+        email12="huymanh@gmail.com";
         replaceFragment(new Home(email12));
 
 
@@ -81,9 +83,9 @@ if(email12!=null&&email12!=""){
             btncarr = findViewById(R.id.btncarr);
             btncarr.setOnClickListener(v -> {
 
-//                replaceFragment(new Car());
-                Intent m = new Intent(MainActivity.this, MainAdmin.class);
-                startActivity(m);
+              replaceFragment(new Quan_ly_xe(email12));
+               /* Intent m = new Intent(MainActivity.this, MainAdmin.class);
+                startActivity(m);*/
             });
         }
 

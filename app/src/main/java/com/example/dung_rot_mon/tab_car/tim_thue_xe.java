@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.dung_rot_mon.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,24 +66,27 @@ public class tim_thue_xe extends Fragment {
     private RecyclerView recyclerView;
     private CarAdapter carAdapter;
     private List<Car> carList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_tim_thue_xe, container, false);
+
         view.findViewById(R.id.button2).setOnClickListener(v->{
             recyclerView = view.findViewById(R.id.recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
             carList = getCarList();
-            carAdapter = new CarAdapter(getContext(), carList, car -> {
-                // Khi click vào xe, thay đổi sang màn hình chi tiết xe
-                replaceFragment(new thong_tin_xe(car));
-            });
+
+//            carAdapter = new CarAdapter(getContext(), carList, new CarAdapter.OnCarClickListener() {
+//                @Override
+//                public void onCarClick(Car car) {
+//                    // Xử lý khi bấm vào card
+//                }
+//            });
             recyclerView.setAdapter(carAdapter);
-
-
         });
         if(recyclerView!=null) {
 
@@ -98,7 +103,7 @@ public class tim_thue_xe extends Fragment {
     List<Car> list = new ArrayList<>();
     private List<Car> getCarList() {
 
-        list.add(new Car("Nguyễn Văn A", "Porsche 911", "Số tự động", "Quận 1, TP.HCM",
+    /*    list.add(new Car("Nguyễn Văn A", "Porsche 911", "Số tự động", "Quận 1, TP.HCM",
                 "1.2M", "999K/ngày", R.drawable.porsche, R.drawable.bao_hiem, "Xăng",7,"xe mới","gần trung tâm"));
         list.add(new Car("Trần Minh B", "Mercedes-Benz G63", "Số tự động", "Quận 3, TP.HCM",
                 "1.8M", "1.1M/ngày", R.drawable.porsche, R.drawable.bao_hiem, "Xăng", 5, "xe sang", "nội thất đẹp"));
@@ -114,7 +119,7 @@ public class tim_thue_xe extends Fragment {
 
         list.add(new Car("Phạm Quốc F", "Audi Q8", "Số tự động", "Quận 2, TP.HCM",
                 "1.9M", "1.2M/ngày", R.drawable.porsche, R.drawable.bao_hiem, "Xăng", 5, "hiệu suất cao", "công nghệ hiện đại"));
-
+*/
 
 
         return list;

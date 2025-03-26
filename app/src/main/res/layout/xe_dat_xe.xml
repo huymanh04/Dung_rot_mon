@@ -16,15 +16,14 @@
         android:padding="10dp"
         android:background="@drawable/bg_card">
 
-        <!-- Hình ảnh xe -->
-        <ImageView
-            android:id="@+id/imgCar"
+        <!-- RecyclerView hình ảnh xe có thể lướt qua lại -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCarImages"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/porsche"/>
+            android:orientation="horizontal" />
 
-        <!-- Chủ xe -->
+        <!-- Chủ xe và nút sửa/xóa -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,22 +31,72 @@
             android:gravity="center_vertical"
             android:layout_marginTop="8dp">
 
-            <ImageView
-                android:id="@+id/imgOwner"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/chuxe"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:background="@drawable/circle_background"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/txtOwnerName"
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="4dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/chuxe"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/circle_background" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/txtOwnerName"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyễn Đình Quang"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Nút sửa và xóa -->
+
+            <LinearLayout
+                android:id="@+id/taixe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyễn Đình Quang"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ico_edit"
+                    android:contentDescription="Sửa"
+                    android:padding="8dp"
+                    android:src="@drawable/ico_edit" />
+
+                <ImageButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:drawable/ic_menu_delete"
+                    android:contentDescription="Xóa"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_delete" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <!-- Thông tin xe -->
