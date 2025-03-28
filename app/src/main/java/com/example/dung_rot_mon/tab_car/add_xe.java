@@ -2,6 +2,7 @@ package com.example.dung_rot_mon.tab_car;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,8 +66,8 @@ static int Id_name;Fragment a;
     private LinearLayout carImagesContainer;
 List<Bitmap> bitmapList;
     DatabaseManager db;
-    AutoCompleteTextView ettypeCar,etNguyenLieu;
-    TextInputEditText etCarName,etDetails,etPriceOld,etPriceNew,etSoChoNgoi,etLocation,etViTri;
+    AutoCompleteTextView ettypeCar,etNguyenLieu,etLocation;
+    TextInputEditText etCarName,etDetails,etPriceOld,etPriceNew,etSoChoNgoi,etViTri;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,12 +83,13 @@ List<Bitmap> bitmapList;
         etPriceNew = view.findViewById(R.id.etPriceNew);
         etNguyenLieu = view.findViewById(R.id.actvNguyenLieu);
         etSoChoNgoi = view.findViewById(R.id.etSoChoNgoi);
-        etLocation = view.findViewById(R.id.etLocation);
-        etViTri = view.findViewById(R.id.etViTri);
+        etLocation = view.findViewById(R.id.etViTri);
+        etViTri = view.findViewById(R.id.etLocation);
         carImagesContainer = view.findViewById(R.id.carImagesContainer);
         // Loại xe
         final String[] loaixe = new String[1];
         final String[] nhienlieu = new String[1];
+        final String[] Vitri = new String[1];
         List<String> loaiXeItems = Arrays.asList("Số tự động", "Số sàn");
         ArrayAdapter<String> loaiXeAdapter = new ArrayAdapter<>(
                 requireContext(),
@@ -108,8 +110,17 @@ List<Bitmap> bitmapList;
                 requireContext(),R.layout.list_item,
                 nguyenLieuItems
         );
+        List<String> vitri = Arrays.asList("Sài gòn", "Đà nẵng", "Phú yên","Hà nội","Đồng nai","Huế","Vũng tàu");
+        ArrayAdapter<String> vitriAdapter = new ArrayAdapter<>(
+                requireContext(),R.layout.list_item,
+                vitri
+        );
+        etLocation.setAdapter(vitriAdapter);
+        etLocation.setOnItemClickListener((parent, viewa, position, id) -> {
+            String selectedNguyenLieu = vitri.get(position);
+            Vitri[0]=selectedNguyenLieu;
+        });
         etNguyenLieu.setAdapter(nguyenLieuAdapter);
-
         // Add item click listener for Nguyên liệu (optional)
         etNguyenLieu.setOnItemClickListener((parent, viewa, position, id) -> {
             String selectedNguyenLieu = nguyenLieuItems.get(position);
@@ -122,7 +133,7 @@ view.findViewById(R.id.btnSave).setOnClickListener(v->{
     String soChoNgoiStr = etSoChoNgoi.getText().toString().trim(); // Lấy giá trị nhập vào
     int soChoNgoi = soChoNgoiStr.isEmpty() ? 0 : Integer.parseInt(soChoNgoiStr); // Kiểm tra chuỗi rỗng
 
-    Car car=new Car(getContext(),1,Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etLocation.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,bitmapList.get(0),etNguyenLieu.getText().toString(),soChoNgoi,"okee",etViTri.getText().toString());
+    Car car=new Car(getContext(),1,Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,bitmapList.get(0),etNguyenLieu.getText().toString(),soChoNgoi,"okee",Vitri[0]);
 var ktra= add_car(car);
 if(ktra>0){
 
@@ -147,12 +158,14 @@ if(ktra>0){
         values.put("car_type",car.getType());
         values.put("nhine_lieu",car.getNguyenlieu());
         values.put("so_cho_ngoi",car.getSochongoi());
-        values.put("vu_tri",car.getLocation());
+        values.put("vu_tri",car.getVitri());
+        values.put("Location",car.getLocation());
         values.put("bio",car.getBio());
         values.put("gia_cu",car.getPriceOld());
         values.put("gia_moi",car.getPriceNew());
         int totalImages = car.getCarImage().size();
         int maxImages = 4;
+
         for (int i = 0; i < totalImages; i++) {
             String columnName = "image" + (i == 0 ? "" : (i + 1)); // image, image2, image3, image4
             Bitmap originalBitmap = BitmapFactory.decodeByteArray(imageToByteArray(car.getCarImage().get(i)), 0, imageToByteArray(car.getCarImage().get(i)).length);

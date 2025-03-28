@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.dung_rot_mon.Fragment.tab_tim_chuyen.manh;
 import com.example.dung_rot_mon.Login.Accountt;
 import com.example.dung_rot_mon.Fragment.Car;
 import com.example.dung_rot_mon.Fragment.Chat;
@@ -20,6 +21,7 @@ import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
+import com.example.dung_rot_mon.tab_car.tim_xe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
-        }else {email12="";}
-        email12="huymanh@gmail.com";
+        }else {email12="huymanh@gmail.com";}
+
         replaceFragment(new Home(email12));
 
 
@@ -63,11 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 if (title.equals("Trang chủ")) {
                     replaceFragment(new Home(email12));
                 } else if (title.equals("Tin nhắn")) {
-                    replaceFragment(new Chat());
+                    replaceFragment(new manh());
                 } else if (title.equals("Car")) {
                     replaceFragment(new Car());
                 } else if (title.equals("Hỗ trợ")) {
-                    replaceFragment(new Support());
+//                    replaceFragment(new Support());
+                    replaceFragment(new tim_xe());
                 } else if (title.equals("Tài khoản")) {
 if(email12!=null&&email12!=""){
                     replaceFragment(new Accountt(email12));}else{

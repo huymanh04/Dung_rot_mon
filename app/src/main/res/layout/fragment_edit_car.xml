@@ -186,21 +186,22 @@
                     android:id="@+id/etLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Địa điểm" />
+                    android:hint="Vị trí" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-                <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                     android:id="@+id/etViTri"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Vị trí" />
+                    android:hint="Địa điểm"
+                    android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

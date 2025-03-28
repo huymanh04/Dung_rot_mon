@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
@@ -56,8 +57,8 @@ Car cars;
     private LinearLayout carImagesContainer;
     List<Bitmap> bitmapList;
     DatabaseManager db;
-    AutoCompleteTextView ettypeCar,etNguyenLieu;
-    TextInputEditText etCarName,etDetails,etPriceOld,etPriceNew,etSoChoNgoi,etLocation,etViTri;
+    AutoCompleteTextView ettypeCar,etNguyenLieu,etLocation;
+    TextInputEditText etCarName,etDetails,etPriceOld,etPriceNew,etSoChoNgoi,etViTri;
 
     static int Id_name;Fragment a;
     @Override
@@ -89,8 +90,8 @@ Car cars;
         etNguyenLieu = view.findViewById(R.id.actvNguyenLieu);
 
         etSoChoNgoi = view.findViewById(R.id.etSoChoNgoi);
-        etLocation = view.findViewById(R.id.etLocation);
-        etViTri = view.findViewById(R.id.etViTri);
+        etLocation = view.findViewById(R.id.etViTri);
+        etViTri = view.findViewById(R.id.etLocation);
         carImagesContainer = view.findViewById(R.id.carImagesContainer);
 
         String giacu = cars.getPriceOld().toString().trim(); // Lấy giá trị nhập vào
@@ -107,8 +108,10 @@ Car cars;
         etNguyenLieu.setText(cars.getNguyenlieu());
 
         etSoChoNgoi.setText(String.valueOf(cars.getSochongoi()));
-        etLocation.setText(cars.getLocation());
+        etLocation.setText(cars.getVitri());
+        etViTri.setText(cars.getLocation());
         final String[] loaixe = new String[1];
+        final String[] Vitri = new String[1];
         final String[] nhienlieu = new String[1];
         List<String> loaiXeItems = Arrays.asList("Số tự động", "Số sàn");
         ArrayAdapter<String> loaiXeAdapter = new ArrayAdapter<>(
@@ -145,11 +148,28 @@ Car cars;
             String selectedNguyenLieu = nguyenLieuItems.get(position);
             nhienlieu[0]=selectedNguyenLieu;
         });
+        List<String> vitri = Arrays.asList("Sài gòn", "Đà nẵng", "Phú yên","Hà nô","Đồng nai","Huế","Vũng tàu");
+        ArrayAdapter<String> vitriAdapter = new ArrayAdapter<>(
+                requireContext(),R.layout.list_item,
+                vitri
+        );
+        etLocation.setAdapter(vitriAdapter);
+        Vitri[0]= etLocation.getText().toString();
+        etLocation.setOnItemClickListener((parent, viewa, position, id) -> {
+            String selectedNguyenLieu = vitri.get(position);
+            Vitri[0]=selectedNguyenLieu;
+        });
         view.findViewById(R.id.btnSave).setOnClickListener(v->{
 
-            Car car=new Car(getContext(),cars.getIDcarr(),Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etLocation.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),cars.getCarImage(),cars.getCarImage().get(0),etNguyenLieu.getText().toString(),Integer.parseInt(etSoChoNgoi.getText().toString()),"",etViTri.getText().toString());
+            Car car=new Car(getContext(),cars.getIDcarr(),Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,cars.getCarImage().get(0),etNguyenLieu.getText().toString(),Integer.parseInt(etSoChoNgoi.getText().toString()),etDetails.getText().toString(),Vitri[0]);
 
-            update_car(car);
+           int ktra= update_car(car);
+            if(ktra>0){
+
+                Toast.makeText(getContext(), "Chỉnh xe thành công" , Toast.LENGTH_SHORT).show();
+                replaceFragment(a);
+
+            }else{    Toast.makeText(getContext(), "Chỉnh xe thất bại" , Toast.LENGTH_SHORT).show();}
         });
         List<Bitmap> bm=cars.getCarImage();
         for (int i=0;i<bm.size();i++){
@@ -184,7 +204,8 @@ Car cars;
         values.put("car_type", car.getType());
         values.put("nhine_lieu", car.getNguyenlieu());
         values.put("so_cho_ngoi", car.getSochongoi());
-        values.put("vu_tri", car.getLocation());
+        values.put("vu_tri", car.getVitri());
+        values.put("Location", car.getLocation());
         values.put("bio", car.getBio());
         values.put("gia_cu", car.getPriceOld());
         values.put("gia_moi", car.getPriceNew());

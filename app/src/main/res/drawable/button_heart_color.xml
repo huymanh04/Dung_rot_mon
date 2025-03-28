@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Màu vàng khi nhấn -->
+    <item android:state_pressed="true" android:color="#FFD700"/>
+    <!-- Màu đen mặc định -->
+    <item android:color="#000000"/>
+</selector>

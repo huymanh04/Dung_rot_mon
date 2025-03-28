@@ -149,7 +149,7 @@ static String email;
         int typeColumnIndex = cursor.getColumnIndex("car_type");
         int fuelColumnIndex = cursor.getColumnIndex("nhine_lieu");
         int seatsColumnIndex = cursor.getColumnIndex("so_cho_ngoi");
-        int locationColumnIndex = cursor.getColumnIndex("vu_tri");
+        int vuTriColumnIndex = cursor.getColumnIndex("vu_tri");
         int priceOldColumnIndex = cursor.getColumnIndex("gia_cu");
         int priceNewColumnIndex = cursor.getColumnIndex("gia_moi");
         int imageColumnIndex = cursor.getColumnIndex("image");
@@ -157,6 +157,7 @@ static String email;
         int image3ColumnIndex = cursor.getColumnIndex("image3");
         int image4ColumnIndex = cursor.getColumnIndex("image4");
         int statusColumnIndex = cursor.getColumnIndex("status");
+        int LocationColumnIndex = cursor.getColumnIndex("Location");
         int bio = cursor.getColumnIndex("bio");
         int idtx = cursor.getColumnIndex("account_id");
 
@@ -177,14 +178,23 @@ static String email;
             String type = cursor.getString(typeColumnIndex);
             String fuel = cursor.getString(fuelColumnIndex);
             int seats = cursor.getInt(seatsColumnIndex);
-            String location = cursor.getString(locationColumnIndex);
+            String location = cursor.getString(LocationColumnIndex);
+            String vitri = cursor.getString(vuTriColumnIndex);
             String priceOld = cursor.getString(priceOldColumnIndex);
             String priceNew = cursor.getString(priceNewColumnIndex);
             String biao = cursor.getString(bio);
             int status = cursor.getInt(statusColumnIndex);
             int idt = cursor.getInt(idtx);
+            Cursor cursor1 = dba.rawQuery("SELECT * FROM account WHERE id = ?", new String[]{String.valueOf(accountId)});
+            Bitmap anhchuxe=null;
+            while (cursor1.moveToNext()) {
+                int imageColumnIndexa = cursor1.getColumnIndex("image");
+                byte[] image0 = cursor1.getBlob(imageColumnIndexa);
+                anhchuxe =convertByteArrayToBitmap(image0);
+            }
             List<Bitmap> ok=new ArrayList<>();
             // Đọc ảnh dưới dạng byte array
+
             byte[] image1 = cursor.getBlob(imageColumnIndex);
             byte[] image2 = cursor.isNull(image2ColumnIndex) ? new byte[0] : cursor.getBlob(image2ColumnIndex);
             byte[] image3 = cursor.isNull(image3ColumnIndex) ? new byte[0] : cursor.getBlob(image3ColumnIndex);
@@ -195,7 +205,7 @@ static String email;
                 ok.add(convertByteArrayToBitmap(image4));
 
             // Thêm vào danh sách
-            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, ok.get(0), fuel,seats,biao,location));
+            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, anhchuxe, fuel,seats,biao,vitri));
         }
 
         cursor.close(); // Đóng con trỏ sau khi sử dụng

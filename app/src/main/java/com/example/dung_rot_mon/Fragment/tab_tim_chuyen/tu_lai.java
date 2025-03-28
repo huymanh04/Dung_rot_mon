@@ -1,14 +1,26 @@
 package com.example.dung_rot_mon.Fragment.tab_tim_chuyen;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.dung_rot_mon.R;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +59,8 @@ public class tu_lai extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    private TextInputEditText edtAddress, edtRentDate, edtRentTime;
+    private Calendar calendar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +75,84 @@ public class tu_lai extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tu_lai, container, false);
-        view.getLayoutParams().height = dpToPx(280);
+
+       edtAddress = view.findViewById(R.id.edt_address);
+         edtRentDate = view.findViewById(R.id.edt_rent_date);
+          edtRentTime = view.findViewById(R.id.edt_rent_time);
+
+        calendar = Calendar.getInstance();
+
+        // Thiết lập sự kiện chọn địa chỉ
+        edtAddress.setOnClickListener(v -> openGoogleMaps());
+
+        // Thiết lập sự kiện chọn ngày
+        edtRentDate.setOnClickListener(v -> showDatePickerDialog());
+
+        // Thiết lập sự kiện chọn giờ
+
+        edtRentTime.setOnClickListener(v -> {
+            Log.d("DEBUGa", "TextInputEditText đã được click!");
+        });
+
+        Button btnConfirm = view.findViewById(R.id.btn_confirm);
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("DEBUG", "TextInputEditText đã được click!");
+            }
+        });
+
         return view;
+    }
+    private void openGoogleMaps() {
+        // TODO: Implement Google Maps intent or fragment
+        // Ví dụ:
+        // Intent intent = new Intent(this, MapsActivity.class);
+        // startActivityForResult(intent, MAP_REQUEST_CODE);
+    }
+
+    private void showDatePickerDialog() {
+        new DatePickerDialog(
+                getActivity(),
+                this::onDateSet,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        ).show();
+    }
+
+    private void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        edtRentDate.setText(dateFormat.format(calendar.getTime()));
+    }
+
+    private void showTimePickerDialog() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                requireContext(), // Đảm bảo Fragment đã được gắn vào Activity
+                (view, hourOfDay, minute) -> {
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    calendar.set(Calendar.MINUTE, minute);
+
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                    edtRentTime.setText(timeFormat.format(calendar.getTime()));
+                },
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                true
+        );
+        timePickerDialog.show();
+    }
+
+    private void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        edtRentTime.setText(timeFormat.format(calendar.getTime()));
     }
     private int dpToPx(int dp) {
         return (int) (dp * getResources().getDisplayMetrics().density);

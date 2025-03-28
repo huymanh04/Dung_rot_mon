@@ -69,7 +69,17 @@
             </LinearLayout>
 
             <!-- Nút sửa và xóa -->
+            <Button
+                android:id="@+id/xe_yeu_thich"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
 
+                android:text="♡"
+                android:visibility="visible"
+                android:textSize="30sp"
+                android:textColor="@drawable/button_heart_color"
+                android:background="@android:color/transparent"
+                android:padding="0dp"/>
             <LinearLayout
                 android:id="@+id/taixe"
                 android:layout_width="wrap_content"
@@ -108,34 +118,145 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="8dp"/>
-
-        <TextView
-            android:id="@+id/txtCarDetails"
-            android:layout_width="wrap_content"
+      <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Số tự động • 7 chỗ • Xăng"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="4dp"/>
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:padding="10dp"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/gears" />
+
+                <TextView
+                    android:id="@+id/txt_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số tự động"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/seat" />
+
+                <TextView
+
+                    android:id="@+id/sochongoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7 "
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/fuel" />
+
+                <TextView
+                    android:id="@+id/txtNguyenLieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xănga"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
 
         <!-- Địa điểm -->
         <TextView
             android:id="@+id/txtCarLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quận 7, TP. Hồ Chí Minh"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"
+            android:text="Vị trí : Quận 7, TP. Hồ Chí Minh"
+            android:textColor="@color/black"
 
-        <!-- Giá thuê -->
+            android:textSize="14sp"
+            android:textStyle="bold" />
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:paddingEnd="16dp">
 
+            <!-- Layout chứa Icon + Rating (Căn trái) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_weight="1"> <!-- Đẩy phần còn lại về bên phải -->
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/txt_sao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" • "
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/txt_chuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Giá cũ -->
             <TextView
                 android:id="@+id/txtCarPriceOld"
                 android:layout_width="wrap_content"
@@ -143,8 +264,11 @@
                 android:text="918K"
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
-                />
 
+            android:layout_marginEnd="6dp"/>
+
+
+            <!-- Giá mới -->
             <TextView
                 android:id="@+id/txtCarPriceNew"
                 android:layout_width="wrap_content"
@@ -152,9 +276,13 @@
                 android:text="798K/ngày"
                 android:textSize="16sp"
                 android:textColor="@android:color/holo_green_dark"
-                android:textStyle="bold"
-                android:layout_marginStart="6dp"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
+
     </LinearLayout>
+
+
+
+
 </androidx.cardview.widget.CardView>

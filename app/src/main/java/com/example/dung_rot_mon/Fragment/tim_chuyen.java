@@ -3,6 +3,7 @@ package com.example.dung_rot_mon.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,9 @@ public class tim_chuyen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tim_chuyen, container, false);
+        View view= inflater.inflate(R.layout.fragment_tim_chuyen, container, false);
+           ViewPager2 vi= view.findViewById(R.id.view_page);
+           vi.setUserInputEnabled(false);
+return view;
     }
 }

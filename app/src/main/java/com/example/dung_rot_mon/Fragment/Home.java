@@ -90,7 +90,6 @@ public class Home extends Fragment {
                 switch (position) {
                     case 0:
                         tab.setText("Xe tự lái");
-
                         break;
                     case 1:
                         tab.setText("Xe có tài xế");
@@ -102,6 +101,9 @@ public class Home extends Fragment {
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
+
+                    Toast.makeText(getContext(), "Image clicked!", Toast.LENGTH_SHORT).show();
+
                     tab.view.setBackgroundColor(getResources().getColor(R.color.selected_tab)); // Màu khi chọn
                 }
 
@@ -123,28 +125,47 @@ public class Home extends Fragment {
                 }
             });
         }
-        ImageView btn=view.findViewById(R.id.imageView);
-        ImageView imageView = view.findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bao_hiem_dialog dialog = new bao_hiem_dialog();
-                dialog.show(getParentFragmentManager(), "bao_hiem_dialog");
-                Toast.makeText(getContext(), "Image clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        CardView cardView = view.findViewById(R.id.imageView1);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "CardView Clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        btn.setOnClickListener(v-> {
+        // Click vào CardView
+//        CardView cardView = view.findViewById(R.id.imageView1);
+//        cardView.setOnClickListener(v -> {
+//            Log.d("ClickTest", "CardView được click!");
+//            Toast.makeText(getContext(), "CardView Clicked!", Toast.LENGTH_SHORT).show();
+//        });
 
-                }
-        );
+
+        TextView test = view.findViewById(R.id.test);
+        test.setOnClickListener(v -> {
+            bao_hiem_dialog dialog = new bao_hiem_dialog();
+            dialog.show(getParentFragmentManager(), "bao_hiem_dialog");
+            Log.d("ClickTest", "ImageView được click!");
+            Toast.makeText(getContext(), "ImageView Clicked!", Toast.LENGTH_SHORT).show();
+        });
+        // Click vào ImageView
+        ImageView imageView = view.findViewById(R.id.imgClickable);
+        imageView.setOnClickListener(v -> {
+            Log.d("ClickTest", "ImageView được click!");
+            Toast.makeText(getContext(), "ImageView Clicked!", Toast.LENGTH_SHORT).show();
+        });
+//        ImageView imageView = view.findViewById(R.id.imageView);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bao_hiem_dialog dialog = new bao_hiem_dialog();
+//                Log.d("ImageClick", "Hình ảnh đã được nhấn!");
+//                dialog.show(getParentFragmentManager(), "bao_hiem_dialog");
+//                Toast.makeText(getContext(), "Image clicked!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        CardView cardView = view.findViewById(R.id.imageView1);
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "CardView Clicked!", Toast.LENGTH_SHORT).show();
+//                Log.d("ClickTest", "CardView được click!");
+//            }
+//        });
+
         // chương trình khuyến maix
         {
 
@@ -153,7 +174,7 @@ public class Home extends Fragment {
             bannerList = new ArrayList<>();
             adapter1 = new ViewPagerAdapterhome(bannerList);
             viewPager1.setAdapter(adapter1);
-
+            viewPager1.setUserInputEnabled(false);
             // Tạo khoảng cách giữa các item
             viewPager1.setOffscreenPageLimit(3);
             RecyclerView recyclerView = (RecyclerView) viewPager1.getChildAt(0);
@@ -170,9 +191,6 @@ public class Home extends Fragment {
             recyclerView = view.findViewById(R.id.recyclerView);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(layoutManager);
-view.findViewById(R.id.imageView).setOnClickListener(v->{
-
-});
             // Khởi tạo danh sách dữ liệu
             itemList = new ArrayList<>();
             itemList.add(new ItemModel(R.drawable.img_1, "Tân Sơn Nhất", "1000+ xe"));

@@ -46,7 +46,8 @@ Context cc;
         this.status=0;
         this.typecar=type;
         this.idcar=idcar;
-        image1=carImage.get(0);
+
+        try{     image1=carImage.get(0);}catch(Exception ee){  image2=null;}
         try{   image2=carImage.get(1);}catch(Exception ee){  image2=null;}
         try{    image3=carImage.get(2);}catch(Exception ee){image3=null;}
         try{     image4=carImage.get(3);}catch(Exception ee){image4=null;}

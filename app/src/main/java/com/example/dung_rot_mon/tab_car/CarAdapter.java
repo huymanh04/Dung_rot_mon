@@ -6,10 +6,12 @@ import static android.view.View.VISIBLE;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,10 +63,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         List<Bitmap> images = new ArrayList<>();
         holder.ownerName.setText(car.getOwnerName());
         holder.carName.setText(car.getCarName());
-        holder.carDetails.setText(car.getDetails());
-        holder.carLocation.setText(car.getLocation());
+        holder.carDetails.setText(car.getType());
+        holder.carLocation.setText("Vị trí : "+car.getLocation());
         holder.carPriceOld.setText(car.getPriceOld() + "K");
         holder.carPriceNew.setText(car.getPriceNew()+ "K/ngày");
+
         ImageAdapter imageAdapter = new ImageAdapter(car.getCarImage());
         holder.recyclerViewCarImages.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
        holder.recyclerViewCarImages.setAdapter(imageAdapter);
@@ -113,8 +116,16 @@ if(car.getTaixe()==1)
         if (car.getImage4() != null) {
             images.add(car.getImage4());
         }
-
-
+        final boolean[] isClicked = {false};
+        holder.xe_yeu_thich.setOnClickListener(v->{
+            if (isClicked[0]) {
+                holder.xe_yeu_thich.setText("♡"); // Trái tim rỗng (đen)
+                holder.xe_yeu_thich.setTextColor(Color.BLACK);
+            } else {
+                holder.xe_yeu_thich.setText("❤️"); // Trái tim đầy màu đỏ
+            }
+            isClicked[0] = !isClicked[0];
+        });
 
         // Gán Adapter vào ViewPager2
         CarImageAdapter imageAdaptera = new CarImageAdapter(holder.itemView.getContext(), images);
@@ -153,13 +164,14 @@ if(car.getTaixe()==1)
         CardView cardView;   ImageView imageView;
         ImageButton Edit,Delete;
         LinearLayout taixe;
+        Button xe_yeu_thich;
 RecyclerView recyclerViewCarImages;
 RecyclerView recyclerViewCarImages1;
         public CarViewHolder(@NonNull View itemView) {
             super(itemView);
             ownerName = itemView.findViewById(R.id.txtOwnerName);
             carName = itemView.findViewById(R.id.txtCarName);
-            carDetails = itemView.findViewById(R.id.txtCarDetails);
+            carDetails = itemView.findViewById(R.id.txt_type);
             carLocation = itemView.findViewById(R.id.txtCarLocation);
             carPriceOld = itemView.findViewById(R.id.txtCarPriceOld);
             carPriceNew = itemView.findViewById(R.id.txtCarPriceNew);
@@ -173,6 +185,7 @@ RecyclerView recyclerViewCarImages1;
             Edit=itemView.findViewById(R.id.btnEdit);
             Delete=itemView.findViewById(R.id.btnDelete);
             taixe=itemView.findViewById(R.id.taixe);
+            xe_yeu_thich=itemView.findViewById(R.id.xe_yeu_thich);
             recyclerViewCarImages=itemView.findViewById(R.id.recyclerViewCarImages);
 
         }

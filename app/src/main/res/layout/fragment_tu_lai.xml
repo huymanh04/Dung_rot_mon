@@ -3,55 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="16dp"
     tools:context=".Fragment.tab_tim_chuyen.tu_lai">
 
     <!-- Chọn Địa Chỉ -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chọn địa chỉ trên Google Maps:"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edt_address"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:drawableEnd="@android:drawable/ic_menu_mapmode"
-        android:focusable="false"
-        android:hint="Nhấn để chọn địa chỉ"
-        android:padding="10dp" />
+        android:layout_marginBottom="8dp"
+        app:startIconDrawable="@android:drawable/ic_menu_mapmode"
+        app:endIconMode="custom"
+        app:endIconDrawable="@android:drawable/ic_dialog_map">
 
-    <!-- Chọn Thời Gian Thuê -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thời gian thuê xe:"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Chọn địa chỉ"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edt_rent_time"
+    <!-- Chọn Ngày Thuê -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:drawableEnd="@android:drawable/ic_menu_recent_history"
-        android:focusable="false"
-        android:hint="Nhấn để chọn thời gian"
-        android:padding="10dp" />
+        android:layout_marginBottom="8dp"
+        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+        app:endIconMode="custom"
+        app:endIconDrawable="@android:drawable/ic_menu_recent_history">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_rent_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày thuê"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Chọn Giờ Thuê -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ok"
+        android:layout_marginBottom="8dp"
+        app:startIconDrawable="@android:drawable/ic_menu_recent_history"
+        app:endIconMode="custom"
+        app:endIconDrawable="@android:drawable/ic_menu_recent_history">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_rent_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giờ thuê"
+            android:inputType="time"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Button Xác Nhận -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:padding="10dp"
+        android:layout_marginTop="8dp"
+        app:cornerRadius="8dp"
         android:text="Xác nhận"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        app:backgroundTint="#2196F3"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_confirm_h"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
 </LinearLayout>
