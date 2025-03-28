@@ -38,6 +38,9 @@ public class tu_lai extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Calendar selectedDateTime;
+    private TextInputEditText edtAddress, edtRentDate, edtRentTime;
+
     public tu_lai() {
         // Required empty public constructor
     }
@@ -59,8 +62,7 @@ public class tu_lai extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    private TextInputEditText edtAddress, edtRentDate, edtRentTime;
-    private Calendar calendar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,34 +78,84 @@ public class tu_lai extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tu_lai, container, false);
 
-       edtAddress = view.findViewById(R.id.edt_address);
-         edtRentDate = view.findViewById(R.id.edt_rent_date);
-          edtRentTime = view.findViewById(R.id.edt_rent_time);
+        edtAddress = view.findViewById(R.id.edt_address);
+        edtRentDate = view.findViewById(R.id.edt_rent_date);
+        edtRentTime = view.findViewById(R.id.edt_rent_time);
 
-        calendar = Calendar.getInstance();
+        selectedDateTime = Calendar.getInstance();
 
         // Thiết lập sự kiện chọn địa chỉ
         edtAddress.setOnClickListener(v -> openGoogleMaps());
 
         // Thiết lập sự kiện chọn ngày
-        edtRentDate.setOnClickListener(v -> showDatePickerDialog());
+        edtRentDate.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                (view1, year, month, dayOfMonth) -> {
+                    String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                    edtRentDate.setText(selectedDate);
+                    
+                    selectedDateTime.set(Calendar.YEAR, year);
+                    selectedDateTime.set(Calendar.MONTH, month);
+                    selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    
+                    Calendar currentTime = Calendar.getInstance();
+                    if (selectedDateTime.before(currentTime)) {
+                        Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
+                        edtRentDate.setText("");
+                        return;
+                    }
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            );
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            datePickerDialog.show();
+        });
 
         // Thiết lập sự kiện chọn giờ
-
         edtRentTime.setOnClickListener(v -> {
-            Log.d("DEBUGa", "TextInputEditText đã được click!");
+            TimePickerDialog timePickerDialog = new TimePickerDialog(
+                getContext(),
+                (view12, hourOfDay, minute) -> {
+                    String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                    edtRentTime.setText(selectedTime);
+                    
+                    selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    selectedDateTime.set(Calendar.MINUTE, minute);
+
+                    // Kiểm tra nếu thời gian đã chọn là trong quá khứ
+                    Calendar currentTime = Calendar.getInstance();
+                    if (selectedDateTime.before(currentTime)) {
+                        Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
+                        edtRentTime.setText("");
+                    }
+                },
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE),
+                true
+            );
+            timePickerDialog.show();
         });
 
         Button btnConfirm = view.findViewById(R.id.btn_confirm);
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("DEBUG", "TextInputEditText đã được click!");
+        btnConfirm.setOnClickListener(v -> {
+            String date = edtRentDate.getText().toString();
+            String time = edtRentTime.getText().toString();
+            
+            if (date.isEmpty() || time.isEmpty()) {
+                Toast.makeText(getContext(), "Vui lòng chọn đầy đủ ngày và giờ thuê", Toast.LENGTH_SHORT).show();
+                return;
             }
+            
+            // Xử lý logic khi người dùng xác nhận thời gian thuê
+            Toast.makeText(getContext(), "Đã chọn: " + date + " " + time, Toast.LENGTH_SHORT).show();
         });
 
         return view;
     }
+
     private void openGoogleMaps() {
         // TODO: Implement Google Maps intent or fragment
         // Ví dụ:
@@ -115,45 +167,46 @@ public class tu_lai extends Fragment {
         new DatePickerDialog(
                 getActivity(),
                 this::onDateSet,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         ).show();
     }
 
     private void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        selectedDateTime.set(Calendar.YEAR, year);
+        selectedDateTime.set(Calendar.MONTH, month);
+        selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        edtRentDate.setText(dateFormat.format(calendar.getTime()));
+        edtRentDate.setText(dateFormat.format(selectedDateTime.getTime()));
     }
 
     private void showTimePickerDialog() {
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 requireContext(), // Đảm bảo Fragment đã được gắn vào Activity
                 (view, hourOfDay, minute) -> {
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calendar.set(Calendar.MINUTE, minute);
+                    selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    selectedDateTime.set(Calendar.MINUTE, minute);
 
                     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-                    edtRentTime.setText(timeFormat.format(calendar.getTime()));
+                    edtRentTime.setText(timeFormat.format(selectedDateTime.getTime()));
                 },
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
+                selectedDateTime.get(Calendar.HOUR_OF_DAY),
+                selectedDateTime.get(Calendar.MINUTE),
                 true
         );
         timePickerDialog.show();
     }
 
     private void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        calendar.set(Calendar.MINUTE, minute);
+        selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        selectedDateTime.set(Calendar.MINUTE, minute);
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        edtRentTime.setText(timeFormat.format(calendar.getTime()));
+        edtRentTime.setText(timeFormat.format(selectedDateTime.getTime()));
     }
+
     private int dpToPx(int dp) {
         return (int) (dp * getResources().getDisplayMetrics().density);
     }

@@ -40,8 +40,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 
 public class Home extends Fragment {
 
@@ -58,6 +62,7 @@ public class Home extends Fragment {
     private static ViewPagerAdapterhome adapter1;
     private static DatabaseManager dbManager;
     public static List<Frg_baner.Banner> bannerList;
+    private Calendar selectedDateTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,9 +72,12 @@ public class Home extends Fragment {
         db= new DatabaseHelper(getActivity());
         if (mail!=""&&mail!=null){
             readData(mail);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(imga, 0, imga.length);
-            if(bitmap==null) {
-            }else {        imageView.setImageBitmap(bitmap);}
+            if (imga != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imga, 0, imga.length);
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap);
+                }
+            }
             TextView na = view.findViewById(R.id.textView13);
             na.setText(Name);
         }else { TextView na = view.findViewById(R.id.textView13);
@@ -225,6 +233,70 @@ public class Home extends Fragment {
             adapter = new diadiemnoibat(itemList);
             recyclerView.setAdapter(adapter);
         }
+
+        // Xử lý click cho ngày thuê và giờ thuê
+        {
+            // Khởi tạo selectedDateTime
+            selectedDateTime = Calendar.getInstance();
+
+            // Xử lý click cho ngày thuê
+            View ngayThueLayout = view.findViewById(R.id.edt_rent_date);
+            if (ngayThueLayout != null) {
+                ngayThueLayout.setOnClickListener(v -> {
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(),
+                        (view1, year, month, dayOfMonth) -> {
+                            String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                            TextView txtNgayThue = view.findViewById(R.id.edt_rent_date);
+                            if (txtNgayThue != null) {
+                                txtNgayThue.setText(selectedDate);
+                            }
+                            selectedDateTime.set(Calendar.YEAR, year);
+                            selectedDateTime.set(Calendar.MONTH, month);
+                            selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                            
+                            Calendar currentTime = Calendar.getInstance();
+                            if (selectedDate.equals(currentTime.get(Calendar.DATE))) {
+                                if (year < currentTime.get(Calendar.YEAR) || 
+                                    (year == currentTime.get(Calendar.YEAR) && (month < currentTime.get(Calendar.MONTH) || 
+                                    (month == currentTime.get(Calendar.MONTH) && dayOfMonth < currentTime.get(Calendar.DAY_OF_MONTH))))) {
+                                    Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        },
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        Calendar.getInstance().get(Calendar.MONTH),
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                    );
+                    datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                    datePickerDialog.show();
+                });
+            }
+
+            // Xử lý click giờ thuê
+            View gioThueLayout = view.findViewById(R.id.edt_rent_time);
+            if (gioThueLayout != null) {
+                gioThueLayout.setOnClickListener(v -> {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        getContext(),
+                        (view12, hourOfDay, minute) -> {
+                            String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                            TextView txtGioThue = view.findViewById(R.id.edt_rent_time);
+                            if (txtGioThue != null) {
+                                txtGioThue.setText(selectedTime);
+                            }
+                            selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                            selectedDateTime.set(Calendar.MINUTE, minute);
+                        },
+                        Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                        Calendar.getInstance().get(Calendar.MINUTE),
+                        true
+                    );
+                    timePickerDialog.show();
+                });
+            }
+        }
         return view;
     }
     private static BannerAdapter bannerAdapter;
@@ -246,38 +318,45 @@ public class Home extends Fragment {
     static String Email;
     static byte[] imga;
     public static void readData(String email) {
-        // Modify the query to select based on the email
         SQLiteDatabase dba = db.openDatabase();
         Cursor cursor = dba.rawQuery("SELECT * FROM account WHERE email = ?", new String[]{email});
 
-        // Get column indices
-        int idColumnIndex = cursor.getColumnIndex("id");
-        int emailColumnIndex = cursor.getColumnIndex("email");
-        int nameColumnIndex = cursor.getColumnIndex("name");
-        int imgColumnIndex = cursor.getColumnIndex("image");
-        int ngaythamgiaColumnIndex = cursor.getColumnIndex("ngaythamgia");
-        int cmndhamgiaColumnIndex = cursor.getColumnIndex("cmnd");
+        // Initialize default values
+        Name = "";
+        Email = "";
+        imga = null;
 
-        // Kiểm tra nếu các chỉ số cột hợp lệ (lớn hơn hoặc bằng 0)
-        if (idColumnIndex == -1 || emailColumnIndex == -1 || nameColumnIndex == -1 || imgColumnIndex == -1) {
-            Log.e("Database", "Column not found!");
-            cursor.close();
-            return;
-        }
+        try {
+            // Get column indices
+            int idColumnIndex = cursor.getColumnIndex("id");
+            int emailColumnIndex = cursor.getColumnIndex("email");
+            int nameColumnIndex = cursor.getColumnIndex("name");
+            int imgColumnIndex = cursor.getColumnIndex("image");
+            int ngaythamgiaColumnIndex = cursor.getColumnIndex("ngaythamgia");
 
-        // Kiểm tra nếu có dữ liệu trong Cursor
-        if (cursor.moveToFirst()) {
-            try {
-                int id = cursor.getInt(idColumnIndex);
+            // Check if columns exist
+            if (idColumnIndex == -1 || emailColumnIndex == -1 || nameColumnIndex == -1 || imgColumnIndex == -1) {
+                Log.e("Database", "Column not found!");
+                return;
+            }
 
+            // Check if cursor has data
+            if (cursor.moveToFirst()) {
                 Email = cursor.getString(emailColumnIndex);
                 Name = cursor.getString(nameColumnIndex);
-                imga = cursor.getBlob(imgColumnIndex);
-                String ngaythamgia=cursor.getBlob(ngaythamgiaColumnIndex).toString(); }finally {
+                // Add null check for image blob
+                byte[] imageData = cursor.getBlob(imgColumnIndex);
+                if (imageData != null && imageData.length > 0) {
+                    imga = imageData;
+                }
+            }
+        } catch (Exception e) {
+            Log.e("Database", "Error reading data: " + e.getMessage());
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
             }
         }
-
-        cursor.close(); // Đóng con trỏ sau khi sử dụng
     }
     static DatabaseHelper db;
     public static void fetchData() {
