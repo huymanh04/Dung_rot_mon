@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -32,12 +31,11 @@ import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.ViewPagerAdapterhome;
 import com.example.dung_rot_mon.admin.Frg_baner;
-import com.example.dung_rot_mon.dialog.bao_hiem_dialog;
+import com.example.dung_rot_mon.dialog.BaoHiemDialogFragment;
+import com.example.dung_rot_mon.dialog.GioiThieuDialogFragment;
+import com.example.dung_rot_mon.dialog.UuDiemDialogFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -146,19 +144,36 @@ public class Home extends Fragment {
 //        });
 
 
-        TextView test = view.findViewById(R.id.test);
-        test.setOnClickListener(v -> {
-            bao_hiem_dialog dialog = new bao_hiem_dialog();
-            dialog.show(getParentFragmentManager(), "bao_hiem_dialog");
-            Log.d("ClickTest", "ImageView được click!");
-            Toast.makeText(getContext(), "ImageView Clicked!", Toast.LENGTH_SHORT).show();
+
+        ImageView bannerImage = view.findViewById(R.id.imgClickable);
+        bannerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("DEBUG", "ImageView được click!");
+
+                BaoHiemDialogFragment dialogFragment = new BaoHiemDialogFragment();
+                dialogFragment.show(requireActivity().getSupportFragmentManager(), "BaoHiemDialog");
+            }
         });
-        // Click vào ImageView
-        ImageView imageView = view.findViewById(R.id.imgClickable);
-        imageView.setOnClickListener(v -> {
-            Log.d("ClickTest", "ImageView được click!");
-            Toast.makeText(getContext(), "ImageView Clicked!", Toast.LENGTH_SHORT).show();
+        CardView cardViewUuDiem = view.findViewById(R.id.cardViewUuDiem);
+
+        // Gán sự kiện click
+        cardViewUuDiem.setOnClickListener(v -> {
+            // Hiển thị DialogFragment
+            UuDiemDialogFragment dialog = new UuDiemDialogFragment();
+            dialog.show(getParentFragmentManager(), "UuDiemDialog");
         });
+        CardView cardViewGioiThieu = view.findViewById(R.id.cardViewGioiThieu);
+
+        // Bắt sự kiện click vào CardView
+        cardViewGioiThieu.setOnClickListener(v -> {
+            // Hiển thị GioiThieuDialogFragment
+            GioiThieuDialogFragment gioiThieuDialogFragment = new GioiThieuDialogFragment();
+            gioiThieuDialogFragment.show(getParentFragmentManager(), "GioiThieuDialogFragment");
+        });
+
+
+
 //        ImageView imageView = view.findViewById(R.id.imageView);
 //        imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -205,17 +220,11 @@ public class Home extends Fragment {
             recyclerView.setLayoutManager(layoutManager);
             // Khởi tạo danh sách dữ liệu
             itemList = new ArrayList<>();
-            itemList.add(new ItemModel(R.drawable.img_1, "Tân Sơn Nhất", "1000+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_2, "Nội Bài", "200+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_3, "Đà Nẵng", "100+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_4, "Cam Ranh", "50+ xe"));
-
+            itemList.add(new ItemModel(R.drawable.tansonnhat, "Tân Sơn Nhất", "1000+ xe"));
+            itemList.add(new ItemModel(R.drawable.noibai, "Nội Bài", "200+ xe"));
+            itemList.add(new ItemModel(R.drawable.danangsb, "Đà Nẵng", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.bmt, "Đắk Lắk", "50+ xe"));
+            itemList.add(new ItemModel(R.drawable.phuyensb, "Phú Yên", "50+ xe"));
             adapter = new sanbayadapter(itemList);
             recyclerView.setAdapter(adapter);
         }
@@ -231,9 +240,12 @@ public class Home extends Fragment {
             // Khởi tạo danh sách dữ liệu
             itemList = new ArrayList<>();
             itemList.add(new ItemModel(R.drawable.images, "Sài Gòn", "150+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_2, "Long An", "100+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_3, "Long An", "100+ xe"));
-            itemList.add(new ItemModel(R.drawable.img_2, "Long An", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.danang, "Đà Nẵng", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.phuyen, "Phú Yên", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.hanoi, "Hà Nội", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.dongnai, "Đồng Nai", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.hue, "Huế", "100+ xe"));
+            itemList.add(new ItemModel(R.drawable.vungtau, "Vũng Tàu", "100+ xe"));
             adapter = new diadiemnoibat(itemList);
             recyclerView.setAdapter(adapter);
         }

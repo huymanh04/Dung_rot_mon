@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    tools:context=".dialog.GioiThieuDialogFragment">
+
+    <!-- Nút đóng -->
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="Đóng"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Hình minh họa -->
+    <ImageView
+        android:id="@+id/imgIllustration"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/gioithieuhi"
+        app:layout_constraintTop_toBottomOf="@id/btnClose"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới thiệu bạn mới"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/imgIllustration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Phần "Chia sẻ mã giới thiệu" -->
+    <TextView
+        android:id="@+id/tvShareTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chia sẻ mã giới thiệu"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tvShareDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Để có thể nhận mã giới thiệu, tài khoản của bạn cần phải có ít nhất 1 chuyến đi hoặc đã đăng ký ít nhất 3 tháng."
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/tvShareTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Phần "Theo dõi mã giới thiệu" -->
+    <TextView
+        android:id="@+id/tvTrackingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Theo dõi mã giới thiệu"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvShareDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Số điểm đã nhận -->
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Số điểm đã nhận: 0"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/tvTrackingTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Số chuyến đã hoàn thành -->
+    <TextView
+        android:id="@+id/tvTrips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Số chuyến đã hoàn thành: 0"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/tvPoints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nút "Xem chi tiết" -->
+    <TextView
+        android:id="@+id/tvSeeDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xem chi tiết"
+        android:textSize="14sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvTrips"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

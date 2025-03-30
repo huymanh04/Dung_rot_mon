@@ -153,14 +153,15 @@
                 android:paddingBottom="5dp"
                 app:cardCornerRadius="27dp"
                 app:cardElevation="10dp">
-            <ImageView
-                android:id="@+id/imgClickable"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/bao_hiem"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"/>
+
+                <ImageView
+                    android:id="@+id/imgClickable"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bao_hiem" />
 
             </androidx.cardview.widget.CardView>
 
@@ -229,6 +230,7 @@
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewUuDiem"
                 android:layout_width="381dp"
                 android:layout_height="155dp"
                 android:layout_gravity="center"
@@ -279,60 +281,9 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-            <!--       giơ thi eto //-->
-            <!-- <androidx.cardview.widget.CardView
-                android:layout_width="381dp"
-                android:layout_height="155dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                android:paddingBottom="5dp"
-                app:cardCornerRadius="27dp"
-                app:cardElevation="10dp"
-                android:background="#D3F6A4">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#D3F6A4">
-
-                    <ImageView
-                        android:id="@+id/imageVsiew17"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/img_2"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="30dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textVsiew18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giới thiệu ETO đến với bạn bè"
-                        android:textSize="18sp"
-                        android:layout_marginTop="15dp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="130dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textViews1s"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Người giới thiệu và được\ngiới thiệu sẽ nhạn đợc nhiều\nưu đãi nhấp dẫn từ ETO."
-                        android:textSize="18sp"
-                        android:layout_marginTop="47dp"
-                        android:layout_marginLeft="150dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>-->
-            <!--            dk cho thue xe-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewGioiThieu"
                 android:layout_width="381dp"
                 android:layout_height="155dp"
                 android:layout_gravity="center"
