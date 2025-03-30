@@ -43,24 +43,30 @@ public class TabFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int position = getArguments().getInt(ARG_POSITION);
         if (position == 1) {
-            return inflater.inflate(R.layout.fragment_tu_lai, container, false);
+            View v = inflater.inflate(R.layout.fragment_tu_lai, container, false);
+            return v;
         } else {
             return inflater.inflate(R.layout.fragment_co_tai_xe, container, false);
         }
     }
-  Button btn_confirm;
+
+    Button btn_confirm;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+
         selectedDateTime = Calendar.getInstance();
         edt_address = view.findViewById(R.id.edt_address);
+        TextInputEditText edt_address1 = view.findViewById(R.id.edt_pickup_address);
         edtRentDate = view.findViewById(R.id.edt_rent_date);
         edtRentTime = view.findViewById(R.id.edt_rent_date1);
         btn_confirm = view.findViewById(R.id.btn_confirm);
 
+
+
         if (edtRentDate != null) {
             edtRentDate.setOnClickListener(v -> {
+                view.getLayoutParams().height = dpToPx(586);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (view1, year, month, dayOfMonth) -> {
@@ -106,6 +112,7 @@ public class TabFragment extends Fragment {
                 datePickerDialog.show();
             });
         }
+        if(edt_address!=null){
         String[] carSeat1 = getResources().getStringArray(R.array.dia_diem);
 
         // Dùng ArrayAdapter
@@ -120,14 +127,16 @@ public class TabFragment extends Fragment {
             String rentTime = edtRentTime.getText().toString().trim();
             String edtRentDatea = edtRentDate.getText().toString().trim();
             String edt_addressa = edt_address.getText().toString().trim();
+            String edt_addressa1 = edt_address1.getText().toString().trim();
 
-            if (!rentTime.isEmpty() && rentTime != null&&!edtRentDatea.isEmpty() && edtRentDatea != null&&!edt_addressa.isEmpty() && edt_addressa != null) {
-                replaceFragment(new tim_xe(edt_address.getText().toString(),edtRentTime.getText().toString(),edtRentDate.getText().toString()));
+            if (!edt_addressa1.isEmpty() && edt_addressa1 != null&&!rentTime.isEmpty() && rentTime != null&&!edtRentDatea.isEmpty() && edtRentDatea != null&&!edt_addressa.isEmpty() && edt_addressa != null) {
+                replaceFragment(new tim_xe(edt_addressa1,edt_address.getText().toString(),edtRentTime.getText().toString(),edtRentDate.getText().toString()));
 
             } else {
                 Toast.makeText(getContext(), "Giá trị không hợp lệ!", Toast.LENGTH_SHORT).show();
             }
                });
+        }
     }
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
@@ -135,5 +144,8 @@ public class TabFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+    private int dpToPx(int dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density);
     }
 }

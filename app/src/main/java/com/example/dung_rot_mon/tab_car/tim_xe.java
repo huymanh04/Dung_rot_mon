@@ -49,10 +49,11 @@ public class tim_xe extends Fragment {
 
     public tim_xe() {
         // Required empty public constructor
-    }String dia_chi, time_thue, time_tra;
-    public tim_xe(String dia_chi,String time_thue,String time_tra) {
+    }String dia_chi, time_thue, time_tra,Diem_don;
+    public tim_xe(String diem_don,String dia_chi,String time_thue,String time_tra) {
         this.dia_chi=dia_chi;this.time_tra=time_tra;
         this.time_thue=time_thue;
+        Diem_don=diem_don;
         // Required empty public constructor
     }
     /**
@@ -97,7 +98,7 @@ public class tim_xe extends Fragment {
         carList=new ArrayList<>();
         TextView tvLocation=view.findViewById(R.id.tvLocation);
         TextView tvTime=view.findViewById(R.id.tvTime);
-        tvLocation.setText(dia_chi);
+        tvLocation.setText(Diem_don);
         String time=getCurrentTime();
         tvTime.setText(time+" "+time_thue+" • "+time+" "+time_tra);
         carAdapter = new CarAdapter(getContext(), carList, new CarAdapter.OnCarClickListener() {

@@ -105,14 +105,18 @@ public class Home extends Fragment {
                 }
             }).attach();
             layoutParams = viewPager.getLayoutParams();
-
+            View firstTab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);
+            if (firstTab != null) {
+                firstTab.setBackgroundColor(getResources().getColor(R.color.teal_200));
+            }
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
 
-                    Toast.makeText(getContext(), "Image clicked!", Toast.LENGTH_SHORT).show();
 
-                    tab.view.setBackgroundColor(getResources().getColor(R.color.selected_tab)); // Màu khi chọn
+
+                    tab.view.setBackgroundColor(getResources().getColor(R.color.teal_200)); // Màu khi chọn
                 }
 
                 @Override
@@ -242,9 +246,9 @@ public class Home extends Fragment {
     private static BannerAdapter bannerAdapter;
     private void adjustTabLayoutHeight(int position) {
         if (position == 0) {
-            layoutParams.height = dpToPx(280);
+            layoutParams.height = dpToPx(340);
         } else {
-            layoutParams.height = dpToPx(360);
+            layoutParams.height = dpToPx(460);
         }
         viewPager.setLayoutParams(layoutParams);
     }

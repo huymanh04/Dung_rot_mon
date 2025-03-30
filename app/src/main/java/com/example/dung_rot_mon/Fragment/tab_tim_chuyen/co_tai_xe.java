@@ -63,7 +63,7 @@ public class co_tai_xe extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_co_tai_xe, container, false);
-        view.getLayoutParams().height = dpToPx(368);
+
         return view;
     } private int dpToPx(int dp) {
         return (int) (dp * getResources().getDisplayMetrics().density);

@@ -24,7 +24,21 @@
             android:entries="@array/type_car_options"
             android:text="Sài Gòn" />
     </com.google.android.material.textfield.TextInputLayout>
-    <!-- Chọn Ngày Thuê -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="Địa chỉ đón"
+>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_pickup_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout> <!-- Chọn Ngày Thuê -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +86,7 @@
         android:layout_marginTop="8dp"
         app:cornerRadius="8dp"
         android:text="Xác nhận"
-        app:backgroundTint="#2196F3"/>
+        app:backgroundTint="@color/teal_200"/>
 
 <!--    <Button-->
 <!--        android:id="@+id/btn_confirm_h"-->
