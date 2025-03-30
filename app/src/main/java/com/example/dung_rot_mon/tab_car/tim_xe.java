@@ -17,13 +17,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,8 +49,12 @@ public class tim_xe extends Fragment {
 
     public tim_xe() {
         // Required empty public constructor
+    }String dia_chi, time_thue, time_tra;
+    public tim_xe(String dia_chi,String time_thue,String time_tra) {
+        this.dia_chi=dia_chi;this.time_tra=time_tra;
+        this.time_thue=time_thue;
+        // Required empty public constructor
     }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -73,6 +83,9 @@ public class tim_xe extends Fragment {
     }
     private RecyclerView recyclerView;
     private CarAdapter carAdapter;
+    AutoCompleteTextView spinnerTypeCar;
+    AutoCompleteTextView spinnerSeatCount;
+    AutoCompleteTextView spinnerFuelType;
     private List<Car> carList;    DatabaseManager db;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +95,11 @@ public class tim_xe extends Fragment {
         recyclerView = view.findViewById(R.id.man);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         carList=new ArrayList<>();
+        TextView tvLocation=view.findViewById(R.id.tvLocation);
+        TextView tvTime=view.findViewById(R.id.tvTime);
+        tvLocation.setText(dia_chi);
+        String time=getCurrentTime();
+        tvTime.setText(time+" "+time_thue+" • "+time+" "+time_tra);
         carAdapter = new CarAdapter(getContext(), carList, new CarAdapter.OnCarClickListener() {
             @Override
             public void onCarClick(Car car) {
@@ -98,32 +116,99 @@ public class tim_xe extends Fragment {
 
             }
         });
-        fetchData(2,"");
+        spinnerTypeCar = view.findViewById(R.id.spinnerTypeCar);
+        spinnerSeatCount = view.findViewById(R.id.spinnerSeatCount);
+        spinnerFuelType = view.findViewById(R.id.spinnerFuelType);
+
+        // Lấy danh sách từ resources
+        String[] carTypes = getResources().getStringArray(R.array.type_car_options);
+
+        // Dùng ArrayAdapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(), android.R.layout.simple_dropdown_item_1line, carTypes
+        );
+        spinnerTypeCar.setAdapter(adapter);
+
+        // Hiển thị danh sách khi nhấn vào
+        spinnerTypeCar.setOnClickListener(v -> spinnerTypeCar.showDropDown());
+        String[] carSeat = getResources().getStringArray(R.array.seat_count_options);
+
+        // Dùng ArrayAdapter
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(
+                getActivity(), android.R.layout.simple_dropdown_item_1line, carSeat
+        );
+        spinnerSeatCount.setAdapter(adapter1);
+
+        // Hiển thị danh sách khi nhấn vào
+        spinnerSeatCount.setOnClickListener(v -> spinnerSeatCount.showDropDown());
+
+        String[] carSeat1 = getResources().getStringArray(R.array.fuel_type_options);
+
+        // Dùng ArrayAdapter
+        ArrayAdapter<String> adapter12 = new ArrayAdapter<>(
+                getActivity(), android.R.layout.simple_dropdown_item_1line, carSeat1
+        );
+        spinnerFuelType.setAdapter(adapter12);
+
+        // Hiển thị danh sách khi nhấn vào
+        spinnerFuelType.setOnClickListener(v -> spinnerFuelType.showDropDown());
+        view.findViewById(R.id.btnSearch).setOnClickListener(v->{
+
+            String m1=spinnerTypeCar.getText().toString();
+            String numberOnly = spinnerSeatCount.getText().toString().replaceAll("[^0-9]", ""); // Loại bỏ tất cả ký tự không phải số
+            int seatCount =0;
+if(!numberOnly.isEmpty()) {
+    seatCount = numberOnly.isEmpty() ? 0 : Integer.parseInt(numberOnly);
+}
+            String m3=spinnerFuelType.getText().toString();
+            fetchData(dia_chi,seatCount,m3,m1);
+        });
+        fetchData(dia_chi,0,"","");
         recyclerView.setAdapter(carAdapter);
         return  view;
+    }public String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return sdf.format(new Date());
     }
-    public void fetchData(int soCho,String viTri) {
+    public void fetchData(String vuTri, Integer soCho, String nhienLieu, String carType) {
         SQLiteDatabase dba = db.getWritableDatabase();
-        String query = "SELECT * FROM cars";
+
+        String baseQuery = "SELECT * FROM cars WHERE 1=1"; // Luôn đúng để dễ nối điều kiện
         List<String> argsList = new ArrayList<>();
 
-        // Nếu có điều kiện thì thêm vào WHERE
-        if (soCho != 0 || (viTri != null && !viTri.isEmpty())) {
-            query += " WHERE";
-            if (soCho != 0) {
-                query += " so_cho_ngoi = ?";
-                argsList.add(String.valueOf(soCho));
-            }
-            if (viTri != null && !viTri.isEmpty()) {
-                if (soCho != 0) query += " AND";  // Nếu đã có điều kiện trước thì thêm AND
-                query += " vu_tri = ?";
-                argsList.add(viTri);
-            }
+        // Chỉ thêm điều kiện nếu tham số không rỗng
+        if (vuTri != null && !vuTri.isEmpty()) {
+            baseQuery += " AND vu_tri = ?";
+            argsList.add(vuTri);
+        }
+        if (soCho != null&&soCho!=0) {
+            baseQuery += " AND so_cho_ngoi = ?";
+            argsList.add(String.valueOf(soCho));
+        }
+        if (nhienLieu != null && !nhienLieu.isEmpty() && !nhienLieu.equals("Tất cả")) {
+            baseQuery += " AND nhine_lieu = ?";
+            argsList.add(nhienLieu);
+        }
+        if (carType != null && !carType.isEmpty() && !carType.equals("Tất cả các loại")) {
+            baseQuery += " AND car_type = ?";
+            argsList.add(carType);
         }
 
-        String[] args = argsList.toArray(new String[0]);
-        Cursor cursor =    dba.rawQuery(query, args);
+        // Chuyển danh sách tham số thành mảng
+        String[] selectionArgs = argsList.toArray(new String[0]);
 
+        // In câu lệnh SQL đầy đủ để debug
+        String fullQuery = baseQuery;
+        for (String arg : selectionArgs) {
+            fullQuery = fullQuery.replaceFirst("\\?", "'" + arg + "'");
+        }
+        Log.d("SQL_QUERY", fullQuery);
+
+        // Thực hiện truy vấn
+        Cursor cursor = dba.rawQuery(baseQuery, selectionArgs);
+
+
+        Log.d("SQL_QUERY", fullQuery); // In câu SQL đầy đủ
         // Lấy index của các cột
         int idColumnIndex = cursor.getColumnIndex("id");
         int nameColumnIndex = cursor.getColumnIndex("car_name");

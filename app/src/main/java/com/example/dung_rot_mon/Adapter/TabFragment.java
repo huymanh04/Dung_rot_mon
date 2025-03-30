@@ -6,11 +6,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.dung_rot_mon.R;
+import com.example.dung_rot_mon.tab_car.tim_xe;
 import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 import java.util.Locale;
@@ -20,6 +27,7 @@ public class TabFragment extends Fragment {
     private static final String ARG_POSITION = "position";
     private Calendar selectedDateTime;
     private TextInputEditText edtRentDate;
+    private AutoCompleteTextView edt_address;
     private TextInputEditText edtRentTime;
 
     public static TabFragment newInstance(int position) {
@@ -40,14 +48,16 @@ public class TabFragment extends Fragment {
             return inflater.inflate(R.layout.fragment_co_tai_xe, container, false);
         }
     }
-
+  Button btn_confirm;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
         selectedDateTime = Calendar.getInstance();
+        edt_address = view.findViewById(R.id.edt_address);
         edtRentDate = view.findViewById(R.id.edt_rent_date);
-        edtRentTime = view.findViewById(R.id.edt_rent_time);
+        edtRentTime = view.findViewById(R.id.edt_rent_date1);
+        btn_confirm = view.findViewById(R.id.btn_confirm);
 
         if (edtRentDate != null) {
             edtRentDate.setOnClickListener(v -> {
@@ -62,10 +72,7 @@ public class TabFragment extends Fragment {
                         selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         
                         Calendar currentTime = Calendar.getInstance();
-                        if (selectedDateTime.before(currentTime)) {
-                            Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
-                            edtRentDate.setText("");
-                        }
+
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
                     Calendar.getInstance().get(Calendar.MONTH),
@@ -78,27 +85,55 @@ public class TabFragment extends Fragment {
 
         if (edtRentTime != null) {
             edtRentTime.setOnClickListener(v -> {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(
-                    getContext(),
-                    (view12, hourOfDay, minute) -> {
-                        String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-                        edtRentTime.setText(selectedTime);
-                        
-                        selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        selectedDateTime.set(Calendar.MINUTE, minute);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(),
+                        (view1, year, month, dayOfMonth) -> {
+                            String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                            edtRentTime.setText(selectedDate);
 
-                        Calendar currentTime = Calendar.getInstance();
-                        if (selectedDateTime.before(currentTime)) {
-                            Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
-                            edtRentTime.setText("");
-                        }
-                    },
-                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                    Calendar.getInstance().get(Calendar.MINUTE),
-                    true
+                            selectedDateTime.set(Calendar.YEAR, year);
+                            selectedDateTime.set(Calendar.MONTH, month);
+                            selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                            Calendar currentTime = Calendar.getInstance();
+
+                        },
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        Calendar.getInstance().get(Calendar.MONTH),
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
                 );
-                timePickerDialog.show();
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             });
         }
+        String[] carSeat1 = getResources().getStringArray(R.array.dia_diem);
+
+        // Dùng ArrayAdapter
+        ArrayAdapter<String> adapter12 = new ArrayAdapter<>(
+                getActivity(), android.R.layout.simple_dropdown_item_1line, carSeat1
+        );
+        edt_address.setAdapter(adapter12);
+
+        // Hiển thị danh sách khi nhấn vào
+        edt_address.setOnClickListener(v -> edt_address.showDropDown());
+        btn_confirm.setOnClickListener(v->{
+            String rentTime = edtRentTime.getText().toString().trim();
+            String edtRentDatea = edtRentDate.getText().toString().trim();
+            String edt_addressa = edt_address.getText().toString().trim();
+
+            if (!rentTime.isEmpty() && rentTime != null&&!edtRentDatea.isEmpty() && edtRentDatea != null&&!edt_addressa.isEmpty() && edt_addressa != null) {
+                replaceFragment(new tim_xe(edt_address.getText().toString(),edtRentTime.getText().toString(),edtRentDate.getText().toString()));
+
+            } else {
+                Toast.makeText(getContext(), "Giá trị không hợp lệ!", Toast.LENGTH_SHORT).show();
+            }
+               });
+    }
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 }

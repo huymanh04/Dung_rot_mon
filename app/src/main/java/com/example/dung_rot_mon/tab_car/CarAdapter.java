@@ -37,9 +37,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         void onEditClick(Car car);
         void onDeleteClick(Car car);
     }
-
+    private RecyclerView recyclerView;
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView; // Lưu RecyclerView đang gọi Adapter
+    }
     public CarAdapter(Context context, List<Car> carList, OnCarClickListener listener) {
         this.context = context;
+
         this.carList = carList;
         this.listener = listener;
     }
@@ -81,6 +87,12 @@ if(car.getTaixe()==1)
 }else {
     holder.taixe.setVisibility(GONE);
 }
+        if (recyclerView != null) {
+            int recyclerViewId = recyclerView.getId();
+            if (recyclerViewId == R.id.man) {
+                holder.taixe.setVisibility(GONE);
+            }
+        }
         if (holder.nguyenlieu != null) {
             holder.nguyenlieu.setText("Nguyên liệu: " + car.getNguyenlieu());
         } else {
@@ -135,14 +147,12 @@ if(car.getTaixe()==1)
                 listener.onEditClick(car);
             }
         });
-
         holder.Delete.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onDeleteClick(car);
             }
         });
 
-        // Xử lý sự kiện click vào CardView
         holder.cardView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onCarClick(car);

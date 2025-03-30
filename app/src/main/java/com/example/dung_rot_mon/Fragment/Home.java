@@ -235,68 +235,8 @@ public class Home extends Fragment {
         }
 
         // Xử lý click cho ngày thuê và giờ thuê
-        {
-            // Khởi tạo selectedDateTime
-            selectedDateTime = Calendar.getInstance();
 
-            // Xử lý click cho ngày thuê
-            View ngayThueLayout = view.findViewById(R.id.edt_rent_date);
-            if (ngayThueLayout != null) {
-                ngayThueLayout.setOnClickListener(v -> {
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        getContext(),
-                        (view1, year, month, dayOfMonth) -> {
-                            String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                            TextView txtNgayThue = view.findViewById(R.id.edt_rent_date);
-                            if (txtNgayThue != null) {
-                                txtNgayThue.setText(selectedDate);
-                            }
-                            selectedDateTime.set(Calendar.YEAR, year);
-                            selectedDateTime.set(Calendar.MONTH, month);
-                            selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                            
-                            Calendar currentTime = Calendar.getInstance();
-                            if (selectedDate.equals(currentTime.get(Calendar.DATE))) {
-                                if (year < currentTime.get(Calendar.YEAR) || 
-                                    (year == currentTime.get(Calendar.YEAR) && (month < currentTime.get(Calendar.MONTH) || 
-                                    (month == currentTime.get(Calendar.MONTH) && dayOfMonth < currentTime.get(Calendar.DAY_OF_MONTH))))) {
-                                    Toast.makeText(getContext(), "Vui lòng chọn thời gian trong tương lai", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                            }
-                        },
-                        Calendar.getInstance().get(Calendar.YEAR),
-                        Calendar.getInstance().get(Calendar.MONTH),
-                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-                    );
-                    datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                    datePickerDialog.show();
-                });
-            }
 
-            // Xử lý click giờ thuê
-            View gioThueLayout = view.findViewById(R.id.edt_rent_time);
-            if (gioThueLayout != null) {
-                gioThueLayout.setOnClickListener(v -> {
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(
-                        getContext(),
-                        (view12, hourOfDay, minute) -> {
-                            String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-                            TextView txtGioThue = view.findViewById(R.id.edt_rent_time);
-                            if (txtGioThue != null) {
-                                txtGioThue.setText(selectedTime);
-                            }
-                            selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                            selectedDateTime.set(Calendar.MINUTE, minute);
-                        },
-                        Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                        Calendar.getInstance().get(Calendar.MINUTE),
-                        true
-                    );
-                    timePickerDialog.show();
-                });
-            }
-        }
         return view;
     }
     private static BannerAdapter bannerAdapter;

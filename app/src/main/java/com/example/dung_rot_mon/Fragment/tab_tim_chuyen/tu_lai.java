@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
@@ -39,8 +41,8 @@ public class tu_lai extends Fragment {
     private String mParam2;
 
     private Calendar selectedDateTime;
-    private TextInputEditText edtAddress, edtRentDate, edtRentTime;
-
+    private TextInputEditText  edtRentDate, edtRentTime;
+    AutoCompleteTextView edtAddress;
     public tu_lai() {
         // Required empty public constructor
     }
@@ -80,12 +82,11 @@ public class tu_lai extends Fragment {
 
         edtAddress = view.findViewById(R.id.edt_address);
         edtRentDate = view.findViewById(R.id.edt_rent_date);
-        edtRentTime = view.findViewById(R.id.edt_rent_time);
+        edtRentTime = view.findViewById(R.id.edt_rent_date1);
 
         selectedDateTime = Calendar.getInstance();
 
-        // Thiết lập sự kiện chọn địa chỉ
-        edtAddress.setOnClickListener(v -> openGoogleMaps());
+
 
         // Thiết lập sự kiện chọn ngày
         edtRentDate.setOnClickListener(v -> {

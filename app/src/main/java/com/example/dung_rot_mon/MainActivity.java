@@ -9,16 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dung_rot_mon.Fragment.tab_tim_chuyen.manh;
+import com.example.dung_rot_mon.Fragment.Chat_.tab_chat;
 import com.example.dung_rot_mon.Login.Accountt;
 import com.example.dung_rot_mon.Fragment.Car;
-import com.example.dung_rot_mon.Fragment.Chat;
 import com.example.dung_rot_mon.Fragment.Home;
-import com.example.dung_rot_mon.Fragment.Support;
 import com.example.dung_rot_mon.Login.Login;
-import com.example.dung_rot_mon.Login.register;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
-import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
 import com.example.dung_rot_mon.tab_car.tim_xe;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 if (title.equals("Trang chủ")) {
                     replaceFragment(new Home(email12));
                 } else if (title.equals("Tin nhắn")) {
-                    replaceFragment(new manh());
+                    replaceFragment(new tab_chat());
                 } else if (title.equals("Car")) {
                     replaceFragment(new Car());
                 } else if (title.equals("Hỗ trợ")) {

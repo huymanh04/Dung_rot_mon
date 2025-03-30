@@ -7,7 +7,36 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string-array name="type_car_options">
+        <item>Tất cả các loại</item>
+        <item>Số tự động</item>
+        <item>Số sàn</item>
+    </string-array>
 
+    <string-array name="dia_diem">
+        <item>Sài Gòn</item>
+        <item>Đà Nẵng</item>
+        <item>Phú Yên</item>
+        <item>Hà Nội</item>
+        <item>Đồng Nai</item>
+        <item>Huế</item>
+        <item>Vũng Tàu</item>
+    </string-array>
+
+    <string-array name="seat_count_options">
+        <item>Tất cả</item>
+        <item>2 chỗ</item>
+        <item>4 chỗ</item>
+        <item>7 chỗ</item>
+        <item>16 chỗ</item>
+    </string-array>
+
+    <string-array name="fuel_type_options">
+        <item>Tất cả</item>
+        <item>Xăng</item>
+        <item>Dầu</item>
+        <item>Điện</item>
+    </string-array>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
 

@@ -110,7 +110,7 @@ List<Bitmap> bitmapList;
                 requireContext(),R.layout.list_item,
                 nguyenLieuItems
         );
-        List<String> vitri = Arrays.asList("Sài gòn", "Đà nẵng", "Phú yên","Hà nội","Đồng nai","Huế","Vũng tàu");
+        List<String> vitri = Arrays.asList("Sài Gòn", "Đà Nẵng", "Phú Yên","Hà Nội","Đồng Nai","Huế","Vũng Tàu");
         ArrayAdapter<String> vitriAdapter = new ArrayAdapter<>(
                 requireContext(),R.layout.list_item,
                 vitri

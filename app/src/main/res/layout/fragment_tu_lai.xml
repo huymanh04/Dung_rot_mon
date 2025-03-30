@@ -9,23 +9,21 @@
     tools:context=".Fragment.tab_tim_chuyen.tu_lai">
 
     <!-- Chọn Địa Chỉ -->
+
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:startIconDrawable="@android:drawable/ic_menu_mapmode"
-        app:endIconMode="custom"
-        app:endIconDrawable="@android:drawable/ic_dialog_map">
+        android:hint="Địa điểm">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/edt_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Chọn địa chỉ"
-            android:inputType="text"
-            android:maxLines="1" />
+            android:inputType="none"
+            android:entries="@array/type_car_options"
+            android:text="Sài Gòn" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <!-- Chọn Ngày Thuê -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -50,19 +48,20 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ok"
         android:layout_marginBottom="8dp"
-        app:startIconDrawable="@android:drawable/ic_menu_recent_history"
+        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
         app:endIconMode="custom"
         app:endIconDrawable="@android:drawable/ic_menu_recent_history">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_rent_time"
+            android:id="@+id/edt_rent_date1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Giờ thuê"
-            android:inputType="time"
-            android:focusable="false" />
+            android:hint="Ngày trả"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Button Xác Nhận -->
