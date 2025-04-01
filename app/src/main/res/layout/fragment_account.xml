@@ -57,19 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView1" />
-        <TextView
-            android:id="@+id/textssViewNamea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Bạn là chủ xe"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+
         <!-- Menu Items Section -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -206,7 +194,7 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginEnd="16dp"
-                                android:src="@android:drawable/ic_dialog_map"
+                                android:src="@drawable/img_14"
                                 app:tint="@color/mau_chu" />
 
                             <TextView
@@ -214,7 +202,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif"
-                                android:text="Địa chỉ của tôi"
+                                android:text="Quản lý xe"
                                 android:textColor="#333333"
                                 android:textSize="16sp" />
 
@@ -265,7 +253,7 @@
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/muiten"
-                                 />
+                                />
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -291,7 +279,7 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginEnd="16dp"
-                                android:src="@android:drawable/ic_lock_lock"
+                                android:src="@drawable/img_15"
                                 app:tint="@color/mau_chu" />
 
                             <TextView

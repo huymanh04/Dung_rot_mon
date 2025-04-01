@@ -1,6 +1,7 @@
 package com.example.dung_rot_mon.tab_car;
 
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -64,8 +65,16 @@ public class thong_tin_xe extends Fragment {
         TextView txtnguyenlieu = view.findViewById(R.id.txtNguyenLieu);
         TextView biocar = view.findViewById(R.id.biocar);
         TextView typecarr = view.findViewById(R.id.typecarr);
+        TextView txtCarPriceOld = view.findViewById(R.id.txtCarPriceOld);
+        TextView txtCarPriceNew = view.findViewById(R.id.txtCarPriceNew);
+        TextView txtCarPriceNewa = view.findViewById(R.id.txtCarPriceNewa);
         TextView txtVitri = view.findViewById(R.id.txtVitri);
+        txtCarPriceOld.setText(car.getPriceOld()+"K");
+        txtCarPriceNew.setText(car.getPriceNew()+"K/Ngày");
+        txtCarPriceNewa.setText("Giá Tổng : "+car.getPriceNew()+"K/Ngày");
+        txtCarPriceNewa.setPaintFlags(txtCarPriceNewa.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        txtCarPriceOld.setPaintFlags( txtCarPriceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         nametaixe.setText(car.getOwnerName());
         txtCarName.setText(car.getCarName());
         sochongoi.setText(String.valueOf(car.getSochongoi())+" Chỗ");

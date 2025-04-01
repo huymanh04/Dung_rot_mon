@@ -50,10 +50,11 @@ public class tim_xe extends Fragment {
     public tim_xe() {
         // Required empty public constructor
     }String dia_chi, time_thue, time_tra,Diem_don;
-    public tim_xe(String diem_don,String dia_chi,String time_thue,String time_tra) {
+    public tim_xe(int account_id,String diem_don,String dia_chi,String time_thue,String time_tra) {
         this.dia_chi=dia_chi;this.time_tra=time_tra;
         this.time_thue=time_thue;
         Diem_don=diem_don;
+       this.account_id=account_id;
         // Required empty public constructor
     }
     /**
@@ -65,6 +66,7 @@ public class tim_xe extends Fragment {
      * @return A new instance of fragment tim_xe.
      */
     // TODO: Rename and change types and number of parameters
+    int account_id;
     public static tim_xe newInstance(String param1, String param2) {
         tim_xe fragment = new tim_xe();
         Bundle args = new Bundle();
@@ -223,11 +225,11 @@ if(!numberOnly.isEmpty()) {
         int image2ColumnIndex = cursor.getColumnIndex("image2");
         int image3ColumnIndex = cursor.getColumnIndex("image3");
         int image4ColumnIndex = cursor.getColumnIndex("image4");
-        int statusColumnIndex = cursor.getColumnIndex("status");
+        int statusColumnIndex = cursor.getColumnIndex("");
         int LocationColumnIndex = cursor.getColumnIndex("Location");
         int bio = cursor.getColumnIndex("bio");
         int idtx = cursor.getColumnIndex("account_id");
-
+        int tongs = cursor.getColumnIndex("tong_chuyen");
         // Kiểm tra nếu các cột hợp lệ
         if (idColumnIndex == -1 || nameColumnIndex == -1 || imageColumnIndex == -1) {
             Log.e("Database", "Column not found!");
@@ -252,6 +254,7 @@ if(!numberOnly.isEmpty()) {
             String biao = cursor.getString(bio);
             int status = cursor.getInt(statusColumnIndex);
             int idt = cursor.getInt(idtx);
+            int tongsa = cursor.getInt(tongs);
             Cursor cursor1 = dba.rawQuery("SELECT * FROM account WHERE id = ?", new String[]{String.valueOf(idt)});
             Bitmap anhchuxe=null;
             while (cursor1.moveToNext()) {
@@ -273,7 +276,7 @@ if(!numberOnly.isEmpty()) {
             ok.add(convertByteArrayToBitmap(image4));
 
             // Thêm vào danh sách
-            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, anhchuxe, fuel,seats,biao,vitri));
+            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, anhchuxe, fuel,seats,biao,vitri,tongsa));
             }
         }
 

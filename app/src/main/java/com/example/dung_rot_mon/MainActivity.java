@@ -6,15 +6,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.dung_rot_mon.Fragment.Chat_.tab_chat;
+import com.example.dung_rot_mon.Fragment.Support;
+import com.example.dung_rot_mon.Fragment.tab_account.Xe_yeu_thich;
 import com.example.dung_rot_mon.Login.Accountt;
 import com.example.dung_rot_mon.Fragment.Car;
 import com.example.dung_rot_mon.Fragment.Home;
 import com.example.dung_rot_mon.Login.Login;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
+import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.databinding.ActivityMainBinding;
 import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
 import com.example.dung_rot_mon.tab_car.tim_xe;
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     Intent intent;
+   public static int Id_account=-1;
     public static boolean ktralogin=false;
     public static DatabaseHelper dbHelper; String email12="huymanh@gmail.com";
     @Override
@@ -44,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
-        }else {email12="huymanh@gmail.com";}
+        }else {email12="huymannh@gmail.com";}
 
+        SQLiteDatabase dba=dbHelper.openDatabase();
+        Cursor cursor = dba.rawQuery("SELECT id FROM account WHERE email = ?", new String[]{String.valueOf(email12)});
+        if (cursor.moveToFirst()) {
+            Id_account = cursor.getInt(0); // Lấy cột đầu tiên (tên tài xế)
+        }
         replaceFragment(new Home(email12));
 
 
@@ -65,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (title.equals("Car")) {
                     replaceFragment(new Car());
                 } else if (title.equals("Hỗ trợ")) {
-//                    replaceFragment(new Support());
-                    replaceFragment(new tim_xe());
+                   replaceFragment(new Support());
+
                 } else if (title.equals("Tài khoản")) {
 if(email12!=null&&email12!=""){
                     replaceFragment(new Accountt(email12));}else{

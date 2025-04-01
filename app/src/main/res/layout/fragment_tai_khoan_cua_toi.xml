@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="50dp"
+
     android:layout_height="match_parent"
     tools:context=".Fragment.tab_account.tai_khoan_cua_toi">
 
@@ -23,13 +23,7 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <ImageView
-                android:id="@+id/btnback"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_back"
 
-                app:tint="@color/teal_200" />
 <!--            <Button-->
 <!--                android:id="@+id/button"-->
 <!--                android:layout_width="50dp"-->
@@ -44,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginLeft="78dp"
+                android:layout_marginLeft="128dp"
                 android:text="Tài khoản của tôi"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"

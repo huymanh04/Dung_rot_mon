@@ -133,7 +133,7 @@ view.findViewById(R.id.btnSave).setOnClickListener(v->{
     String soChoNgoiStr = etSoChoNgoi.getText().toString().trim(); // Lấy giá trị nhập vào
     int soChoNgoi = soChoNgoiStr.isEmpty() ? 0 : Integer.parseInt(soChoNgoiStr); // Kiểm tra chuỗi rỗng
 
-    Car car=new Car(getContext(),1,Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,bitmapList.get(0),etNguyenLieu.getText().toString(),soChoNgoi,"okee",Vitri[0]);
+    Car car=new Car(getContext(),1,Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,bitmapList.get(0),etNguyenLieu.getText().toString(),soChoNgoi,"okee",Vitri[0],0);
 var ktra= add_car(car);
 if(ktra>0){
 
@@ -179,6 +179,7 @@ if(ktra>0){
         }
         values.put("account_id",car.getIDTAXE());
         values.put("status",0);
+        values.put("tong_chuyen",0);
         var  fddf= dba.insert("cars",null,values);
         return fddf;
     }

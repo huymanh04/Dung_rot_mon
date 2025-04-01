@@ -160,15 +160,12 @@ Car cars;
             Vitri[0]=selectedNguyenLieu;
         });
         view.findViewById(R.id.btnSave).setOnClickListener(v->{
-
-            Car car=new Car(getContext(),cars.getIDcarr(),Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,cars.getCarImage().get(0),etNguyenLieu.getText().toString(),Integer.parseInt(etSoChoNgoi.getText().toString()),etDetails.getText().toString(),Vitri[0]);
-
+            Car car=new Car(getContext(),cars.getIDcarr(),Id_name,etCarName.getText().toString(),ettypeCar.getText().toString(),etDetails.getText().toString(),etViTri.getText().toString(),etPriceOld.getText().toString(),etPriceNew.getText().toString(),bitmapList,cars.getCarImage().get(0),etNguyenLieu.getText().toString(),Integer.parseInt(etSoChoNgoi.getText().toString()),etDetails.getText().toString(),Vitri[0],cars.get_tong());
            int ktra= update_car(car);
-            if(ktra>0){
-
+            if(ktra>0)
+            {
                 Toast.makeText(getContext(), "Chỉnh xe thành công" , Toast.LENGTH_SHORT).show();
                 replaceFragment(a);
-
             }else{    Toast.makeText(getContext(), "Chỉnh xe thất bại" , Toast.LENGTH_SHORT).show();}
         });
         List<Bitmap> bm=cars.getCarImage();
@@ -180,7 +177,6 @@ Car cars;
     public List<Bitmap> getCarImages(int carId) {
         List<Bitmap> images = new ArrayList<>();
         SQLiteDatabase dba = db.getWritableDatabase();
-
         Cursor cursor = dba.rawQuery("SELECT image, image2, image3, image4 FROM cars WHERE id = ?", new String[]{String.valueOf(carId)});
         if (cursor.moveToFirst()) {
             for (int i = 0; i < 4; i++) {

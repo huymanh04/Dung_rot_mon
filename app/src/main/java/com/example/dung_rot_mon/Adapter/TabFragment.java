@@ -1,5 +1,7 @@
 package com.example.dung_rot_mon.Adapter;
 
+import static com.example.dung_rot_mon.MainActivity.Id_account;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -130,7 +132,7 @@ public class TabFragment extends Fragment {
             String edt_addressa1 = edt_address1.getText().toString().trim();
 
             if (!edt_addressa1.isEmpty() && edt_addressa1 != null&&!rentTime.isEmpty() && rentTime != null&&!edtRentDatea.isEmpty() && edtRentDatea != null&&!edt_addressa.isEmpty() && edt_addressa != null) {
-                replaceFragment(new tim_xe(edt_addressa1,edt_address.getText().toString(),edtRentTime.getText().toString(),edtRentDate.getText().toString()));
+                replaceFragment(new tim_xe(Id_account,edt_addressa1,edt_address.getText().toString(),edtRentTime.getText().toString(),edtRentDate.getText().toString()));
 
             } else {
                 Toast.makeText(getContext(), "Giá trị không hợp lệ!", Toast.LENGTH_SHORT).show();

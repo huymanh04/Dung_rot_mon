@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.dung_rot_mon.Fragment.tab_account.MyAddress;
 import com.example.dung_rot_mon.Fragment.tab_account.SecondFragment;
+import com.example.dung_rot_mon.Fragment.tab_account.Xe_yeu_thich;
 import com.example.dung_rot_mon.Fragment.tab_account.tai_khoan_cua_toi;
 import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
@@ -34,6 +35,7 @@ import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.admin.Frg_baner;
 import com.example.dung_rot_mon.admin.MainAdmin;
 import com.example.dung_rot_mon.admin.add;
+import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,10 +70,7 @@ if(email1!=""&&email1!=null){
         }else {        imageView.setImageBitmap(bitmap);}
         TextView na = view.findViewById(R.id.textViewNamea);
         na.setText(Name);
-        if(taixe==1)
-        {
-            view.findViewById(R.id.textssViewNamea).setVisibility(View.VISIBLE);
-        }
+
 }
         cardMyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,25 +83,26 @@ if(email1!=""&&email1!=null){
         FavoriteCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ma = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.FavoriteCars.class);
-                startActivity(ma);
+                replaceFragment(new Xe_yeu_thich());
             }
         });
-        ChangePass = view.findViewById(R.id.cardChangePassword);
-        ChangePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ma = new Intent(getActivity(), com.example.dung_rot_mon.Fragment.tab_account.ChangePass.class);
-                startActivity(ma);
-            }
-        });
-        if(taixe!=0){
-            view.findViewById(R.id.textssViewNamea).setVisibility(View.VISIBLE);
-        }else {view.findViewById(R.id.textssViewNamea).setVisibility(View.GONE);}
-        if(taixe!=0){
-            view.findViewById(R.id.addxe).setVisibility(View.VISIBLE);
-        }else {view.findViewById(R.id.addxe).setVisibility(View.GONE);}
-        view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
+
+
+        if(taixe!=0)
+        { view.findViewById(R.id.cardMyAddress).setVisibility(View.VISIBLE);
+            ///  tài xế cho thuê xe
+            if (taixe==2){
+                /// admin
+                view.findViewById(R.id.addxe).setVisibility(View.VISIBLE);
+            }else { view.findViewById(R.id.addxe).setVisibility(View.GONE);}
+        }
+        else
+        {
+            view.findViewById(R.id.addxe).setVisibility(View.GONE);
+            view.findViewById(R.id.cardMyAddress).setVisibility(View.GONE);
+        }
+
+            view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
 
             MainActivity.ktralogin=false;
             Intent m = new Intent(getActivity(), MainActivity.class);
@@ -113,10 +113,10 @@ if(email1!=""&&email1!=null){
         cardMyAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(getActivity(), MyAddress.class);
-                startActivity(m);
+                replaceFragment(new Quan_ly_xe(email1));
             }
-        });  view.findViewById(R.id.addxe).setOnClickListener(new View.OnClickListener() {
+        });
+        view.findViewById(R.id.addxe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent m = new Intent(getActivity(), MainAdmin.class);

@@ -226,7 +226,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="4dp"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/star" />
 
                 <TextView
                     android:id="@+id/txt_sao"
@@ -241,19 +241,20 @@
                     android:text=" • "
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="4dp"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/img_17" />
 
                 <TextView
                     android:id="@+id/txt_chuyen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black" />
+                    android:text=" 5 chuến"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Giá cũ -->

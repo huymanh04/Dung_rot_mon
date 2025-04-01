@@ -27,7 +27,7 @@
         <!-- Email TextField -->
         <EditText
             android:id="@+id/username"
-            android:layout_width="386dp"
+            android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
             android:layout_marginLeft="10dp"
@@ -42,7 +42,7 @@
         <!-- Password TextField -->
         <EditText
             android:id="@+id/password"
-            android:layout_width="386dp"
+            android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/username"
             android:layout_marginLeft="10dp"

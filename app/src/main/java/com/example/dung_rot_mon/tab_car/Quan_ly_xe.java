@@ -160,7 +160,7 @@ static String email;
         int LocationColumnIndex = cursor.getColumnIndex("Location");
         int bio = cursor.getColumnIndex("bio");
         int idtx = cursor.getColumnIndex("account_id");
-
+        int tongs = cursor.getColumnIndex("tong_chuyen");
         // Kiểm tra nếu các cột hợp lệ
         if (idColumnIndex == -1 || nameColumnIndex == -1 || imageColumnIndex == -1) {
             Log.e("Database", "Column not found!");
@@ -185,6 +185,7 @@ static String email;
             String biao = cursor.getString(bio);
             int status = cursor.getInt(statusColumnIndex);
             int idt = cursor.getInt(idtx);
+            int tongsa = cursor.getInt(tongs);
             Cursor cursor1 = dba.rawQuery("SELECT * FROM account WHERE id = ?", new String[]{String.valueOf(accountId)});
             Bitmap anhchuxe=null;
             while (cursor1.moveToNext()) {
@@ -205,7 +206,7 @@ static String email;
                 ok.add(convertByteArrayToBitmap(image4));
 
             // Thêm vào danh sách
-            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, anhchuxe, fuel,seats,biao,vitri));
+            carList.add(new Car(getContext(),idcarr,idt,name, type,biao,location ,priceOld,priceNew,ok, anhchuxe, fuel,seats,biao,vitri,tongsa));
         }
 
         cursor.close(); // Đóng con trỏ sau khi sử dụng

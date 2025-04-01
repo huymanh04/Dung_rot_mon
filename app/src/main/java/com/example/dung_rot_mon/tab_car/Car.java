@@ -22,6 +22,7 @@ public class Car {
 private  int status;
     private  String nguyenlieu;
     private    int sochongoi;
+    private    int Tong_chuyen=0;
     private String bio;
     private String vitri;
 
@@ -29,9 +30,10 @@ String typecar;
 
 Context cc;
     public Car(Context conte, int idcar, int Idname, String carName, String type, String details, String location,
-               String priceOld, String priceNew, List<Bitmap> carImage, Bitmap ownerImage, String nguyenlieu, int sochongoi, String bio, String vitri) {
+               String priceOld, String priceNew, List<Bitmap> carImage, Bitmap ownerImage, String nguyenlieu, int sochongoi, String bio, String vitri,int Tong_chuyen) {
         this.idname = Idname;
         cc=conte;
+        this.Tong_chuyen=Tong_chuyen;
         this.carName = carName;
         this.details = details;
         this.location = location;
@@ -101,6 +103,7 @@ Context cc;
     public Bitmap getOwnerImage() { return ownerImage; }
     public String getNguyenlieu() { return nguyenlieu; }
     public int getSochongoi() { return sochongoi; }
+    public int get_tong() { return Tong_chuyen; }
     public int getIDcarr() { return idcar; }
     public int getTrangthai() { return status; }
     public String getBio() { return bio; }

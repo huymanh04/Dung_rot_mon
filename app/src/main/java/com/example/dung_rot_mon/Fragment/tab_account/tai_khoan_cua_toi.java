@@ -103,9 +103,7 @@ ImageView gplx_image;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_tai_khoan_cua_toi, container, false);
-        view.findViewById(R.id.btnback).setOnClickListener(v->{
-            replaceFragment(new Accountt(Email));
-        });
+
         profile_image=view.findViewById(R.id.profile_image);
         gplx_image=view.findViewById(R.id.anh_gplx);
         textViewName=view.findViewById(R.id.textViewName);
