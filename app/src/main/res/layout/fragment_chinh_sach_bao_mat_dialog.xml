@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Đóng hướng dẫn"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Chính Sách Quyền Riêng Tư"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/prc"
+        android:scaleType="centerCrop"
+        android:contentDescription="Hướng dẫn sử dụng" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mục đích thu thập và sử dụng thông tin"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mioto thu thập thông tin thành viên để:"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Xác minh danh tính và quản lý tài khoản.\n• Hỗ trợ đặt xe và cung cấp dịch vụ.\n• Xử lý đơn đặt hàng và liên hệ khách hàng.\n• Gửi thông báo về các chương trình khuyến mãi, khảo sát.\n• Ngăn chặn hành vi gian lận, bảo vệ quyền lợi của công ty.\n• Cung cấp thông tin theo yêu cầu của pháp luật."
+            android:textSize="18dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phạm vi sử dụng thông tin"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Đảm bảo quyền lợi của công ty và đối tác.\n• Cung cấp thông tin theo yêu cầu pháp luật khi cần thiết."
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp" />
+</LinearLayout>

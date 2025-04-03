@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Nút đóng -->
+
+    <!-- Tiêu đề -->
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Đóng hướng dẫn"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hướng dẫn sử dụng Mioto"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
+
+    <!-- Ảnh minh họa -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/sp1"
+        android:scaleType="centerCrop"
+        android:contentDescription="Hướng dẫn sử dụng" />
+
+    <!-- Nội dung hướng dẫn -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Đăng nhập hoặc đăng ký tài khoản."
+        android:textSize="16sp"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2. Tìm kiếm xe phù hợp theo địa điểm, thời gian."
+        android:textSize="16sp"
+        android:paddingTop="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3. Liên hệ chủ xe và đặt xe."
+        android:textSize="16sp"
+        android:paddingTop="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4. Nhận xe, kiểm tra tình trạng và sử dụng."
+        android:textSize="16sp"
+        android:paddingTop="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="5. Trả xe đúng giờ, đánh giá và hoàn tất giao dịch."
+        android:textSize="16sp"
+        android:paddingTop="5dp"/>
+
+</LinearLayout>

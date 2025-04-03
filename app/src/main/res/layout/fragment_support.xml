@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:name="android.permission.CALL_PHONE"
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/teal_700"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Trung tâm hỗ trợ nhanh"
-            android:textColor="@android:color/black"
+            android:text="Trung tâm hỗ trợ"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:gravity="center">
 
+            <!-- Ảnh đại diện -->
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="391dp"
-                android:layout_height="223dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/hotro" />
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/hotro"
+                android:scaleType="centerCrop"
+                android:background="@color/teal_200"
+                app:elevation="4dp"
+                android:contentDescription="Ảnh đại diện hỗ trợ"/>
 
+            <!-- Thông tin hỗ trợ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:text="Cần hỗ trợ nhanh vui lòng gọi 0908168269 (7:00AM - 10:00PM) \n hoặc gửi tin nhắn cho Bo Fanpage"
-                android:textSize="18sp" />
+                android:text="Cần hỗ trợ nhanh? Vui lòng gọi số dưới đây hoặc nhắn tin đến Fanpage!"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:textColor="@android:color/black"/>
 
+            <!-- Nút Gọi & Nhắn tin -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,38 +78,134 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/teal_200"
-                    android:onClick="onCallButtonClick"
-                    android:text="Gọi"
-                    android:textColor="@android:color/white" />
+                    android:backgroundTint="@color/teal_700"
+                    android:text="Gọi ngay"
+                    android:textColor="@android:color/white"
+                    android:drawableLeft="@android:drawable/ic_menu_call"
+                    android:padding="8dp"/>
 
                 <Button
                     android:id="@+id/btnMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onMessageButtonClick"
+                    android:backgroundTint="@color/teal_700"
                     android:text="Nhắn tin"
                     android:textColor="@android:color/white"
-                    app:backgroundTint="@color/teal_200" />
+                    android:drawableLeft="@android:drawable/ic_dialog_email"
+                    android:padding="8dp"/>
             </LinearLayout>
 
+            <!-- Danh sách câu hỏi thường gặp -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Hướng Dẫn:"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="20dp"
+                android:text="Câu hỏi thường gặp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1. Làm sao để đăng ký tài khoản?"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bạn có thể đăng ký tài khoản bằng cách vào mục Đăng ký và nhập thông tin cần thiết."
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Ảnh hướng dẫn -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Hướng Dẫn Sử Dụng:"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/imageSupport"
                 android:layout_width="391dp"
                 android:layout_height="223dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
                 android:src="@drawable/sp"
-                />
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.openHuongDanDialog()}"
+                android:contentDescription="Hướng dẫn sử dụng"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="Thông tin ứng dụng"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tên ứng dụng: ETO"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black" />
+                    <TextView
+                        android:id="@+id/tvCompany"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Công ty: ETO Huflit"
+                        android:textColor="@color/teal_700"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                    <TextView
+                        android:id="@+id/tvPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Chính sách bảo mật"
+                        android:textSize="14sp"
+                        android:textColor="@color/teal_700"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="80dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
