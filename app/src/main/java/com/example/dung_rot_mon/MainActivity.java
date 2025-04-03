@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
-        }else {email12="";}
+        }else {email12="huymannh@gmail.com";}
 
         SQLiteDatabase dba=dbHelper.openDatabase();
         Cursor cursor = dba.rawQuery("SELECT id FROM account WHERE email = ?", new String[]{String.valueOf(email12)});
@@ -109,5 +109,4 @@ if(email12!=null&&email12!=""){
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
 }

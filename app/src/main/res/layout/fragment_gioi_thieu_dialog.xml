@@ -13,6 +13,7 @@
         android:id="@+id/btnClose"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_marginBottom="10dp"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:contentDescription="Đóng"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/gioithieuhi"
+        android:src="@drawable/banerdktx"
         app:layout_constraintTop_toBottomOf="@id/btnClose"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -34,7 +35,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Giới thiệu bạn mới"
+        android:text="Đăng ký cho thuê xe"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -43,12 +44,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Phần "Chia sẻ mã giới thiệu" -->
+    <!-- Phần "Yêu cầu đăng ký" -->
     <TextView
-        android:id="@+id/tvShareTitle"
+        android:id="@+id/tvRequirementsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chia sẻ mã giới thiệu"
+        android:text="Yêu cầu đăng ký"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -57,67 +58,96 @@
         android:layout_marginTop="12dp" />
 
     <TextView
-        android:id="@+id/tvShareDesc"
+        android:id="@+id/tvRequirementsDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Để có thể nhận mã giới thiệu, tài khoản của bạn cần phải có ít nhất 1 chuyến đi hoặc đã đăng ký ít nhất 3 tháng."
+        android:text="Để đăng ký làm tài xế, bạn cần chuẩn bị CCCD/CMND, bằng lái xe, giấy đăng ký xe và bảo hiểm xe còn hiệu lực."
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/tvShareTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvRequirementsTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
-    <!-- Phần "Theo dõi mã giới thiệu" -->
+    <!-- Phần "Quyền lợi tài xế" -->
     <TextView
-        android:id="@+id/tvTrackingTitle"
+        android:id="@+id/tvBenefitsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theo dõi mã giới thiệu"
+        android:text="Quyền lợi tài xế"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/tvShareDesc"
+        app:layout_constraintTop_toBottomOf="@id/tvRequirementsDesc"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Số điểm đã nhận -->
+    <!-- Thu nhập -->
     <TextView
-        android:id="@+id/tvPoints"
+        android:id="@+id/tvIncome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Số điểm đã nhận: 0"
+        android:text="Thu nhập linh hoạt: 5-15 triệu/tháng"
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/tvTrackingTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvBenefitsTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
-    <!-- Số chuyến đã hoàn thành -->
+    <!-- Thời gian làm việc -->
     <TextView
-        android:id="@+id/tvTrips"
+        android:id="@+id/tvWorkTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Số chuyến đã hoàn thành: 0"
+        android:text="Thời gian làm việc linh hoạt"
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/tvPoints"
+        app:layout_constraintTop_toBottomOf="@id/tvIncome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
-    <!-- Nút "Xem chi tiết" -->
+    <!-- Hỗ trợ -->
     <TextView
-        android:id="@+id/tvSeeDetails"
+        android:id="@+id/tvSupport"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hỗ trợ tài xế 24/7"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nút "Đăng ký ngay" -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng ký ngay"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+
+        app:layout_constraintTop_toBottomOf="@id/tvSupport"
+        android:backgroundTint="@color/teal_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp" />
+
+    <!-- Liên hệ hỗ trợ -->
+    <TextView
+        android:id="@+id/tvContactSupport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xem chi tiết"
+        android:text="Liên hệ hỗ trợ"
         android:textSize="14sp"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tvTrips"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

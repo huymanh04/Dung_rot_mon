@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,25 +59,22 @@ public class Frg_baner extends Fragment {
         bannerRecyclerView.setAdapter(bannerAdapter);
 
         Button addBannerButton = view.findViewById(R.id.addBannerButton);
-        addBannerButton.setOnClickListener(v -> {
-            // Add a new banner
 
-
-            // Get sample banners and update adapter
-
-
-
-        });
 view.findViewById(R.id.addBannerButton).setOnClickListener(v->{
-    Intent manh = new Intent(getActivity(), add.class);
-    startActivity(manh);
+    replaceFragment(new add_baner());
 
 });
+
         fetchData();
         return view;
     }
 
-
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
 
     private static DatabaseManager dbManager;
 

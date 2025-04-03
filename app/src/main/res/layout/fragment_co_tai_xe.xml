@@ -15,7 +15,6 @@
         android:id="@+id/tv_journey_type_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="Chọn loại hành trình:"
         android:textColor="#555555"
         android:textSize="16sp"
@@ -23,92 +22,98 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Radio Group in CardView -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_radio_group"
+    <!-- Radio Group trực tiếp không có CardView -->
+    <RadioGroup
+        android:id="@+id/rg_journey_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
+        android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/tv_journey_type_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <RadioGroup
-            android:id="@+id/rg_journey_type"
+        <RadioButton
+            android:id="@+id/rb_local"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nội thành"
+            android:textSize="14sp"
+            android:buttonTint="#4CAF50" />
+
+        <RadioButton
+            android:id="@+id/rb_interprovincial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Liên tỉnh"
+            android:textSize="14sp"
+            android:buttonTint="#4CAF50" />
+
+        <RadioButton
+            android:id="@+id/rb_roundtrip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:layout_marginBottom="20dp"
+            android:buttonTint="#4CAF50"
+            android:text="Liên tỉnh 2 chiều"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <!-- TextInputLayout for address selection moved to after journey type -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_location"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Địa điểm"
+        app:layout_constraintTop_toBottomOf="@id/rg_journey_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/edt_address1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <RadioButton
-                android:id="@+id/rb_local"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nội thành"
-                android:textSize="14sp"
-                android:buttonTint="#4CAF50" />
-
-            <RadioButton
-                android:id="@+id/rb_interprovincial"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Liên tỉnh"
-                android:textSize="14sp"
-                android:buttonTint="#4CAF50" />
-
-            <RadioButton
-                android:id="@+id/rb_roundtrip"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Liên tỉnh 2 chiều"
-                android:textSize="14sp"
-                android:buttonTint="#4CAF50" />
-        </RadioGroup>
-    </androidx.cardview.widget.CardView>
+            android:inputType="none"
+            android:entries="@array/type_car_options"
+            android:text="Sài Gòn" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Chọn Điểm Đón Label -->
     <TextView
         android:id="@+id/tv_pickup_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chọn điểm đón:"
+        android:text="Nhập địa chỉ đón:"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#555555"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_radio_group" />
+        app:layout_constraintTop_toBottomOf="@id/til_location" />
 
-    <!-- Pickup Location -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_pickup_location"
+    <!-- Pickup Location không có CardView -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_pickup_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
+        android:hint="Địa chỉ đón"
         app:layout_constraintTop_toBottomOf="@id/tv_pickup_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/edt_pickup_location"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_pickup_addresas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:drawableEnd="@android:drawable/ic_menu_mapmode"
-
-            android:drawablePadding="8dp"
-            android:focusable="false"
-            android:hint="Nhấn để chọn điểm đón"
-            android:padding="16dp"
-            android:textColorHint="#AAAAAA" />
-    </androidx.cardview.widget.CardView>
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Chọn Thời Gian Đón Label -->
     <TextView
@@ -121,50 +126,42 @@
         android:textColor="#555555"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_pickup_location" />
+        app:layout_constraintTop_toBottomOf="@id/til_pickup_address" />
 
-    <!-- Pickup Time -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_pickup_time"
+    <!-- Pickup Time không có CardView -->
+    <EditText
+        android:id="@+id/edt_pickups_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
+        android:background="@android:drawable/edit_text"
+        android:drawableEnd="@android:drawable/ic_menu_recent_history"
+        android:drawablePadding="8dp"
+        android:focusable="false"
+        android:hint="Nhấn để chọn thời gian"
+        android:padding="16dp"
+        android:textColorHint="#AAAAAA"
         app:layout_constraintTop_toBottomOf="@id/tv_time_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <EditText
-            android:id="@+id/edt_pickups_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:drawableEnd="@android:drawable/ic_menu_recent_history"
-
-            android:drawablePadding="8dp"
-            android:focusable="false"
-            android:hint="Nhấn để chọn thời gian"
-            android:padding="16dp"
-            android:textColorHint="#AAAAAA" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Button Xác Nhận -->
     <Button
-        android:id="@+id/btn_confirm"
+        android:id="@+id/btn_confirm1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/teal_200"
+        android:elevation="4dp"
         android:padding="16dp"
         android:text="Xác nhận"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:elevation="4dp"
         app:cornerRadius="12dp"
-        app:layout_constraintTop_toBottomOf="@id/cv_pickup_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/edt_pickups_time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

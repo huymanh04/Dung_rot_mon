@@ -154,8 +154,11 @@ if(car.getTaixe()==1)
         {
             int columnIndex = cursor.getColumnIndex("Xe_yeu_thich");
             if (columnIndex >= 0)
-            {
+            {if (cursor.getString(columnIndex) != null) {
                 idxea = cursor.getString(columnIndex).replaceAll("null","");
+            } else {
+                idxea = ""; // hoặc gán giá trị mặc định khác nếu cần
+            }
             }
         }
         String[] idxeaArray = idxea.split(",");
@@ -185,7 +188,13 @@ if(car.getTaixe()==1)
 
                 int columnIndex = cursora.getColumnIndex("Xe_yeu_thich");
                 if (columnIndex >= 0) {
-                    idxe = cursora.getString(columnIndex).replaceAll("null","");
+                    String value = cursora.getString(columnIndex);
+                    if (value != null) {
+                        idxe = value.replaceAll("null", "");
+                    } else {
+                        idxe = value;
+                    }
+
                 }
 
             }
