@@ -32,7 +32,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginBottom="40dp"
             android:text="Phú Quốc"
-            android:textColor="@color/black"
+            android:textColor="#EFEFEF"
             android:textSize="16sp"
             android:textStyle="bold"
 
@@ -48,7 +48,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginBottom="16dp"
             android:text="150+ xe"
-            android:textColor="@color/black"
+            android:textColor="#F8F4F4"
             android:textSize="14sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

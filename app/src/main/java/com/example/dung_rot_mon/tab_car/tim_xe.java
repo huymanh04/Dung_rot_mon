@@ -49,10 +49,12 @@ public class tim_xe extends Fragment {
 
     public tim_xe() {
         // Required empty public constructor
-    }String dia_chi, time_thue, time_tra,Diem_don;
+    }
+  public static String dia_chi, time_thue, time_tra,Diem_don;
     public tim_xe(int account_id,String diem_don,String dia_chi,String time_thue,String time_tra) {
-        this.dia_chi=dia_chi;this.time_tra=time_tra;
-        this.time_thue=time_thue;
+        tim_xe.dia_chi =dia_chi;
+        tim_xe.time_tra =time_tra;
+        tim_xe.time_thue =time_thue;
         Diem_don=diem_don;
        this.account_id=account_id;
         // Required empty public constructor
@@ -102,7 +104,13 @@ public class tim_xe extends Fragment {
         TextView tvTime=view.findViewById(R.id.tvTime);
         tvLocation.setText(Diem_don);
         String time=getCurrentTime();
-        tvTime.setText(time+" "+time_thue+" • "+time+" "+time_tra);
+        if(!time_tra.equals("/")){
+            tvTime.setText(time_thue+" • " +time_tra);
+        }else {
+
+
+        tvTime.setText(time+" "+time_thue+" • "+time+" "+time_tra);}
+
         carAdapter = new CarAdapter(getContext(), carList, new CarAdapter.OnCarClickListener() {
             @Override
             public void onCarClick(Car car) {
@@ -225,7 +233,7 @@ if(!numberOnly.isEmpty()) {
         int image2ColumnIndex = cursor.getColumnIndex("image2");
         int image3ColumnIndex = cursor.getColumnIndex("image3");
         int image4ColumnIndex = cursor.getColumnIndex("image4");
-        int statusColumnIndex = cursor.getColumnIndex("");
+        int statusColumnIndex = cursor.getColumnIndex("status");
         int LocationColumnIndex = cursor.getColumnIndex("Location");
         int bio = cursor.getColumnIndex("bio");
         int idtx = cursor.getColumnIndex("account_id");

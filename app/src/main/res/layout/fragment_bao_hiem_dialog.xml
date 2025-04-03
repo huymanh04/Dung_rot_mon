@@ -23,20 +23,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Nội dung cuộn -->
     <ImageButton
         android:id="@+id/btnClose"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
-        android:padding="8dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_marginStart="2dp"
+        android:background="@color/blue"
+        android:backgroundTint="#050505"
+        android:backgroundTintMode="add"
         android:contentDescription="Đóng"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:padding="8dp"
         android:scaleType="centerInside"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/titleText"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Nội dung cuộn -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

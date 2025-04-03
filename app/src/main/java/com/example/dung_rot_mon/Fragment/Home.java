@@ -66,7 +66,7 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-      imageView=  view.findViewById(R.id.imageView8);
+      imageView=  view.findViewById(R.id.imageViewProfile);
         db= new DatabaseHelper(getActivity());
         if (mail!=""&&mail!=null){
             readData(mail);
@@ -76,9 +76,9 @@ public class Home extends Fragment {
                     imageView.setImageBitmap(bitmap);
                 }
             }
-            TextView na = view.findViewById(R.id.textView13);
+            TextView na = view.findViewById(R.id.textViewName);
             na.setText(Name);
-        }else { TextView na = view.findViewById(R.id.textView13);
+        }else { TextView na = view.findViewById(R.id.textViewName);
             na.setText("Vui lòng đăng nập để sử dụng dịch vụ");}
 
 /// tìm chuyến
@@ -201,7 +201,8 @@ public class Home extends Fragment {
             bannerList = new ArrayList<>();
             adapter1 = new ViewPagerAdapterhome(bannerList);
             viewPager1.setAdapter(adapter1);
-            viewPager1.setUserInputEnabled(false);
+//            viewPager1.setUserInputEnabled(false);
+            viewPager1.setUserInputEnabled(true);
             // Tạo khoảng cách giữa các item
             viewPager1.setOffscreenPageLimit(3);
             RecyclerView recyclerView = (RecyclerView) viewPager1.getChildAt(0);
@@ -260,7 +261,7 @@ public class Home extends Fragment {
         if (position == 0) {
             layoutParams.height = dpToPx(340);
         } else {
-            layoutParams.height = dpToPx(460);
+            layoutParams.height = dpToPx(580);
         }
         viewPager.setLayoutParams(layoutParams);
     }

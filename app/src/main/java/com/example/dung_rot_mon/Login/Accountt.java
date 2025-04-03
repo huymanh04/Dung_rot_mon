@@ -1,6 +1,5 @@
 package com.example.dung_rot_mon.Login;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -24,17 +22,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dung_rot_mon.Fragment.tab_account.MyAddress;
-import com.example.dung_rot_mon.Fragment.tab_account.SecondFragment;
 import com.example.dung_rot_mon.Fragment.tab_account.Xe_yeu_thich;
+import com.example.dung_rot_mon.Fragment.tab_account.danh_sach_yc;
 import com.example.dung_rot_mon.Fragment.tab_account.tai_khoan_cua_toi;
 import com.example.dung_rot_mon.MainActivity;
 import com.example.dung_rot_mon.R;
 import com.example.dung_rot_mon.Sql.DatabaseHelper;
 import com.example.dung_rot_mon.Sql.DatabaseManager;
 import com.example.dung_rot_mon.admin.Frg_baner;
-import com.example.dung_rot_mon.admin.MainAdmin;
-import com.example.dung_rot_mon.admin.add;
 import com.example.dung_rot_mon.tab_car.Quan_ly_xe;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -94,14 +89,21 @@ if(email1!=""&&email1!=null){
             if (taixe==2){
                 /// admin
                 view.findViewById(R.id.addxe).setVisibility(View.VISIBLE);
-            }else { view.findViewById(R.id.addxe).setVisibility(View.GONE);}
+                view.findViewById(R.id.duyet_taixe).setVisibility(View.VISIBLE);
+
+            }
+            else { view.findViewById(R.id.addxe).setVisibility(View.GONE);view.findViewById(R.id.duyet_taixe).setVisibility(View.GONE);}
         }
         else
         {
             view.findViewById(R.id.addxe).setVisibility(View.GONE);
+            view.findViewById(R.id.duyet_taixe).setVisibility(View.GONE);
+
             view.findViewById(R.id.cardMyAddress).setVisibility(View.GONE);
         }
-
+        view.findViewById(R.id.duyet_taixe).setOnClickListener(v->{
+            replaceFragment(new danh_sach_yc());
+        });
             view.findViewById(R.id.cardDeleteAccount).setOnClickListener(v->{
 
             MainActivity.ktralogin=false;
@@ -119,8 +121,9 @@ if(email1!=""&&email1!=null){
         view.findViewById(R.id.addxe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(getActivity(), MainAdmin.class);
-                startActivity(m);
+               replaceFragment(new Frg_baner());
+//                Intent m = new Intent(getActivity(), MainAdmin.class);
+//                startActivity(m);
             }
         });
         etOldPassword=view.findViewById(R.id.edt_mk1);

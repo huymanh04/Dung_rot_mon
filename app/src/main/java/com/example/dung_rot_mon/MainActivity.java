@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.example.dung_rot_mon.Fragment.Chat_.tab_chat;
 import com.example.dung_rot_mon.Fragment.Support;
+import com.example.dung_rot_mon.Fragment.tab_account.Lich_su_thue;
 import com.example.dung_rot_mon.Fragment.tab_account.Xe_yeu_thich;
 import com.example.dung_rot_mon.Login.Accountt;
 import com.example.dung_rot_mon.Fragment.Car;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
    public static int Id_account=-1;
     public static boolean ktralogin=false;
-    public static DatabaseHelper dbHelper; String email12="huymanh@gmail.com";
+    public static DatabaseHelper dbHelper;
+   public static String email12="huymanh@gmail.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         if(ktralogin)
         {
             email12=intent.getStringExtra("email");
-        }else {email12="huymannh@gmail.com";}
+        }else {email12="loncong@gmail.ocm";}
 
         SQLiteDatabase dba=dbHelper.openDatabase();
         Cursor cursor = dba.rawQuery("SELECT id FROM account WHERE email = ?", new String[]{String.valueOf(email12)});
@@ -93,7 +95,7 @@ if(email12!=null&&email12!=""){
             btncarr = findViewById(R.id.btncarr);
             btncarr.setOnClickListener(v -> {
 
-              replaceFragment(new Quan_ly_xe(email12));
+              replaceFragment(new Lich_su_thue(email12));
                /* Intent m = new Intent(MainActivity.this, MainAdmin.class);
                 startActivity(m);*/
             });

@@ -19,7 +19,7 @@ public class DatabaseAccount  {
     }
 
     // Phương thức chèn dữ liệu vào bảng User
-    public void addUser(String email, String phone, String name, byte[] image, byte[] img_blx) {
+    public long addUser(String email, String phone, String name, byte[] image, byte[] img_blx) {
         dbHelper = new DatabaseHelper(context);
         SQLiteDatabase db = dbHelper.openDatabase();
         ContentValues values = new ContentValues();
@@ -59,6 +59,7 @@ String manh=sqlQuery.toString();
             Log.i("Database Success", "User inserted successfully");
         }
         db.close();
+        return result;
     }
 
     // Hàm chuyển đổi byte[] thành chuỗi hex để hiển thị ảnh dưới dạng dữ liệu nhị phân
